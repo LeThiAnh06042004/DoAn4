@@ -1,0 +1,5 @@
+base_url: "https://www.automationpractice.pl/index.php"
+browser: "chrome"
+implicit_wait: 10
+explicit_wait: 15
+report_dir: "reports"

@@ -1,0 +1,15 @@
+txtTimKiem:
+  by: xpath
+  value: //input[@placeholder="Nhập sản phẩm cần tìm"]
+
+btnTimKiem:
+  by: xpath
+  value: //button[@type="submit"]
+
+txtKoTimThay:
+  by: xpath
+  value: //div[@class="woocommerce-info"]
+
+txtTieuDe_TimThay:
+  by: xpath
+  value: //h1[contains(@class,'page-title')]

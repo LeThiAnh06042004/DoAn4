@@ -1,0 +1,9 @@
+search:
+  valid_cases:
+    - keyword: "gấu dâu"
+    - keyword: "doraemon"
+    - keyword: "pikachu"
+
+  invalid_cases:
+    - keyword: "abcxyz123"
+    - keyword: "xxxxxxx"

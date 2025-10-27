@@ -1,0 +1,4 @@
+2025-10-25 07:56:46,601 - INFO - Logger initialized. Log file: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251025_075646\logs\log.txt
+2025-10-25 07:56:46,633 - INFO - HTML Report will be saved to: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251025_075646\html\report.html
+2025-10-25 07:58:05,140 - INFO - Test passed: test_comment[TEN='', SDT='0293847587', DC='H\u01b0ng Y\xean', YC='H\xfat ch\xe2n kh\xf4ng']
+2025-10-25 07:59:31,758 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251025_075646\screenshots\test_comment[TEN='Linh', SDT='0293847587', DC='H\u01b0ng Y\xean', YC='H\xfat ch\xe2n kh\xf4ng'].png

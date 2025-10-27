@@ -8,8 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 class BasePage:
     def __init__(self, driver, locators_file=None):
         self.driver = driver
-        self.locators = {}
-        if locators_file:
+        self.locators = {} #chứa toàn bộ locators đc load từ file
+        if locators_file: #nếu có file sẽ tự độn load
             self.load_locators(locators_file)
 
     def load_locators(self, file_name):
@@ -24,10 +24,10 @@ class BasePage:
             self.locators = yaml.safe_load(f)
 
     def get_locator(self, name):
-        if name not in self.locators:
+        if name not in self.locators: #nếu ko tìm thấy tên khoá
             raise KeyError(f"Locator '{name}' không tồn tại trong file YAML.")
         locator_info = self.locators[name]
-        by = locator_info["by"].lower()
+        by = locator_info["by"].lower() #dựa trn by, trả về tuple chuẩn selenium
         value = locator_info["value"]
 
         if by == "id":

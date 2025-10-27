@@ -1,0 +1,59 @@
+txtSP:
+  by: xpath
+  value: //h4[contains(text(),"Gấu Bông Quả Dưa Hấu Vui Vẻ")]
+
+btnMuaHang:
+  by: xpath
+  value: //a[normalize-space()="Mua hàng"]
+
+txtTenNM:
+  by: xpath
+  value: //input[@placeholder="Họ và tên người mua"]
+
+txtSDT_NM:
+  by: xpath
+  value: //input[@placeholder="Số điện thoại người mua"]
+
+ckbTang:
+  by: xpath
+  value: //label[contains(text(),"Bạn mua để tặng, người nhận là người khác?")]
+
+txtDiaChiNH:
+  by: xpath
+  value: //input[@placeholder="Địa chỉ nhận hàng"]
+
+txtYCThem:
+  by: xpath
+  value: '//textarea[@placeholder="Yêu cầu thêm (Ví dụ: Gói quà, hút chân không, viết giúp thiệp, giấu tên người gửi, thời gian nhận hàng...)"]'
+
+btnMua:
+  by: xpath
+  value: //button[normalize-space()="Mua hàng"]
+
+TBThanhCong:
+  by: xpath
+  value: //div[@role="document"]//p[contains(text(),"ng trong messenger.")]
+
+TBNhapTen:
+  by: xpath
+  value: //div[@class="modal-body"][contains(text(),"Bạn chưa nhập họ và tên người mua.")]
+
+TBNhapSDT:
+  by: xpath
+  value: //div[@class="modal-body"][contains(text(),"Bạn chưa nhập số điện thoại người mua.")]
+
+TBNhapDC:
+  by: xpath
+  value: //div[@class="modal-body"][contains(text(),"Bạn chưa nhập địa chỉ nhận hàng.")]
+
+TB10so:
+  by: xpath
+  value: //div[@class="modal-body"][contains(text(),"Số điện thoại phải có ít nhất 10 số.")]
+
+TBChiCoSo:
+  by: xpath
+  value: //div[@class="modal-body"][contains(text(),"Số điện thoại chỉ bao gồm những số.")]
+
+Loi:
+  by: xpath
+  value: //div[@class="alert alert-danger"]

@@ -11,9 +11,10 @@ class HomePage(BasePage):
         self.click("btnTimKiem")
 
     def get_search_results(self):
-        """Lấy danh sách tiêu đề các sản phẩm tìm thấy"""
-        elements = self.find_elements("txtTieuDe_TimThay")
-        return [el.text for el in elements]
+        try:
+            return self.get_text("txtTimThay")
+        except:
+            return ""
 
     def get_no_result_message(self):
         """Lấy thông báo khi không tìm thấy sản phẩm"""

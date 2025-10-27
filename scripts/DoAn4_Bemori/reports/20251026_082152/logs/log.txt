@@ -1,0 +1,15 @@
+2025-10-26 08:21:52,103 - INFO - Logger initialized. Log file: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_082152\logs\log.txt
+2025-10-26 08:21:52,214 - INFO - HTML Report will be saved to: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_082152\html\report.html
+2025-10-26 08:23:01,879 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_082152\screenshots\test_comment[ND='\u0111\u1eb9p qu\xe1', TEN='lan', SDT='0182736458'].png
+2025-10-26 08:24:13,046 - INFO - Test passed: test_comment[ND='\u0111\u1eb9p qu\xe1', TEN='la', SDT='']
+2025-10-26 08:25:18,453 - INFO - Test passed: test_comment[ND='\u0111\u1eb9p qu\xe1', TEN='an', SDT='abcderfghk']
+2025-10-26 08:26:29,564 - INFO - Test passed: test_comment[ND='\u0111\u1eb9p qu\xe1', TEN='nanh', SDT='!@#$%^&']
+2025-10-26 08:27:44,147 - INFO - Test passed: test_comment[ND='r\u1ea5t \u0111\u1eb9p', TEN='abc', SDT='09876axcvb']
+2025-10-26 08:28:54,772 - INFO - Test passed: test_comment[ND='\u1ed5n', TEN='abc', SDT='012345!@#$%']
+2025-10-26 08:30:04,415 - INFO - Test passed: test_comment[ND='uy t\xedn', TEN='abc', SDT='abcdef!@#$%^']
+2025-10-26 08:31:25,310 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_082152\screenshots\test_comment[ND='l\xf4ng m\u01b0\u1ee3t', TEN='abc', SDT='012abcdef!@#$%'].png
+2025-10-26 08:32:37,002 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_082152\screenshots\test_comment[ND='\u0111\u1eb9p', TEN='abc', SDT='098765543212345'].png
+2025-10-26 08:33:49,828 - INFO - Test passed: test_comment[ND='r\u1ea5t \u0111\u1eb9p', TEN='abc', SDT='012345678']
+2025-10-26 08:35:00,544 - INFO - Test passed: test_comment[ND='r\u1ea5t \u0111\u1eb9p', TEN='huhi', SDT='1']
+2025-10-26 08:36:10,359 - INFO - Test passed: test_comment[ND='ch\u1ea5t l\u01b0\u1ee3ng', TEN='', SDT='0987654321']
+2025-10-26 08:37:18,958 - INFO - Test passed: test_comment[ND='', TEN='sorry', SDT='0987654321']

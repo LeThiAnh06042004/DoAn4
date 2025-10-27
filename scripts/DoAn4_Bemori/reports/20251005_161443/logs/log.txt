@@ -1,0 +1,7 @@
+2025-10-05 16:14:43,480 - INFO - Logger initialized. Log file: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251005_161443\logs\log.txt
+2025-10-05 16:14:43,523 - INFO - HTML Report will be saved to: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251005_161443\html\report.html
+2025-10-05 16:14:50,064 - INFO - Test passed: test_search[g\u1ea5u d\xe2u]
+2025-10-05 16:15:20,041 - INFO - Test passed: test_search[doraemon]
+2025-10-05 16:16:24,712 - INFO - Test passed: test_search[pikachu]
+2025-10-05 16:16:44,211 - INFO - Test passed: test_search[$%^123]
+2025-10-05 16:17:22,981 - INFO - Test passed: test_search[abcxyz]

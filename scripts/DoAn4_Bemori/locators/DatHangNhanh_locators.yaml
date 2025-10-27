@@ -1,0 +1,27 @@
+SP:
+  by: xpath
+  value: //h4[contains(text(),"Gấu Bông Quả Dưa Hấu Vui Vẻ")]
+
+txtDHN:
+  by: xpath
+  value: //input[@placeholder="Nhập số điện thoại"]
+
+btnGui:
+  by: xpath
+  value: //button[@class="btn btn-primary btn-sm"]
+
+txtThanhCong:
+  by: xpath
+  value: //p[contains(text(),"ng trong messenger.")]
+
+txtTB_rong:
+  by: xpath
+  value: //div[contains(text(),"Bạn chưa nhập số điện thoại.")]
+
+txtTB_chicoso:
+  by: xpath
+  value: //div[contains(text(),"Số điện thoại chỉ bao gồm những số.")]
+
+txtTB_duoi10:
+  by: xpath
+  value: //div[contains(text(),"Số điện thoại phải có ít nhất 10 số.")]

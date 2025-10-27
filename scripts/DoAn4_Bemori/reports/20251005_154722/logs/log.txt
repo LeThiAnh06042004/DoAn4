@@ -1,0 +1,7 @@
+2025-10-05 15:47:22,984 - INFO - Logger initialized. Log file: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251005_154722\logs\log.txt
+2025-10-05 15:47:22,990 - INFO - HTML Report will be saved to: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251005_154722\html\report.html
+2025-10-05 15:47:29,820 - INFO - Test passed: test_search[case0]
+2025-10-05 15:47:39,721 - INFO - Test passed: test_search[case1]
+2025-10-05 15:47:48,957 - INFO - Test passed: test_search[case2]
+2025-10-05 15:48:06,802 - INFO - Test passed: test_search[case3]
+2025-10-05 15:48:25,230 - INFO - Test passed: test_search[case4]

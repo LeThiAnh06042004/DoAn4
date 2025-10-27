@@ -1,7 +1,6 @@
 import pytest
 from core.base_driver import BaseDriver
 
-
 class BaseTest:
     @pytest.fixture(autouse=True)
     def setup_and_teardown(self, request):

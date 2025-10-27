@@ -1,0 +1,13 @@
+2025-10-27 07:09:36,511 - INFO - File log đã được tạo. File log: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251027_070936\logs\log.txt
+2025-10-27 07:09:36,637 - INFO - Báo cáo đã được lưu tại: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251027_070936\html\report.html
+2025-10-27 07:10:01,875 - INFO - Test passed: test_search[g\u1ea5u d\xe2u]
+2025-10-27 07:10:20,928 - INFO - Test passed: test_search[doraemon]
+2025-10-27 07:10:54,294 - INFO - Test passed: test_search[bonghoa]
+2025-10-27 07:11:14,167 - INFO - Test passed: test_search[]
+2025-10-27 07:11:35,527 - INFO - Test passed: test_search[ ]
+2025-10-27 07:11:55,715 - INFO - Test passed: test_search[123]
+2025-10-27 07:12:25,916 - INFO - Test passed: test_search[!@#$%]
+2025-10-27 07:12:56,389 - INFO - Test passed: test_search[123!@#$]
+2025-10-27 07:13:26,247 - INFO - Test passed: test_search[123hoa]
+2025-10-27 07:13:56,529 - INFO - Test passed: test_search[hoa!@#]
+2025-10-27 07:14:28,411 - INFO - Test passed: test_search[123hoa@#$]

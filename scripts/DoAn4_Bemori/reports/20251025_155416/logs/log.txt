@@ -1,0 +1,19 @@
+2025-10-25 15:54:16,840 - INFO - Logger initialized. Log file: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251025_155416\logs\log.txt
+2025-10-25 15:54:16,846 - INFO - HTML Report will be saved to: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251025_155416\html\report.html
+2025-10-25 15:54:33,508 - INFO - Test passed: test_search[g\u1ea5u d\xe2u]
+2025-10-25 15:54:50,609 - INFO - Test passed: test_search[doraemon]
+2025-10-25 15:55:12,599 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251025_155416\screenshots\test_search[pikachu].png
+2025-10-25 15:55:40,430 - INFO - Test passed: test_search[$%^123]
+2025-10-25 15:56:07,273 - INFO - Test passed: test_search[abcxyz]
+2025-10-25 15:57:19,658 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251025_155416\screenshots\test_comment[ND='\u0111\u1eb9p qu\xe1', TEN='miu', SDT='0182736458'].png
+2025-10-25 15:58:28,756 - INFO - Test passed: test_comment[ND='', TEN='hien', SDT='0987654321']
+2025-10-25 15:59:41,095 - INFO - Test passed: test_comment[ND='\u0111\u1eb9p', TEN='', SDT='0987654321']
+2025-10-25 16:00:52,210 - INFO - Test passed: test_comment[ND='\u0111\u1eb9p', TEN='anh', SDT='']
+2025-10-25 16:01:59,542 - INFO - Test passed: test_comment[ND='r\u1ea5t \u0111\u1eb9p', TEN='abc', SDT='09876axcvb']
+2025-10-25 16:03:08,453 - INFO - Test passed: test_comment[ND='\u1ed5n', TEN='abc', SDT='abcderfghk']
+2025-10-25 16:04:19,515 - INFO - Test passed: test_comment[ND='uy t\xedn', TEN='abc', SDT='@#$$%^&&#@!']
+2025-10-25 16:05:30,480 - INFO - Test passed: test_comment[ND='l\xf4ng m\u01b0\u1ee3t', TEN='abc', SDT='123']
+2025-10-25 16:06:44,468 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251025_155416\screenshots\test_comment[ND='\u0111\u1eb9p', TEN='abc', SDT='098765543212345'].png
+2025-10-25 16:07:53,855 - INFO - Test passed: test_comment[ND='r\u1ea5t \u0111\u1eb9p', TEN='', SDT='']
+2025-10-25 16:09:04,174 - INFO - Test passed: test_comment[ND='', TEN='r\u1ea5t \u0111\u1eb9p', SDT='']
+2025-10-25 16:10:13,672 - INFO - Test passed: test_comment[ND='', TEN='', SDT='0987654321']

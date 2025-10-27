@@ -1,0 +1,13 @@
+2025-10-26 08:39:49,180 - INFO - Logger initialized. Log file: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_083949\logs\log.txt
+2025-10-26 08:39:49,279 - INFO - HTML Report will be saved to: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_083949\html\report.html
+2025-10-26 08:40:45,662 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_083949\screenshots\test_search[0123456789].png
+2025-10-26 08:41:37,157 - INFO - Test passed: test_search[]
+2025-10-26 08:42:33,327 - INFO - Test passed: test_search[abcdefghij]
+2025-10-26 08:43:18,572 - INFO - Test passed: test_search[!@#$%^&*]
+2025-10-26 08:44:08,575 - INFO - Test passed: test_search[012345abcd]
+2025-10-26 08:45:00,731 - INFO - Test passed: test_search[012345!@#$]
+2025-10-26 08:45:49,455 - INFO - Test passed: test_search[abcdef!@#$]
+2025-10-26 08:46:39,318 - INFO - Test passed: test_search[012abcd$%^]
+2025-10-26 08:47:29,947 - INFO - Test passed: test_search[1]
+2025-10-26 08:48:19,520 - INFO - Test passed: test_search[012345678]
+2025-10-26 08:49:28,520 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251026_083949\screenshots\test_search[01234567899].png

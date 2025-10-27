@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3699a244-b54a-4c80-892c-01b00ceef8bb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/data/data_TimKiem.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/data/data_TimKiem_csv.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/utils/logger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/utils/report_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/core/data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/utils/data_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/core/data_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/utils/data_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/core/logger.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/core/report_manager.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/data/testdata.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/data/data_TimKiem_json.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/data/testdata.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/suites/suite_TimKiem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/data/testdata.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/data/testdata.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/locators/TimKiem_locators.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/locators/TimKiem_locators.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/pages/home_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/pages/home_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DoAn4_Bemori/tests/test_TimKiem.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DoAn4_Bemori/tests/test_TimKiem.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="34NUVghzRgiqXpPcrvnsIb427gC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-4f4e415b4190-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.26053.29" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3699a244-b54a-4c80-892c-01b00ceef8bb" name="Changes" comment="" />
+      <created>1761053548859</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761053548859</updated>
+    </task>
+    <servers />
+  </component>
+</project>

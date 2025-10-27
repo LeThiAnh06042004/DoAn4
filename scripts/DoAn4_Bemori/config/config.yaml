@@ -1,5 +1,5 @@
-base_url: "https://www.automationpractice.pl/index.php"
+base_url: "https://gaubongonline.vn/"
 browser: "chrome"
-implicit_wait: 10
-explicit_wait: 15
+implicit_wait: 5  #time chờ ngầm định
+explicit_wait: 10 #time chờ tường minh
 report_dir: "reports"

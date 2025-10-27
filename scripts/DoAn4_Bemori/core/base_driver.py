@@ -11,14 +11,14 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 class BaseDriver:
     def __init__(self, browser=None):
-        # Đọc config từ file
+        # Đọc config từ file, lấy đg dẫn tuyệt đối tới file
         ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         config_path = os.path.join(ROOT_DIR, "config", "config.yaml")
 
-        with open(config_path, "r") as f:
+        with open(config_path, "r", encoding="utf-8") as f:
             self.config = yaml.safe_load(f)
 
-        # Nếu user không truyền browser → lấy mặc định trong config.yaml
+        # Nếu không truyền browser thì lấy mặc định trong config.yaml
         self.browser = browser or self.config.get("browser", "chrome")
         self.driver = None
 

@@ -10,6 +10,6 @@ txtKoTimThay:
   by: xpath
   value: //div[@class="woocommerce-info"]
 
-txtTieuDe_TimThay:
+txtTimThay:
   by: xpath
-  value: //h1[contains(@class,'page-title')]
+  value: //select[@name="orderby"]

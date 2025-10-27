@@ -1,0 +1,43 @@
+txtSP:
+  by: xpath
+  value: //h4[contains(text(),"Gấu Bông Quả Dưa Hấu Vui Vẻ")]
+
+txtNoiDungBL:
+  by: xpath
+  value: //textarea[@placeholder="Nội dung bình luận (*)"]
+
+txtHoTen:
+  by: xpath
+  value: //input[@placeholder="Họ tên (*)"]
+
+txtSDT:
+  by: xpath
+  value: //input[@placeholder="Số điện thoại (*)"]
+
+btnBinhLuan:
+  by: css
+  value: button.btn.btn-primary.btn-block
+
+TBThanhCong:
+  by: xpath
+  value: //div[contains(text(),"Gửi bình luận thành công.")]
+
+TBNhapBL:
+  by: xpath
+  value: //div[contains(text(),"Bạn chưa nhập bình luận.")]
+
+TBNhapTen:
+  by: xpath
+  value: //div[contains(text(),"Bạn chưa nhập tên.")]
+
+TBNhapSDT:
+  by: xpath
+  value: //div[contains(text(),"Bạn chưa nhập số điện thoại.")]
+
+TBChiCoSo:
+  by: xpath
+  value: //div[contains(text(),"Số điện thoại chỉ bao gồm những số.")]
+
+TB10so:
+  by: xpath
+  value: //div[contains(text(),"Số điện thoại phải có ít nhất 10 số.")]

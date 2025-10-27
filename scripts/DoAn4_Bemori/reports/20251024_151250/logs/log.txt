@@ -1,0 +1,6 @@
+2025-10-24 15:12:50,851 - INFO - Logger initialized. Log file: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251024_151250\logs\log.txt
+2025-10-24 15:12:50,884 - INFO - HTML Report will be saved to: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251024_151250\html\report.html
+2025-10-24 15:14:05,236 - INFO - Test passed: test_comment[ND='S\u1ea3n ph\u1ea9m r\u1ea5t \u0111\u1eb9p', TEN='h\xe0', SDT='918273645']
+2025-10-24 15:15:13,703 - INFO - Test passed: test_comment[ND='', TEN='hi\u1ec1n', SDT='129384756']
+2025-10-24 15:16:19,926 - INFO - Test passed: test_comment[ND='\u1ed5n', TEN='', SDT='657483924']
+2025-10-24 15:17:27,401 - INFO - Test passed: test_comment[ND='t\u1ed1t', TEN='thu', SDT='']

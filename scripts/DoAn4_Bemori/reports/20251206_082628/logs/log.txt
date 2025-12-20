@@ -1,0 +1,13 @@
+2025-12-06 08:26:28,053 - INFO - File log đã được tạo. File log: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251206_082628\logs\log.txt
+2025-12-06 08:26:28,333 - INFO - Báo cáo đã được lưu tại: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251206_082628\html\report.html
+2025-12-06 08:26:58,099 - INFO - Test passed: test_search[g\u1ea5u d\xe2u]
+2025-12-06 08:27:18,815 - INFO - Test passed: test_search[doraemon]
+2025-12-06 08:27:49,688 - INFO - Test passed: test_search[bonghoa]
+2025-12-06 08:28:12,106 - INFO - Test passed: test_search[]
+2025-12-06 08:28:32,542 - INFO - Test passed: test_search[ ]
+2025-12-06 08:28:52,645 - INFO - Test passed: test_search[123]
+2025-12-06 08:29:25,623 - INFO - Test passed: test_search[!@#$%]
+2025-12-06 08:29:57,538 - INFO - Test passed: test_search[123!@#$]
+2025-12-06 08:30:29,205 - INFO - Test passed: test_search[123hoa]
+2025-12-06 08:31:02,253 - INFO - Test passed: test_search[hoa!@#]
+2025-12-06 08:31:21,037 - ERROR - Test failed. Screenshot saved: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251206_082628\screenshots\test_search[123hoa@#$].png

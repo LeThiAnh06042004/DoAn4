@@ -2,6 +2,7 @@ import csv
 import json
 import openpyxl
 import yaml
+import xlrd
 import sqlite3
 from typing import List, Dict, Any, Optional, Union
 from pathlib import Path
@@ -53,31 +54,46 @@ def load_json_data(filepath: str, encoding: str = 'utf-8') -> Union[List[Dict[st
 #khai báo hàm vs 2 tham số là filepath và tên sheet cần đọc -> ds các dict, mỗi dict là 1 dòng dl
 def load_excel_data(filepath: str, sheet_name: Optional[str] = None) -> List[Dict[str, Any]]:
     try:
-        file_path = check_file_exists(filepath)  #ktra sự tồn tại
+        file_path = check_file_exists(filepath)
+        ext = file_path.suffix.lower()
 
-        workbook = openpyxl.load_workbook(file_path)  #dùng thư viện openpyxl để mở file
-        if not workbook.sheetnames:  #nếu file ko có sheet thì báo lỗi
+        # Nếu là file .xls → dùng xlrd
+        if ext == ".xls":
+            workbook = xlrd.open_workbook(file_path)
+            sheet = workbook.sheet_by_name(sheet_name) if sheet_name else workbook.sheet_by_index(0)
+
+            headers = [sheet.cell_value(0, col).strip() for col in range(sheet.ncols)]
+            if not headers or any(h == "" for h in headers):
+                raise KeyError("Excel .xls không có header hợp lệ.")
+
+            data = []
+            for row in range(1, sheet.nrows):
+                row_data = {headers[col]: sheet.cell_value(row, col) for col in range(sheet.ncols)}
+                if any(str(v).strip() for v in row_data.values()):
+                    data.append(row_data)
+            return data
+
+        # Nếu là file .xlsx → dùng openpyxl
+        workbook = openpyxl.load_workbook(file_path)
+        if not workbook.sheetnames:
             raise ValueError("No sheets found in the Excel file.")
 
-        #nếu truyền tên sheet thì lấy sheet đó, còn ko thì lấy sheet đầu tiên
         sheet = workbook[sheet_name] if sheet_name else workbook[workbook.sheetnames[0]]
 
-        #lấy dòng đtiên trong ex, mỗi ô lấy gt chuyển tành chuỗi và bỏ khoảng trắng đầu/cuối
         headers = [str(cell.value).strip() if cell.value else None for cell in next(sheet.iter_rows(min_row=1, max_row=1))]
-        if not headers or any(h is None for h in headers): #nếu ko có header ỏ cột nào ko có tên thì báo lỗi
+        if not headers or any(h is None for h in headers):
             raise KeyError("Excel sheet is missing headers or contains empty header values.")
 
         data = []
-        for row in sheet.iter_rows(min_row=2): #đọc từ dòng t2 trở đi
-            # enumerate(row) lặp qua từng ô trong dòng đó
-            #row_data: ghép header và gt thành dict
+        for row in sheet.iter_rows(min_row=2):
             row_data = {headers[i]: cell.value for i, cell in enumerate(row) if i < len(headers)}
-            if any(row_data.values()): #chỉ thêm dòng nếu có ít nhất 1 ô dữ liệu
+            if any(row_data.values()):
                 data.append(row_data)
 
         if not data:
-            raise ValueError("File Excel ko có dữ liệu")
-        return data #trả về list các dict
+            raise ValueError("File Excel không có dữ liệu.")
+
+        return data
 
     except Exception as e:
         raise Exception(f"Lỗi đọc file Excel: {e}")
@@ -136,3 +152,5 @@ def load_sqlite_data(db_path, table_name):
     rows = cursor.fetchall() #lấy toàn bộ các dòng kq từ truy vấn
     conn.close()
     return [dict(row) for row in rows] #chuyển dl thành dict
+
+

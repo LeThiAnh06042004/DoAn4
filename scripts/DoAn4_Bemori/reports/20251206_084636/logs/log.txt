@@ -1,0 +1,7 @@
+2025-12-06 08:46:36,662 - INFO - File log đã được tạo. File log: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251206_084636\logs\log.txt
+2025-12-06 08:46:36,733 - INFO - Báo cáo đã được lưu tại: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20251206_084636\html\report.html
+2025-12-06 08:47:04,010 - INFO - Test passed: test_search[g\u1ea5u d\xe2u]
+2025-12-06 08:47:22,318 - INFO - Test passed: test_search[doraemon]
+2025-12-06 08:47:41,704 - INFO - Test passed: test_search[pikachu]
+2025-12-06 08:48:13,029 - INFO - Test passed: test_search[@#$123]
+2025-12-06 08:48:43,145 - INFO - Test passed: test_search[anhjdsk]

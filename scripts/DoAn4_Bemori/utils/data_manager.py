@@ -23,9 +23,15 @@ class DataManager:
             return yaml.safe_load(f) #Trả về dict hoặc list tương tự JSON.
 
     @staticmethod
-    def read_excel(file_path, sheet_name=0): #mặc định đọc sheet đầu tiên
-        df = pd.read_excel(file_path, sheet_name=sheet_name) # Dùng pandas để đọc
-        return df.to_dict(orient="records") #mỗi dòng = 1 dict.
+    def read_excel(file_path, sheet_name=0):
+        ext = os.path.splitext(file_path)[-1].lower()
+
+        # Nếu file .xls → yêu cầu xlrd
+        if ext == ".xls":
+            df = pd.read_excel(file_path, sheet_name=sheet_name, engine="xlrd")
+        else:
+            df = pd.read_excel(file_path, sheet_name=sheet_name)
+        return df.to_dict(orient="records")
 
     @staticmethod
     def read_txt(file_path):

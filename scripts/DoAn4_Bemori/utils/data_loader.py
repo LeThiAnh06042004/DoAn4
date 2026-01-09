@@ -55,37 +55,42 @@ def load_json_data(filepath: str, encoding: str = 'utf-8') -> Union[List[Dict[st
 def load_excel_data(filepath: str, sheet_name: Optional[str] = None) -> List[Dict[str, Any]]:
     try:
         file_path = check_file_exists(filepath)
-        ext = file_path.suffix.lower()
+        ext = file_path.suffix.lower() #suffix để xđ là xls hay xlsx
 
         # Nếu là file .xls → dùng xlrd
         if ext == ".xls":
-            workbook = xlrd.open_workbook(file_path)
+            workbook = xlrd.open_workbook(file_path) #mở file
+            #nếu có tên sheet thì đọc sheet đó, nếu ko thì đọc sheet đtiên
             sheet = workbook.sheet_by_name(sheet_name) if sheet_name else workbook.sheet_by_index(0)
 
+            #đọc header
             headers = [sheet.cell_value(0, col).strip() for col in range(sheet.ncols)]
             if not headers or any(h == "" for h in headers):
                 raise KeyError("Excel .xls không có header hợp lệ.")
 
             data = []
-            for row in range(1, sheet.nrows):
+            for row in range(1, sheet.nrows): #bỏ qua header, duyệt ừ dòng t2
+                #mỗi dòng là 1 dict
                 row_data = {headers[col]: sheet.cell_value(row, col) for col in range(sheet.ncols)}
-                if any(str(v).strip() for v in row_data.values()):
+                if any(str(v).strip() for v in row_data.values()): #nếu dòng trống hoàn toàn thì bỏ qua
                     data.append(row_data)
             return data
 
         # Nếu là file .xlsx → dùng openpyxl
         workbook = openpyxl.load_workbook(file_path)
         if not workbook.sheetnames:
-            raise ValueError("No sheets found in the Excel file.")
+            raise ValueError("Không tìm thấy sheet trong file Excel")
 
         sheet = workbook[sheet_name] if sheet_name else workbook[workbook.sheetnames[0]]
 
+        #lấy dòng 1, chuyển sang string, nếu cell -> none
         headers = [str(cell.value).strip() if cell.value else None for cell in next(sheet.iter_rows(min_row=1, max_row=1))]
         if not headers or any(h is None for h in headers):
-            raise KeyError("Excel sheet is missing headers or contains empty header values.")
+            raise KeyError("Excel .xlsx không có header hợp lệ.")
 
         data = []
         for row in sheet.iter_rows(min_row=2):
+            #ánh xạ ừng ô trong excel vào header t.ư, tránh lỗi nếu số cột dl > số header
             row_data = {headers[i]: cell.value for i, cell in enumerate(row) if i < len(headers)}
             if any(row_data.values()):
                 data.append(row_data)

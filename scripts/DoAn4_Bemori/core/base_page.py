@@ -8,10 +8,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class BasePage:
     def __init__(self, driver, locators_file=None):
-        self.driver = driver
-        self.locators = {}
-        self.logger = logging.getLogger("TestLogger")  #LOGGER CHUNG
+        self.driver = driver #cấu hình dùng chung cho mọi action
+        self.locators = {} #dict chứa locator sau khi load
+        self.logger = logging.getLogger("TestLogger")  #logger dùng chung
 
+        #nếu page có locator thì thực hiện in log và load file đó
         if locators_file:
             self.logger.info(f"Load locator file: {locators_file}")
             self.load_locators(locators_file)
@@ -60,7 +61,7 @@ class BasePage:
         locator = self.get_locator(name)
         return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_element_located(locator)
-        )
+        ) #chờ đến khi locator xh
 
     def click(self, name, timeout=10):
         self.logger.info(f"Click element: {name}")

@@ -2,7 +2,7 @@ import pytest
 from utils import data_loader
 from pages.home_page import HomePage
 
-cases = data_loader.load_yaml_data(r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\ai\TimKiem\data_TimKiem_ai.yaml")
+cases = data_loader.load_yaml_data(r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\ai\TimKiem\data_TimKiem_ai.json")
 
 class TestSearch:
 

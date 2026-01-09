@@ -1,9 +1,8 @@
 # Gửi prompt cho AI và nhận kq về
-
 import requests #Gửi POST request đến LM Studio và nhận phản hồi JSON từ model
 
 LM_STUDIO_URL = "http://localhost:1234/v1/chat/completions" #khai báo openAI api endpoint do lm cung cấp
-MODEL_NAME = "local-model" #khai báo model đã load trong lm
+MODEL_NAME = "local-model"
 
 #ĐN hàm: hàm nhận vào prompt (nội dung muốn ai xử lý) và trả về chuỗi text do AI sinh ra
 def call_llm(prompt: str) -> str:

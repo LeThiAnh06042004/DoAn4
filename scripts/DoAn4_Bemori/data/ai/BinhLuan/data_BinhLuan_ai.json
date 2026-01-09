@@ -1,0 +1,52 @@
+[
+  {
+    "noi_dung": "Tuyệt vời! Sản phẩm đúng như mô tả.",
+    "ho_ten": "Nguyễn Văn A",
+    "so_dien_thoai": "0912345678"
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "Lê Thị B",
+    "so_dien_thoai": "0987654321"
+  },
+  {
+    "noi_dung": "Chưa nhận được hàng.",
+    "ho_ten": "",
+    "so_dien_thoai": "0912345678"
+  },
+  {
+    "noi_dung": "Hàng kém chất lượng",
+    "ho_ten": "Trần C",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "Giao hàng nhanh, cảm ơn!",
+    "ho_ten": "Phạm D",
+    "so_dien_thoai": "09123"
+  },
+  {
+    "noi_dung": "Không hài lòng với dịch vụ.",
+    "ho_ten": "Đặng E",
+    "so_dien_thoai": "01234567890"
+  },
+  {
+    "noi_dung": "Tuyệt vời! Hàng mới nhất.",
+    "ho_ten": "Nguyễn F",
+    "so_dien_thoai": "09876543210"
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "Đánh giá 5 sao.",
+    "ho_ten": "Lê G",
+    "so_dien_thoai": "091234567890"
+  },
+  {
+    "noi_dung": "Hàng đã bị hư hỏng khi nhận.",
+    "ho_ten": "Trần H",
+    "so_dien_thoai": "0123456789"
+  }
+]

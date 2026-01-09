@@ -1,0 +1,72 @@
+2026-01-09 08:14:05,435 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260109_081405\logs\log.txt
+2026-01-09 08:14:05,567 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260109_081405\html\report.html
+2026-01-09 08:14:06,772 - INFO - TestLogger - Bắt đầu: test_search[g\u1ea5u b\xf4ng] =====
+2026-01-09 08:14:23,026 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:14:23,030 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:14:23,031 - INFO - TestLogger - Nhập 'gấu bông' vào: txtTimKiem
+2026-01-09 08:14:23,031 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:14:23,032 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:14:23,787 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 08:14:23,788 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 08:14:26,030 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 08:14:26,030 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 08:14:26,031 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 08:14:26,142 - INFO - TestLogger - TEST PASSED: test_search[g\u1ea5u b\xf4ng]
+2026-01-09 08:14:28,432 - INFO - TestLogger - Kết thúc: test_search[g\u1ea5u b\xf4ng] =====
+
+2026-01-09 08:14:28,436 - INFO - TestLogger - Bắt đầu: test_search[\u0111\u1ed3 ch\u01a1i g\u1ea5u b\xf4ng] =====
+2026-01-09 08:14:42,663 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:14:42,672 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:14:42,673 - INFO - TestLogger - Nhập 'đồ chơi gấu bông' vào: txtTimKiem
+2026-01-09 08:14:42,674 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:14:42,674 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:14:43,190 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 08:14:43,191 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 08:14:45,757 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 08:14:45,757 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 08:14:45,758 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 08:14:45,867 - INFO - TestLogger - TEST PASSED: test_search[\u0111\u1ed3 ch\u01a1i g\u1ea5u b\xf4ng]
+2026-01-09 08:14:48,132 - INFO - TestLogger - Kết thúc: test_search[\u0111\u1ed3 ch\u01a1i g\u1ea5u b\xf4ng] =====
+
+2026-01-09 08:14:48,139 - INFO - TestLogger - Bắt đầu: test_search[] =====
+2026-01-09 08:14:59,580 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:14:59,585 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:14:59,586 - INFO - TestLogger - Nhập '' vào: txtTimKiem
+2026-01-09 08:14:59,586 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:14:59,586 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:15:00,018 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 08:15:00,019 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 08:15:01,927 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 08:15:01,928 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 08:15:01,928 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 08:15:02,036 - INFO - TestLogger - TEST PASSED: test_search[]
+2026-01-09 08:15:04,298 - INFO - TestLogger - Kết thúc: test_search[] =====
+
+2026-01-09 08:15:04,303 - INFO - TestLogger - Bắt đầu: test_search[gi\xe1 c\u1ea3 g\u1ea5u b\xf4ng 200k] =====
+2026-01-09 08:15:08,868 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:15:08,875 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:15:08,876 - INFO - TestLogger - Nhập 'giá cả gấu bông 200k' vào: txtTimKiem
+2026-01-09 08:15:08,876 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:15:08,877 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:15:20,540 - ERROR - TestLogger - TEST FAILED: test_search[gi\xe1 c\u1ea3 g\u1ea5u b\xf4ng 200k]
+2026-01-09 08:15:20,540 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260109_081405\screenshots\test_search[gi\xe1 c\u1ea3 g\u1ea5u b\xf4ng 200k].png
+2026-01-09 08:15:24,319 - INFO - TestLogger - Kết thúc: test_search[gi\xe1 c\u1ea3 g\u1ea5u b\xf4ng 200k] =====
+
+2026-01-09 08:15:24,328 - INFO - TestLogger - Bắt đầu: test_search[g\u1ea5u b\xf4ng, teddy bear] =====
+2026-01-09 08:15:28,833 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:15:28,843 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:15:28,844 - INFO - TestLogger - Nhập 'gấu bông, teddy bear' vào: txtTimKiem
+2026-01-09 08:15:28,844 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:15:28,845 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:15:34,676 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 08:15:34,677 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 08:15:37,907 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 08:15:37,907 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 08:15:37,908 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 08:15:48,627 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 08:15:48,627 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 08:15:48,628 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 08:16:00,148 - ERROR - TestLogger - TEST FAILED: test_search[g\u1ea5u b\xf4ng, teddy bear]
+2026-01-09 08:16:00,149 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260109_081405\screenshots\test_search[g\u1ea5u b\xf4ng, teddy bear].png
+2026-01-09 08:16:02,348 - INFO - TestLogger - Kết thúc: test_search[g\u1ea5u b\xf4ng, teddy bear] =====
+

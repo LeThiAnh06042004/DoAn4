@@ -1,0 +1,179 @@
+2026-01-09 07:57:06,392 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260109_075706\logs\log.txt
+2026-01-09 07:57:06,470 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260109_075706\html\report.html
+2026-01-09 07:57:07,867 - INFO - TestLogger - Bắt đầu: test_search[\u0111i\u1ec7n tho\u1ea1i Samsung Galaxy S23] =====
+2026-01-09 07:57:30,923 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 07:57:30,959 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 07:57:30,960 - INFO - TestLogger - Nhập 'điện thoại Samsung Galaxy S23' vào: txtTimKiem
+2026-01-09 07:57:30,960 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 07:57:30,961 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 07:57:31,729 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 07:57:31,730 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 07:57:34,621 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 07:57:34,622 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 07:57:34,622 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 07:57:45,178 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 07:57:45,179 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 07:57:45,179 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 07:57:45,287 - INFO - TestLogger - TEST PASSED: test_search[\u0111i\u1ec7n tho\u1ea1i Samsung Galaxy S23]
+2026-01-09 07:57:47,569 - INFO - TestLogger - Kết thúc: test_search[\u0111i\u1ec7n tho\u1ea1i Samsung Galaxy S23] =====
+
+2026-01-09 07:57:47,577 - INFO - TestLogger - Bắt đầu: test_search[Laptop Dell XPS 13] =====
+2026-01-09 07:57:59,580 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 07:57:59,587 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 07:57:59,588 - INFO - TestLogger - Nhập 'Laptop Dell XPS 13' vào: txtTimKiem
+2026-01-09 07:57:59,588 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 07:57:59,589 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 07:58:00,179 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 07:58:00,180 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 07:58:02,448 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 07:58:02,449 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 07:58:02,449 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 07:58:13,015 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 07:58:13,016 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 07:58:13,016 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 07:58:13,120 - INFO - TestLogger - TEST PASSED: test_search[Laptop Dell XPS 13]
+2026-01-09 07:58:15,457 - INFO - TestLogger - Kết thúc: test_search[Laptop Dell XPS 13] =====
+
+2026-01-09 07:58:15,463 - INFO - TestLogger - Bắt đầu: test_search[gi\u1ecf h\xe0ng, thanh to\xe1n! @#%] =====
+2026-01-09 07:58:29,787 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 07:58:29,799 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 07:58:29,800 - INFO - TestLogger - Nhập 'giỏ hàng, thanh toán! @#%' vào: txtTimKiem
+2026-01-09 07:58:29,801 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 07:58:29,801 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 07:58:30,403 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 07:58:30,403 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 07:58:32,439 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 07:58:32,440 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 07:58:32,440 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 07:58:43,031 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 07:58:43,032 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 07:58:43,033 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 07:58:43,134 - INFO - TestLogger - TEST PASSED: test_search[gi\u1ecf h\xe0ng, thanh to\xe1n! @#%]
+2026-01-09 07:58:45,408 - INFO - TestLogger - Kết thúc: test_search[gi\u1ecf h\xe0ng, thanh to\xe1n! @#%] =====
+
+2026-01-09 07:58:45,414 - INFO - TestLogger - Bắt đầu: test_search[gi\xe1 tr\u1ecb 1000000] =====
+2026-01-09 07:58:57,845 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 07:58:57,852 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 07:58:57,853 - INFO - TestLogger - Nhập 'giá trị 1000000' vào: txtTimKiem
+2026-01-09 07:58:57,853 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 07:58:57,854 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 07:58:58,341 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 07:58:58,341 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 07:59:00,243 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 07:59:00,244 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 07:59:00,244 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 07:59:10,833 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 07:59:10,833 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 07:59:10,834 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 07:59:10,937 - INFO - TestLogger - TEST PASSED: test_search[gi\xe1 tr\u1ecb 1000000]
+2026-01-09 07:59:13,313 - INFO - TestLogger - Kết thúc: test_search[gi\xe1 tr\u1ecb 1000000] =====
+
+2026-01-09 07:59:13,319 - INFO - TestLogger - Bắt đầu: test_search[] =====
+2026-01-09 07:59:26,651 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 07:59:26,658 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 07:59:26,659 - INFO - TestLogger - Nhập '' vào: txtTimKiem
+2026-01-09 07:59:26,660 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 07:59:26,661 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 07:59:27,070 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 07:59:27,071 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 07:59:29,188 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 07:59:29,189 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 07:59:29,189 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 07:59:29,298 - INFO - TestLogger - TEST PASSED: test_search[]
+2026-01-09 07:59:31,558 - INFO - TestLogger - Kết thúc: test_search[] =====
+
+2026-01-09 07:59:31,563 - INFO - TestLogger - Bắt đầu: test_search[s\u1ea3n ph\u1ea9m #1: Tivi OLED 55"] =====
+2026-01-09 07:59:44,037 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 07:59:44,045 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 07:59:44,046 - INFO - TestLogger - Nhập 'sản phẩm #1: Tivi OLED 55"' vào: txtTimKiem
+2026-01-09 07:59:44,046 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 07:59:44,047 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 07:59:44,625 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 07:59:44,626 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 07:59:46,692 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 07:59:46,693 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 07:59:46,693 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 07:59:57,329 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 07:59:57,330 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 07:59:57,331 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 07:59:57,430 - INFO - TestLogger - TEST PASSED: test_search[s\u1ea3n ph\u1ea9m #1: Tivi OLED 55"]
+2026-01-09 07:59:59,732 - INFO - TestLogger - Kết thúc: test_search[s\u1ea3n ph\u1ea9m #1: Tivi OLED 55"] =====
+
+2026-01-09 07:59:59,736 - INFO - TestLogger - Bắt đầu: test_search[C\xe0 ph\xea s\u1eefa \u0111\xe1] =====
+2026-01-09 08:00:03,388 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:00:03,394 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:00:03,395 - INFO - TestLogger - Nhập 'Cà phê sữa đá' vào: txtTimKiem
+2026-01-09 08:00:03,395 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:00:03,395 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:00:15,125 - ERROR - TestLogger - TEST FAILED: test_search[C\xe0 ph\xea s\u1eefa \u0111\xe1]
+2026-01-09 08:00:15,125 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260109_075706\screenshots\test_search[C\xe0 ph\xea s\u1eefa \u0111\xe1].png
+2026-01-09 08:00:18,872 - INFO - TestLogger - Kết thúc: test_search[C\xe0 ph\xea s\u1eefa \u0111\xe1] =====
+
+2026-01-09 08:00:18,966 - INFO - TestLogger - Bắt đầu: test_search[12345] =====
+2026-01-09 08:00:33,736 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:00:33,740 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:00:33,741 - INFO - TestLogger - Nhập '12345' vào: txtTimKiem
+2026-01-09 08:00:33,741 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:00:33,742 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:00:34,193 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 08:00:34,194 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 08:00:36,349 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 08:00:36,350 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 08:00:36,351 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 08:00:46,929 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 08:00:46,929 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 08:00:46,930 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 08:00:47,031 - INFO - TestLogger - TEST PASSED: test_search[12345]
+2026-01-09 08:00:49,318 - INFO - TestLogger - Kết thúc: test_search[12345] =====
+
+2026-01-09 08:00:49,324 - INFO - TestLogger - Bắt đầu: test_search[B\xe1nh m\xec x\xedu m\u1ea1i] =====
+2026-01-09 08:01:02,272 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:01:02,280 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:01:02,281 - INFO - TestLogger - Nhập 'Bánh mì xíu mại' vào: txtTimKiem
+2026-01-09 08:01:02,282 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:01:02,282 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:01:02,797 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 08:01:02,798 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 08:01:05,052 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 08:01:05,053 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 08:01:05,053 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 08:01:15,589 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 08:01:15,590 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 08:01:15,590 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 08:01:15,686 - INFO - TestLogger - TEST PASSED: test_search[B\xe1nh m\xec x\xedu m\u1ea1i]
+2026-01-09 08:01:17,956 - INFO - TestLogger - Kết thúc: test_search[B\xe1nh m\xec x\xedu m\u1ea1i] =====
+
+2026-01-09 08:01:17,958 - INFO - TestLogger - Bắt đầu: test_search[\u0110\u1ed3 d\xf9ng h\u1ecdc t\u1eadp (\u0111\u1ed3ng h\u1ed3, b\xfat ch\xec)] =====
+2026-01-09 08:01:30,215 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:01:30,223 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:01:30,224 - INFO - TestLogger - Nhập 'Đồ dùng học tập (đồng hồ, bút chì)' vào: txtTimKiem
+2026-01-09 08:01:30,225 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:01:30,225 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:01:30,837 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 08:01:30,838 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 08:01:33,182 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 08:01:33,183 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 08:01:33,183 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 08:01:43,798 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 08:01:43,799 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 08:01:43,800 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 08:01:43,900 - INFO - TestLogger - TEST PASSED: test_search[\u0110\u1ed3 d\xf9ng h\u1ecdc t\u1eadp (\u0111\u1ed3ng h\u1ed3, b\xfat ch\xec)]
+2026-01-09 08:01:46,248 - INFO - TestLogger - Kết thúc: test_search[\u0110\u1ed3 d\xf9ng h\u1ecdc t\u1eadp (\u0111\u1ed3ng h\u1ed3, b\xfat ch\xec)] =====
+
+2026-01-09 08:01:46,255 - INFO - TestLogger - Bắt đầu: test_search[M\xe1y t\xednh b\u1ea3ng iPad Pro 12.9"] =====
+2026-01-09 08:01:59,272 - INFO - TestLogger - Load locator file: TimKiem_locators.yaml
+2026-01-09 08:01:59,280 - INFO - TestLogger - Đã load 4 locator từ TimKiem_locators.yaml
+2026-01-09 08:01:59,281 - INFO - TestLogger - Nhập 'Máy tính bảng iPad Pro 12.9"' vào: txtTimKiem
+2026-01-09 08:01:59,281 - INFO - TestLogger - Tìm element: txtTimKiem
+2026-01-09 08:01:59,282 - DEBUG - TestLogger - Lấy locator [txtTimKiem] -> (xpath, //input[@placeholder="Nhập sản phẩm cần tìm"])
+2026-01-09 08:01:59,851 - INFO - TestLogger - Click element: btnTimKiem
+2026-01-09 08:01:59,852 - DEBUG - TestLogger - Lấy locator [btnTimKiem] -> (xpath, //button[@type="submit"])
+2026-01-09 08:02:01,794 - INFO - TestLogger - Lấy text từ: txtTimThay
+2026-01-09 08:02:01,795 - INFO - TestLogger - Tìm element: txtTimThay
+2026-01-09 08:02:01,795 - DEBUG - TestLogger - Lấy locator [txtTimThay] -> (xpath, //select[@name="orderby"])
+2026-01-09 08:02:12,343 - INFO - TestLogger - Lấy text từ: txtKoTimThay
+2026-01-09 08:02:12,343 - INFO - TestLogger - Tìm element: txtKoTimThay
+2026-01-09 08:02:12,344 - DEBUG - TestLogger - Lấy locator [txtKoTimThay] -> (xpath, //div[@class="woocommerce-info"])
+2026-01-09 08:02:12,445 - INFO - TestLogger - TEST PASSED: test_search[M\xe1y t\xednh b\u1ea3ng iPad Pro 12.9"]
+2026-01-09 08:02:14,771 - INFO - TestLogger - Kết thúc: test_search[M\xe1y t\xednh b\u1ea3ng iPad Pro 12.9"] =====
+

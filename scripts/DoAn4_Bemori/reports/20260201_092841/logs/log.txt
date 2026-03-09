@@ -1,0 +1,22 @@
+2026-02-01 09:28:41,030 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260201_092841\logs\log.txt
+2026-02-01 09:28:41,128 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260201_092841\html\report.html
+2026-02-01 09:28:42,449 - INFO - TestLogger - Bắt đầu: test_keyword_driven[keyword=g\u1ea5u d\xe2u] =====
+2026-02-01 09:28:55,434 - INFO - TestLogger - TEST PASSED: test_keyword_driven[keyword=g\u1ea5u d\xe2u]
+2026-02-01 09:28:57,773 - INFO - TestLogger - Kết thúc: test_keyword_driven[keyword=g\u1ea5u d\xe2u] =====
+
+2026-02-01 09:28:57,780 - INFO - TestLogger - Bắt đầu: test_keyword_driven[keyword=doraemon] =====
+2026-02-01 09:29:09,250 - INFO - TestLogger - TEST PASSED: test_keyword_driven[keyword=doraemon]
+2026-02-01 09:29:11,529 - INFO - TestLogger - Kết thúc: test_keyword_driven[keyword=doraemon] =====
+
+2026-02-01 09:29:11,534 - INFO - TestLogger - Bắt đầu: test_keyword_driven[keyword=pikachu] =====
+2026-02-01 09:29:22,799 - INFO - TestLogger - TEST PASSED: test_keyword_driven[keyword=pikachu]
+2026-02-01 09:29:25,053 - INFO - TestLogger - Kết thúc: test_keyword_driven[keyword=pikachu] =====
+
+2026-02-01 09:29:25,058 - INFO - TestLogger - Bắt đầu: test_keyword_driven[keyword=@#$123] =====
+2026-02-01 09:29:42,642 - INFO - TestLogger - TEST PASSED: test_keyword_driven[keyword=@#$123]
+2026-02-01 09:29:44,893 - INFO - TestLogger - Kết thúc: test_keyword_driven[keyword=@#$123] =====
+
+2026-02-01 09:29:44,899 - INFO - TestLogger - Bắt đầu: test_keyword_driven[keyword=abcdef] =====
+2026-02-01 09:30:02,796 - INFO - TestLogger - TEST PASSED: test_keyword_driven[keyword=abcdef]
+2026-02-01 09:30:06,669 - INFO - TestLogger - Kết thúc: test_keyword_driven[keyword=abcdef] =====
+

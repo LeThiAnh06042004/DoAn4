@@ -54,3 +54,11 @@ class DataManager:
             return DataManager.read_txt(file_path)
         else:
             raise ValueError(f"Định dạng file {ext} không được hỗ trợ!")
+
+
+def load_test_data(filepath: str):
+    """
+    Mỗi dòng Excel = 1 vòng chạy (DDT)
+    """
+    df = pd.read_excel(filepath)
+    return df.to_dict(orient="records")

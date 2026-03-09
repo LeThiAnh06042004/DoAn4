@@ -1,62 +1,80 @@
 import pytest
 from utils import data_loader
-from pages.OrderPage import OrderPage
-from utils.config_loader import load_config
+from utils.locator_reader import LocatorReader
+from core.kw_dispatcher import KeywordDispatcher
+from core.kw_common import KWCommon
 
-#nạp dữ liệu vào test
-cases = data_loader.load_txt_data("D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\data_MuaHang.txt")
+cases = data_loader.load_txt_data(
+    r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\data_MH.txt"
+)
 
-class TestComment:
-#para.. chạy nhiều bộ dl khác nhau, case là 1 dict duy 1 trong cases khi mỗi vòng lặp test chạy, id là tên mô tả cho từng TC
-    @pytest.mark.parametrize("case", cases, ids=[f"TEN='{c['ten']}', SDT='{c['sdt']}', DC='{c['dc']}', YC='{c['yc']}'" for c in cases])
-    def test_comment(self, driver, case):
+LOCATOR_FILE = r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\locators\MuaHang_locators.yaml"
+
+class TestMuaHang:
+    @pytest.mark.parametrize(
+        "case",
+        cases,
+        ids=[f"TEN='{c['ten']}', SDT='{c['sdt']}', DC='{c['dc']}', YC='{c['yc']}'" for c in cases]
+    )
+    def test_mua_hang(self, driver, case):
         ten = case["ten"]
         sdt = case["sdt"]
         dc = case["dc"]
         yc = case["yc"]
 
-        #cb môi trg test
-        config = load_config()
-        driver.get(config["base_url"])
-        page = OrderPage(driver)
+        # Load locator từ YAML
+        locator_reader = LocatorReader(LOCATOR_FILE)
 
-        # Thao tác nhập liệu
-        page.click_SP()
-        page.click_MuaHang()
-        page.nhapTen(ten)
-        page.nhapSDT(sdt)
-        page.nhapDC(dc)
-        page.nhapYCThem(yc)
-        page.click_Mua()
+        # Khởi tạo KWCommon chung
+        kw = KWCommon(driver, locator_reader=locator_reader)
+        dispatcher = KeywordDispatcher(kw)
 
+        # ===== ACTION =====
+        dispatcher.execute("OPEN_URL", ["https://gaubongonline.vn/"])
+        dispatcher.execute("WAIT_FOR_ELEMENT_VISIBLE", ["txtSP", 10])
+        dispatcher.execute("CLICK", ["txtSP"])  # click sản phẩm
 
-        # Lấy các thông báo hiển thị
-        tb_thanh_cong = page.get_TBThanhCong()
-        tb_nhapTen = page.get_TBNhapTen()
-        tb_nhapSDT = page.get_TBNhapSDT()
-        tb_nhapDC = page.get_TBNhapDC()
-        tb_ChiCoSo = page.get_TBChiCoSo()
-        tb_duoi10 = page.get_TB10So()
-        tb_loi = page.get_Error()
+        dispatcher.execute("CLICK", ["btnMuaHang"])  # click "Mua hàng"
 
+        # Nhập họ tên người mua
+        dispatcher.execute("INPUT_TEXT", ["txtTenNM", ten])
+
+        # Nhập số điện thoại người mua
+        dispatcher.execute("INPUT_TEXT", ["txtSDT_NM", sdt])
+
+        # Nhập địa chỉ nhận hàng
+        dispatcher.execute("INPUT_TEXT", ["txtDiaChiNH", dc])
+
+        # Nhập yêu cầu thêm
+        dispatcher.execute("INPUT_TEXT", ["txtYCThem", yc])
+
+        # Click xác nhận mua hàng
+        dispatcher.execute("CLICK", ["btnMua"])
+
+        # Chờ thông báo hiện (AJAX)
+        dispatcher.execute("WAIT_FOR_SECONDS", [3])  # chờ 3 giây cho thông báo load
+
+        # ===== VERIFY (giữ nguyên rule cũ của bạn) =====
         if ten == "":
-            assert "Bạn chưa nhập họ và tên người mua." in tb_nhapTen, f"Thực tế: {tb_nhapTen}"
-            assert "Bạn chưa nhập họ và tên người mua." in tb_loi, f"Thực tế: {tb_loi}"
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBNhapTen", "Bạn chưa nhập họ và tên người mua."]), \
+                "Không hiển thị lỗi thiếu họ tên người mua"
+
         elif sdt == "":
-            assert "Bạn chưa nhập số điện thoại người mua." in tb_nhapSDT, f"Thực tế: {tb_nhapSDT}"
-            assert "Bạn chưa nhập số điện thoại người mua." in tb_loi, f"Thực tế: {tb_loi}"
-        elif dc == "" and ten == "" and len(sdt) >= 10 and sdt.isdigit():
-            assert "Bạn chưa nhập địa chỉ nhận hàng." in tb_nhapDC, f"Thực tế: {tb_nhapDC}"
-            assert "Bạn chưa nhập địa chỉ nhận hàng." in tb_loi, f"Thực tế: {tb_loi}"
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBNhapSDT", "Bạn chưa nhập số điện thoại người mua."]), \
+                "Không hiển thị lỗi thiếu số điện thoại người mua"
+
         elif not sdt.isdigit():
-            assert "Số điện thoại chỉ bao gồm những số." in tb_ChiCoSo, f"Thực tế: {tb_ChiCoSo}"
-            assert "Số điện thoại chỉ bao gồm những số." in tb_loi, f"Thực tế: {tb_loi}"
-        elif len(sdt) < 10 and sdt.isdigit():
-            assert "Số điện thoại phải có ít nhất 10 số." in tb_duoi10, f"Thực tế: {tb_duoi10}"
-            assert "Số điện thoại phải có ít nhất 10 số." in tb_loi, f"Thực tế: {tb_loi}"
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBChiCoSo", "Số điện thoại chỉ bao gồm những số."]), \
+                "Không hiển thị lỗi SDT chỉ gồm số"
+
+        elif len(sdt) < 10:
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TB10so", "Số điện thoại phải có ít nhất 10 số."]), \
+                "Không hiển thị lỗi SDT < 10 số"
+
+        elif dc == "":
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBNhapDC", "Bạn chưa nhập địa chỉ nhận hàng."]), \
+                "Không hiển thị lỗi thiếu địa chỉ nhận hàng"
+
         else:
-            assert "Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger" in tb_thanh_cong, f"Thực tế: {tb_thanh_cong}"
-            assert "Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger" in tb_loi, f"Thực tế: {tb_loi}"
-
-
-
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBThanhCong", "ng trong messenger."]), \
+                "Đặt hàng không thành công"

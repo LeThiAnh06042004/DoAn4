@@ -1,0 +1,147 @@
+[
+  {
+    "noi_dung": "Cảm ơn sản phẩm tuyệt vời!",
+    "ho_ten": "Nguyễn Văn A",
+    "so_dien_thoai": "0123456789"
+  },
+  {
+    "noi_dung": " ",
+    "ho_ten": "Trần Bích",
+    "so_dien_thoai": "0987654321"
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "Lê Thị C",
+    "so_dien_thoai": "1234567890"
+  },
+  {
+    "noi_dung": "Đây là một bình luận dài vượt quá 255 ký tự. Để kiểm tra giới hạn, chúng ta sẽ lặp lại chuỗi này nhiều lần để chắc chắn rằng độ dài của nội dung vượt quá giới hạn được đặt ra trong yêu cầu. Cảm ơn bạn!",
+    "ho_ten": "Nguyễn D",
+    "so_dien_thoai": "01234567890"
+  },
+  {
+    "noi_dung": "Bình luận chứa ký tự đặc biệt !@#$%^&*()_+=[]{};':,./<>?",
+    "ho_ten": "Phạm E",
+    "so_dien_thoai": "9876543210"
+  },
+  {
+    "noi_dung": "1234567890123",
+    "ho_ten": "Hồ F",
+    "so_dien_thoai": "12345678"
+  },
+  {
+    "noi_dung": "Còn một bình luận khác",
+    "ho_ten": " ",
+    "so_dien_thoai": "abcdefghij"
+  },
+  {
+    "noi_dung": "Bình luận với số 9876543210",
+    "ho_ten": "",
+    "so_dien_thoai": "0123456789011"
+  },
+  {
+    "noi_dung": "Một nội dung dài để kiểm tra độ lớn và đặc biệt là có dấu tiếng Việt: Đặc biệt, ấn tượng, hấp dẫn!",
+    "ho_ten": "Đặng G",
+    "so_dien_thoai": "12345678901"
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "     ",
+    "ho_ten": "     ",
+    "so_dien_thoai": "     "
+  },
+  {
+    "noi_dung": "Tôi rất hài lòng với sản phẩm này!",
+    "ho_ten": "Nguyễn Văn A",
+    "so_dien_thoai": "0123456789"
+  },
+  {
+    "noi_dung": "Đây là một bình luận có số 12345 và ký tự đặc biệt !@#",
+    "ho_ten": "Lê Thị B!",
+    "so_dien_thoai": "+84 123 456 789"
+  },
+  {
+    "noi_dung": "Đây là một bình luận dài hơn 255 ký tự. Thêm vào đó, chúng ta cũng muốn chắc chắn rằng các ký tự đặc biệt như !@#$%^&*() và dấu câu đầy đủ được bao gồm trong dữ liệu này.",
+    "ho_ten": "",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "Đây là một tên dài hơn 255 ký tự. Thêm vào đó, chúng ta cũng muốn chắc chắn rằng các ký tự đặc biệt như !@#$%^&*() và dấu câu đầy đủ được bao gồm trong dữ liệu này.",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "",
+    "so_dien_thoai": "012345678"
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "",
+    "so_dien_thoai": "12345678901"
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "",
+    "so_dien_thoai": "abcdefghijk"
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "   ",
+    "ho_ten": "   ",
+    "so_dien_thoai": "   "
+  },
+  {
+    "noi_dung": "Đánh giá sản phẩm rất tốt!",
+    "ho_ten": "Nguyễn Văn A",
+    "so_dien_thoai": "0123456789"
+  },
+  {
+    "noi_dung": "Sản phẩm không như mong đợi.",
+    "ho_ten": "",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "@#$%*^&!",
+    "ho_ten": "#$%^",
+    "so_dien_thoai": "%$#@"
+  },
+  {
+    "noi_dung": "1234567890",
+    "ho_ten": "Alice 123",
+    "so_dien_thoai": "1234567"
+  },
+  {
+    "noi_dung": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non orci vitae lorem tristique.",
+    "ho_ten": "Bình Lý Long",
+    "so_dien_thoai": "09876543210"
+  },
+  {
+    "noi_dung": "Câu lệnh này có độ dài chính xác 255 ký tự, được tạo ra để kiểm tra giới hạn của trường nội dung. Thêm một số từ nữa để chắc chắn rằng nó đạt đúng số lượng cần thiết.",
+    "ho_ten": "",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "Câu này có độ dài 255 ký tự, được tạo ra để kiểm tra giới hạn của trường họ tên. Thêm một số từ nữa để chắc chắn rằng nó đạt đúng số lượng cần thiết.",
+    "so_dien_thoai": ""
+  },
+  {
+    "noi_dung": "",
+    "ho_ten": "",
+    "so_dien_thoai": "012345678901"
+  },
+  {
+    "noi_dung": "Sản phẩm tốt",
+    "ho_ten": "Nguyễn Thị B",
+    "so_dien_thoai": "abcdefghij"
+  }
+]

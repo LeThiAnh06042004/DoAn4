@@ -1,0 +1,22 @@
+2026-02-21 08:51:54,708 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260221_085154\logs\log.txt
+2026-02-21 08:51:55,142 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260221_085154\html\report.html
+2026-02-21 08:52:03,283 - INFO - TestLogger - Bắt đầu: test_search[g\u1ea5u d\xe2u] =====
+2026-02-21 08:52:34,847 - INFO - TestLogger - TEST PASSED: test_search[g\u1ea5u d\xe2u]
+2026-02-21 08:52:37,140 - INFO - TestLogger - Kết thúc: test_search[g\u1ea5u d\xe2u] =====
+
+2026-02-21 08:52:37,147 - INFO - TestLogger - Bắt đầu: test_search[doraemon] =====
+2026-02-21 08:52:59,913 - INFO - TestLogger - TEST PASSED: test_search[doraemon]
+2026-02-21 08:53:02,266 - INFO - TestLogger - Kết thúc: test_search[doraemon] =====
+
+2026-02-21 08:53:02,273 - INFO - TestLogger - Bắt đầu: test_search[pikachu] =====
+2026-02-21 08:53:23,556 - INFO - TestLogger - TEST PASSED: test_search[pikachu]
+2026-02-21 08:53:25,838 - INFO - TestLogger - Kết thúc: test_search[pikachu] =====
+
+2026-02-21 08:53:25,844 - INFO - TestLogger - Bắt đầu: test_search[@#$123] =====
+2026-02-21 08:53:48,239 - INFO - TestLogger - TEST PASSED: test_search[@#$123]
+2026-02-21 08:53:50,493 - INFO - TestLogger - Kết thúc: test_search[@#$123] =====
+
+2026-02-21 08:53:50,500 - INFO - TestLogger - Bắt đầu: test_search[abcdef] =====
+2026-02-21 08:54:13,502 - INFO - TestLogger - TEST PASSED: test_search[abcdef]
+2026-02-21 08:54:15,772 - INFO - TestLogger - Kết thúc: test_search[abcdef] =====
+

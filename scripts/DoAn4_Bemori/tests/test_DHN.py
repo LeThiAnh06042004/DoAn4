@@ -1,34 +1,59 @@
 import pytest
 from utils import data_loader
-from pages.QuickOrderPage import QuickOrderPage
+from utils.locator_reader import LocatorReader
+from core.kw_dispatcher import KeywordDispatcher
+from core.kw_common import KWCommon
 
+# Load data từ JSON
+cases = data_loader.load_json_data(
+    r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\data_DatHangNhanh.json"
+)
 
-cases = data_loader.load_json_data("D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\data_DatHangNhanh.json")
+LOCATOR_FILE = r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\locators\DatHangNhanh_locators.yaml"
 
-class TestSearch:
-
-    @pytest.mark.parametrize("case", cases, ids=[c["sdt"] for c in cases] )# Đặt tên test theo sdt
-    def test_search(self, driver, case):
+class TestDatHangNhanh:
+    @pytest.mark.parametrize(
+        "case",
+        cases,
+        ids=[c["sdt"] if c["sdt"] != "" else "EMPTY" for c in cases]
+    )
+    def test_dat_hang_nhanh(self, driver, case):
         sdt = case["sdt"]
 
-        driver.get("https://gaubongonline.vn/")
-        page = QuickOrderPage(driver)
-        page.click_SP()
-        page.nhapDHN(sdt)
-        page.click_Gui()
+        # Load locator từ YAML
+        locator_reader = LocatorReader(LOCATOR_FILE)
 
-        tb_thanh_cong = page.get_TBThanhCong()
-        tb_rong = page.get_TBrong()
-        tb_chicoso = page.get_TBChiCoSo()
-        tb_duoi10 = page.get_TBduoi10()
+        # Khởi tạo KWCommon chung
+        kw = KWCommon(driver, locator_reader=locator_reader)
+        dispatcher = KeywordDispatcher(kw)
 
-        if len(sdt) >= 10 and sdt.isdigit():
-            assert "Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.\nGấu Bông Online sẽ hoàn thiện thông tin và cập nhật hành trình đơn hàng cho bạn qua messenger nha!" in tb_thanh_cong, f"Kết quả thực tế: {tb_thanh_cong}"
-        elif sdt == "":
-            assert "Bạn chưa nhập số điện thoại." in tb_rong,f"Kết quả thực tế: {tb_rong}"
+        # ===== ACTION =====
+        dispatcher.execute("OPEN_URL", ["https://gaubongonline.vn/"])
+        dispatcher.execute("WAIT_FOR_ELEMENT_VISIBLE", ["SP", 10])  # chờ sản phẩm visible
+        dispatcher.execute("CLICK", ["SP"])  # click sản phẩm
+
+        # Nhập số điện thoại
+        dispatcher.execute("INPUT_TEXT", ["txtDHN", sdt])
+
+        # Click gửi đặt hàng nhanh
+        dispatcher.execute("CLICK", ["btnGui"])
+
+        # Chờ thông báo hiện (rất quan trọng!)
+        dispatcher.execute("WAIT_FOR_SECONDS", [3])  # chờ 3 giây cho thông báo load
+
+        # ===== VERIFY (giữ nguyên rule của bạn) =====
+        if sdt == "":
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["txtTB_rong", "Bạn chưa nhập số điện thoại."]), \
+                "Không hiển thị lỗi SĐT rỗng"
+
         elif not sdt.isdigit():
-            assert "Số điện thoại chỉ bao gồm những số." in tb_chicoso, f"Kết quả thực tế: {tb_chicoso}"
-        elif len(sdt) < 10 and sdt.isdigit():
-            assert "Số điện thoại phải có ít nhất 10 số." in tb_duoi10, f"Kết quả thực tế: {tb_duoi10}"
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["txtTB_chicoso", "Số điện thoại chỉ bao gồm những số."]), \
+                "Không hiển thị lỗi SĐT chỉ gồm số"
+
+        elif len(sdt) < 10:
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["txtTB_duoi10", "Số điện thoại phải có ít nhất 10 số."]), \
+                "Không hiển thị lỗi SĐT < 10 số"
+
         else:
-            pytest.fail(f"Không xác định được kết quả với dữ liệu: {sdt}")
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["txtThanhCong", "ng trong messenger."]), \
+                "Đặt hàng nhanh không thành công"

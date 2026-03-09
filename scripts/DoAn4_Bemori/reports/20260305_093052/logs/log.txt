@@ -1,0 +1,2 @@
+2026-03-05 09:30:52,970 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260305_093052\logs\log.txt
+2026-03-05 09:30:53,019 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260305_093052\html\report.html

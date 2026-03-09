@@ -1,48 +1,64 @@
 import pytest
 from utils import data_loader
-from pages.CommentPage import CommentPage
-from utils.config_loader import load_config
+from utils.locator_reader import LocatorReader
+from core.kw_dispatcher import KeywordDispatcher
+from core.kw_common import KWCommon
 
-cases = data_loader.load_sqlite_data("D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\data_BinhLuan.sqlite", "BinhLuan")
+cases = data_loader.load_csv_data(
+    r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\data_BinhLuan.csv"
+)
 
-class TestComment:
+LOCATOR_FILE = r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\locators\BinhLuan_locators.yaml"
 
-    @pytest.mark.parametrize("case", cases, ids=[f"ND='{c['nd']}', TEN='{c['ten']}', SDT='{c['sdt']}'" for c in cases])
-    def test_comment(self, driver, case):
-        noi_dung = case["nd"]
-        ho_ten = case["ten"]
-        so_dien_thoai = case["sdt"]
+class TestBinhLuan:
+    @pytest.mark.parametrize(
+        "case",
+        cases,
+        ids=[f"ND='{c['nd']}', TEN='{c['ten']}', SDT='{c['sdt']}'" for c in cases]
+    )
+    def test_binh_luan(self, driver, case):
+        nd = case["nd"]
+        ten = case["ten"]
+        sdt = case["sdt"]
 
-        config = load_config()
-        driver.get(config["base_url"])
-        page = CommentPage(driver)
+        locator_reader = LocatorReader(LOCATOR_FILE)
+        kw = KWCommon(driver, locator_reader=locator_reader)
+        dispatcher = KeywordDispatcher(kw)
 
-        # Thao tác nhập liệu
-        page.click_SP()
-        page.nhapND(noi_dung)
-        page.nhapHoTen(ho_ten)
-        page.nhapSDT(so_dien_thoai)
-        page.click_BinhLuan()
+        # ===== ACTION =====
+        dispatcher.execute("OPEN_URL", ["https://gaubongonline.vn/"])
+        dispatcher.execute("WAIT_FOR_ELEMENT_VISIBLE", ["txtSP", 10])
+        dispatcher.execute("CLICK", ["txtSP"])
 
-        # Lấy các thông báo hiển thị
-        tb_thanh_cong = page.get_TBThanhCong()
-        tb_nhapBL = page.get_TBNhapBL()
-        tb_nhapTen = page.get_TBNhapTen()
-        tb_nhapSDT = page.get_TBNhapSDT()
-        tb_ChiCoSo = page.get_TBChiCoSo()
-        tb_duoi10 = page.get_TB10So()
+        dispatcher.execute("INPUT_TEXT", ["txtNoiDungBL", nd])
+        dispatcher.execute("INPUT_TEXT", ["txtHoTen", ten])
+        dispatcher.execute("INPUT_TEXT", ["txtSDT", sdt])
+        dispatcher.execute("CLICK", ["btnBinhLuan"])
 
-        # Kiểm tra điều kiện
-        if noi_dung == "":
-            assert "Bạn chưa nhập bình luận." in tb_nhapBL, f"Thực tế: {tb_nhapBL}"
-        elif ho_ten == "":
-            assert "Bạn chưa nhập tên." in tb_nhapTen, f"Thực tế: {tb_nhapTen}"
-        elif so_dien_thoai == "":
-            assert "Bạn chưa nhập số điện thoại." in tb_nhapSDT, f"Thực tế: {tb_nhapSDT}"
-        elif not so_dien_thoai.isdigit():
-            assert "Số điện thoại chỉ bao gồm những số." in tb_ChiCoSo, f"Thực tế: {tb_ChiCoSo}"
-        elif len(so_dien_thoai) < 10:
-            assert "Số điện thoại phải có ít nhất 10 số." in tb_duoi10, f"Thực tế: {tb_duoi10}"
+        # Chờ thông báo hiện (rất quan trọng!)
+        dispatcher.execute("WAIT_FOR_SECONDS", [3])  # chờ 3 giây cho thông báo load
+
+        # ===== VERIFY (kiểm tra thực tế trên trang) =====
+        if nd == "":
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBNhapBL", "Bạn chưa nhập bình luận."]), \
+                "Không thấy thông báo thiếu nội dung bình luận"
+
+        elif ten == "":
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBNhapTen", "Bạn chưa nhập tên."]), \
+                "Không thấy thông báo thiếu họ tên"
+
+        elif sdt == "":
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBNhapSDT", "Bạn chưa nhập số điện thoại."]), \
+                "Không thấy thông báo thiếu số điện thoại"
+
+        elif not sdt.isdigit():
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBChiCoSo", "Số điện thoại chỉ bao gồm những số."]), \
+                "Không thấy thông báo SDT chỉ chứa số"
+
+        elif len(sdt) < 10:
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TB10so", "Số điện thoại phải có ít nhất 10 số."]), \
+                "Không thấy thông báo SDT dưới 10 số"
+
         else:
-            assert "Gửi bình luận thành công." in tb_thanh_cong, f"Thực tế: {tb_thanh_cong}"
-
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["TBThanhCong", "Gửi bình luận thành công."]), \
+                "Không thấy thông báo gửi bình luận thành công"

@@ -1,7 +1,8 @@
 from core.base_page import BasePage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, UnexpectedAlertPresentException
+from selenium.webdriver.common.alert import Alert
 
 class CommentPage(BasePage):
     def __init__(self, driver):
@@ -22,38 +23,41 @@ class CommentPage(BasePage):
     def click_BinhLuan(self):
         self.click("btnBinhLuan")
 
-    def get_TBThanhCong(self):
+        # ===== FIX ALERT =====
         try:
-            return self.get_text("TBThanhCong")
-        except:
-            return ""
+            WebDriverWait(self.driver, 3).until(EC.alert_is_present())
+            alert = Alert(self.driver)
+            print(f"[ALERT]: {alert.text}")
+            alert.accept()
+        except TimeoutException:
+            pass
+        except UnexpectedAlertPresentException:
+            try:
+                Alert(self.driver).accept()
+            except:
+                pass
+
+    # ===== GET MESSAGE =====
+    def get_TBThanhCong(self):
+        return self._safe_get_text("TBThanhCong")
 
     def get_TBNhapBL(self):
-        try:
-            return self.get_text("TBNhapBL")
-        except:
-            return ""
+        return self._safe_get_text("TBNhapBL")
 
     def get_TBNhapTen(self):
-        try:
-            return self.get_text("TBNhapTen")
-        except:
-            return ""
+        return self._safe_get_text("TBNhapTen")
 
     def get_TBNhapSDT(self):
-        try:
-            return self.get_text("TBNhapSDT")
-        except:
-            return ""
+        return self._safe_get_text("TBNhapSDT")
 
     def get_TBChiCoSo(self):
-        try:
-            return self.get_text("TBChiCoSo")
-        except:
-            return ""
+        return self._safe_get_text("TBChiCoSo")
 
     def get_TB10So(self):
+        return self._safe_get_text("TB10so")
+
+    def _safe_get_text(self, locator):
         try:
-            return self.get_text("TB10so")
+            return self.get_text(locator)
         except:
             return ""

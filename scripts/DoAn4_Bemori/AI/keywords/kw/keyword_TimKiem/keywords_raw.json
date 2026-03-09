@@ -1,0 +1,9 @@
+[
+  "CHECK_SEARCH_EMPTY_VALIDATION (Kiểm tra ô tìm kiếm không được để trống và hiển thị thông báo lỗi)",
+  "CHECK_SEARCH_WHITESPACE_VALIDATION (Kiểm tra ô tìm kiếm không được chỉ chứa khoảng trắng)",
+  "CHECK_SEARCH_MAX_LENGTH_255 (Kiểm tra độ dài tối đa 255 ký tự cho ô tìm kiếm)",
+  "VERIFY_SORT_COMBOBOX_DISPLAYED (Xác nhận sau khi nhập từ khóa hợp lệ và nhấn Search, combobox sắp xếp sản phẩm hiện ra)",
+  "VERIFY_NO_RESULTS_MESSAGE_SHOWN (Kiểm tra thông báo \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\" khi không có kết quả)",
+  "VERIFY_CASE_INSENSITIVE_SEARCH (Xác nhận tính năng tìm kiếm không phân biệt chữ hoa/thường)",
+  "VERIFY_SPECIAL_CHARACTERS_HANDLING (Kiểm tra xử lý ký tự đặc biệt hoặc dấu trong ô tìm kiếm)"
+]

@@ -1,0 +1,8 @@
+2026-01-31 16:46:06,484 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260131_164606\logs\log.txt
+2026-01-31 16:46:06,560 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260131_164606\html\report.html
+2026-01-31 16:46:08,434 - INFO - TestLogger - Bắt đầu: test_keyword_driven[keyword=g\u1ea5u d\xe2u] =====
+2026-01-31 16:46:38,352 - ERROR - TestLogger - TEST FAILED: test_keyword_driven[keyword=g\u1ea5u d\xe2u]
+2026-01-31 16:46:38,353 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260131_164606\screenshots\test_keyword_driven[keyword=g\u1ea5u d\xe2u].png
+2026-01-31 16:46:40,551 - INFO - TestLogger - Kết thúc: test_keyword_driven[keyword=g\u1ea5u d\xe2u] =====
+
+2026-01-31 16:46:40,574 - INFO - TestLogger - Bắt đầu: test_keyword_driven[keyword=doraemon] =====

@@ -6,7 +6,7 @@ import xlrd
 import sqlite3
 from typing import List, Dict, Any, Optional, Union
 from pathlib import Path
-
+import pandas as pd
 
 #kiểm tra file tồn tại
 def check_file_exists(filepath: str) -> Path:
@@ -157,5 +157,3 @@ def load_sqlite_data(db_path, table_name):
     rows = cursor.fetchall() #lấy toàn bộ các dòng kq từ truy vấn
     conn.close()
     return [dict(row) for row in rows] #chuyển dl thành dict
-
-

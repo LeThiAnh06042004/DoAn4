@@ -1,0 +1,30 @@
+﻿noi_dung,ho_ten,so_dien_thoai
+Cảm ơn sản phẩm tuyệt vời!,Nguyễn Văn A,0123456789
+ ,Trần Bích,0987654321
+,Lê Thị C,1234567890
+"Đây là một bình luận dài vượt quá 255 ký tự. Để kiểm tra giới hạn, chúng ta sẽ lặp lại chuỗi này nhiều lần để chắc chắn rằng độ dài của nội dung vượt quá giới hạn được đặt ra trong yêu cầu. Cảm ơn bạn!",Nguyễn D,01234567890
+"Bình luận chứa ký tự đặc biệt !@#$%^&*()_+=[]{};':,./<>?",Phạm E,9876543210
+1234567890123,Hồ F,12345678
+Còn một bình luận khác, ,abcdefghij
+Bình luận với số 9876543210,,0123456789011
+"Một nội dung dài để kiểm tra độ lớn và đặc biệt là có dấu tiếng Việt: Đặc biệt, ấn tượng, hấp dẫn!",Đặng G,12345678901
+,,
+     ,     ,     
+Tôi rất hài lòng với sản phẩm này!,Nguyễn Văn A,0123456789
+Đây là một bình luận có số 12345 và ký tự đặc biệt !@#,Lê Thị B!,+84 123 456 789
+"Đây là một bình luận dài hơn 255 ký tự. Thêm vào đó, chúng ta cũng muốn chắc chắn rằng các ký tự đặc biệt như !@#$%^&*() và dấu câu đầy đủ được bao gồm trong dữ liệu này.",,
+,"Đây là một tên dài hơn 255 ký tự. Thêm vào đó, chúng ta cũng muốn chắc chắn rằng các ký tự đặc biệt như !@#$%^&*() và dấu câu đầy đủ được bao gồm trong dữ liệu này.",
+,,012345678
+,,12345678901
+,,abcdefghijk
+,,
+   ,   ,   
+Đánh giá sản phẩm rất tốt!,Nguyễn Văn A,0123456789
+Sản phẩm không như mong đợi.,,
+@#$%*^&!,#$%^,%$#@
+1234567890,Alice 123,1234567
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non orci vitae lorem tristique.",Bình Lý Long,09876543210
+"Câu lệnh này có độ dài chính xác 255 ký tự, được tạo ra để kiểm tra giới hạn của trường nội dung. Thêm một số từ nữa để chắc chắn rằng nó đạt đúng số lượng cần thiết.",,
+,"Câu này có độ dài 255 ký tự, được tạo ra để kiểm tra giới hạn của trường họ tên. Thêm một số từ nữa để chắc chắn rằng nó đạt đúng số lượng cần thiết.",
+,,012345678901
+Sản phẩm tốt,Nguyễn Thị B,abcdefghij

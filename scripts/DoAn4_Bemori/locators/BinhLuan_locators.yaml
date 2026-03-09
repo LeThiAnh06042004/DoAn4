@@ -1,6 +1,7 @@
 txtSP:
   by: xpath
-  value: //h4[contains(text(),"Gấu Bông Quả Dưa Hấu Vui Vẻ")]
+  #value: //h4[contains(text(),"Gấu Bông Quả Dưa Hấu Vui Vẻ")]
+  value: //h4[contains(text(),"Gấu Bông Trái Cây Vui Vẻ")]
 
 txtNoiDungBL:
   by: xpath

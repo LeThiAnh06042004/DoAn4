@@ -1,0 +1,27 @@
+2026-03-02 10:55:59,360 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260302_105559\logs\log.txt
+2026-03-02 10:55:59,432 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260302_105559\html\report.html
+2026-03-02 10:56:02,197 - INFO - TestLogger - Bắt đầu: test_search[g\u1ea5u d\xe2u] =====
+2026-03-02 10:56:17,890 - ERROR - TestLogger - TEST FAILED: test_search[g\u1ea5u d\xe2u]
+2026-03-02 10:56:17,891 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260302_105559\screenshots\test_search[g\u1ea5u d\xe2u].png
+2026-03-02 10:56:20,118 - INFO - TestLogger - Kết thúc: test_search[g\u1ea5u d\xe2u] =====
+
+2026-03-02 10:56:20,142 - INFO - TestLogger - Bắt đầu: test_search[doraemon] =====
+2026-03-02 10:56:33,168 - ERROR - TestLogger - TEST FAILED: test_search[doraemon]
+2026-03-02 10:56:33,168 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260302_105559\screenshots\test_search[doraemon].png
+2026-03-02 10:56:35,341 - INFO - TestLogger - Kết thúc: test_search[doraemon] =====
+
+2026-03-02 10:56:35,362 - INFO - TestLogger - Bắt đầu: test_search[pikachu] =====
+2026-03-02 10:56:48,685 - ERROR - TestLogger - TEST FAILED: test_search[pikachu]
+2026-03-02 10:56:48,685 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260302_105559\screenshots\test_search[pikachu].png
+2026-03-02 10:56:50,927 - INFO - TestLogger - Kết thúc: test_search[pikachu] =====
+
+2026-03-02 10:56:50,944 - INFO - TestLogger - Bắt đầu: test_search[@#$123] =====
+2026-03-02 10:56:57,796 - ERROR - TestLogger - TEST FAILED: test_search[@#$123]
+2026-03-02 10:56:57,796 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260302_105559\screenshots\test_search[@#$123].png
+2026-03-02 10:56:59,922 - INFO - TestLogger - Kết thúc: test_search[@#$123] =====
+
+2026-03-02 10:56:59,928 - INFO - TestLogger - Bắt đầu: test_search[abcdef] =====
+2026-03-02 10:57:11,725 - ERROR - TestLogger - TEST FAILED: test_search[abcdef]
+2026-03-02 10:57:11,726 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260302_105559\screenshots\test_search[abcdef].png
+2026-03-02 10:57:13,919 - INFO - TestLogger - Kết thúc: test_search[abcdef] =====
+

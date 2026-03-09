@@ -54,6 +54,6 @@ TBChiCoSo:
   by: xpath
   value: //div[@class="modal-body"][contains(text(),"Số điện thoại chỉ bao gồm những số.")]
 
-Loi:
-  by: xpath
-  value: //div[@class="alert alert-danger"]
+#Loi:
+#  by: xpath
+#  value: //div[@class="alert alert-danger"]

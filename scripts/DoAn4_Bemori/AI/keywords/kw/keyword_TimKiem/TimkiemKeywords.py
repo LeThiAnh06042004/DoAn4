@@ -15,38 +15,43 @@ class TimkiemKeywords:
         self.wait = WebDriverWait(driver, 10)
 
     
-    def CHECK_SEARCH_EMPTY_VALIDATION(self):
-        """ Kiểm tra ô tìm kiếm không được để trống và hiển thị thông báo lỗi """
+    def VALIDATE_SEARCH_NOT_EMPTY(self):
+        """ Kiểm tra ô tìm kiếm không trống """
         # TODO: Implement logic here
         pass
 
-    def CHECK_SEARCH_WHITESPACE_VALIDATION(self):
-        """ Kiểm tra ô tìm kiếm không được chỉ chứa khoảng trắng """
+    def VALIDATE_SEARCH_NO_WHITESPACE_ONLY(self):
+        """ Kiểm tra ô tìm kiếm không chỉ khoảng trắng """
         # TODO: Implement logic here
         pass
 
-    def CHECK_SEARCH_MAX_LENGTH_255(self):
-        """ Kiểm tra độ dài tối đa 255 ký tự cho ô tìm kiếm """
+    def VALIDATE_SEARCH_MAX_LENGTH(self):
+        """ Kiểm tra độ dài tối đa 255 ký tự """
         # TODO: Implement logic here
         pass
 
-    def VERIFY_SORT_COMBOBOX_DISPLAYED(self):
-        """ Xác nhận sau khi nhập từ khóa hợp lệ và nhấn Search, combobox sắp xếp sản phẩm hiện ra """
+    def VERIFY_SORT_COMBOBOX_SHOWN_AFTER_SEARCH(self):
+        """ Hiển thị combobox sắp xếp sau khi nhấn Search """
         # TODO: Implement logic here
         pass
 
-    def VERIFY_NO_RESULTS_MESSAGE_SHOWN(self):
-        """ Kiểm tra thông báo "Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn." khi không có kết quả """
+    def VERIFY_NO_RESULT_MESSAGE_DISPLAYED(self):
+        """ Hiển thị thông báo không tìm thấy sản phẩm """
         # TODO: Implement logic here
         pass
 
-    def VERIFY_CASE_INSENSITIVE_SEARCH(self):
-        """ Xác nhận tính năng tìm kiếm không phân biệt chữ hoa/thường """
+    def VALIDATE_CASE_INSENSITIVE_SEARCH(self):
+        """ Kiểm tra tìm kiếm không phân biệt hoa thường """
         # TODO: Implement logic here
         pass
 
-    def VERIFY_SPECIAL_CHARACTERS_HANDLING(self):
-        """ Kiểm tra xử lý ký tự đặc biệt hoặc dấu trong ô tìm kiếm """
+    def VALIDATE_SPECIAL_CHARACTERS_PROCESSING(self):
+        """ Xử lý ký tự đặc biệt """
+        # TODO: Implement logic here
+        pass
+
+    def VALIDATE_ACCENT_CHARACTERS_PROCESSING(self):
+        """ Xử lý dấu tiếng Việt """
         # TODO: Implement logic here
         pass
 

@@ -1,3 +1,5 @@
+#gọi AI sinh keyword và tự động tạo file keyword class
+
 import os
 import json
 import re
@@ -8,9 +10,8 @@ from AI.ai_client import call_llm
 from AI.keywords.kw_validator import validate_keywords
 from core.kw_common import KWCommon
 
-# ==============================
-# TEMPLATE sinh file keyword class
-# ==============================
+
+# Template tạo file class keyword.
 CLASS_TEMPLATE = """from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -30,6 +31,7 @@ class {class_name}:
     {methods}
 """
 
+#Template sinh method keyword (htai pass vì logic sẽ được implement sau)
 METHOD_TEMPLATE = """
     def {method_name}(self{arguments_signature}):
         \"\"\" {display_name_vi} \"\"\"
@@ -37,59 +39,76 @@ METHOD_TEMPLATE = """
         pass
 """
 
+
+#Hàm tạo tên folder keyword từ file prompt
 def extract_folder_from_prompt(prompt_file_path: str) -> str:
     """ Sinh tên folder từ file prompt: kw_TimKiem.py → keyword_TimKiem """
-    filename = Path(prompt_file_path).stem
-    if not filename.startswith("kw_"):
+    filename = Path(prompt_file_path).stem #lấy tên file
+    if not filename.startswith("kw_"): #Kiểm tra format
         raise ValueError("File prompt phải bắt đầu bằng 'kw_'")
+    #tạo folder name
     function_name = filename.replace("kw_", "")
     return f"keyword_{function_name}"
 
+
+#Hàm Trích xuất JSON từ phản hồi AI.
 def extract_json_from_text(text: str) -> str | None:
     """ Tìm và trích xuất JSON array từ phản hồi AI một cách linh hoạt """
+    #kiểm tra text rỗng, nếu AI ko trả j thì kết thúc hàm
     if not text:
         return None
 
-    # Clean text trước khi tìm: loại bỏ khoảng trắng thừa, xuống dòng không cần thiết
+    # Làm sạch text: loại bỏ khoảng trắng thừa, xuống dòng không cần thiết
     text = ' '.join(text.split())
 
-    # Cách 1: Tìm khối bắt đầu bằng [ và kết thúc bằng ] (greedy để lấy hết)
-    match = re.search(r'\[.*\]', text, re.DOTALL)
+    #tìm JSON bằng regex
+    match = re.search(r'\[.*\]', text, re.DOTALL) #(re.DOTALL, Cho phép . match cả newline)
+
+    #Lấy JSON string
     if match:
-        json_str = match.group(0)
+        json_str = match.group(0) #lấy toàn bộ chuỗi match
         try:
-            parsed = json.loads(json_str)
+            parsed = json.loads(json_str) #Chuyển JSON string thành Python object.
+            #ktra xem nó có phải là list ko
             if isinstance(parsed, list):
-                return json.dumps(parsed, ensure_ascii=False)
+                return json.dumps(parsed, ensure_ascii=False) #Chuyển object Python lại thành JSON string chuẩn
+        #Bắt lỗi JSON
         except json.JSONDecodeError as e:
             print(f"JSON parse lỗi: {e} - Chuỗi: {json_str[:100]}...")
 
 
+#Hàm Lấy tất cả keyword đã tồn tại trong KWCommon
 def get_existing_keywords():
     """ Lấy tất cả method (keyword) hiện có trong KWCommon """
-    existing = set()
+    existing = set() #Dùng set vì: tra cứu nhanh và không chứa phần tử trùng.
+    #Hàm inspect.getmembers lấy tất cả method trong class
     for name, obj in inspect.getmembers(KWCommon, predicate=inspect.isfunction):
-        if not name.startswith("_"):
-            existing.add(name)
+        if not name.startswith("_"): #Loại bỏ method private
+            existing.add(name) #thêm vào set
     return existing
 
+
+# Luồng hđ: prompt → AI → keyword list => lọc keyword trùng => validate => sinh file keyword
 def run_keyword_prompt(prompt: str, prompt_file_path: str, max_retries=3):
     try:
         print(f"Đang xử lý prompt file: {prompt_file_path}")
 
         refined_prompt = prompt
         raw_response = None
+        #Retry AI nhiều lần
         for attempt in range(max_retries):
-            raw_response = call_llm(refined_prompt)
+            raw_response = call_llm(refined_prompt) #Gửi prompt tới LLM
             print(f"RAW RESPONSE (lần {attempt+1}):")
             print(raw_response)
 
+            #Trích xuất JSON
             json_str = extract_json_from_text(raw_response)
             if json_str:
-                keyword_list = json.loads(json_str)
+                keyword_list = json.loads(json_str) #Chuyển JSON thành list
                 if isinstance(keyword_list, list):
                     print(f"Tìm thấy {len(keyword_list)} keyword từ AI")
                     break
+            #Nếu AI trả sai format, Prompt sẽ được sửa lại Để ép AI trả đúng format
             refined_prompt = prompt + "\n\nCHỈ TRẢ VỀ JSON ARRAY THUẦN TÚY. KHÔNG TEXT NÀO KHÁC. Ví dụ: [\"KEYWORD (nghĩa)\"]"
 
         else:
@@ -116,7 +135,7 @@ def run_keyword_prompt(prompt: str, prompt_file_path: str, max_retries=3):
             print("Tất cả keyword đã tồn tại trong KWCommon. Không cần sinh mới.")
             return
 
-        # Validate trùng lặp trong danh sách mới
+        # loại bỏ keyword trùng trong danh sách mới
         valid_keywords, duplicates = validate_keywords(new_keywords)
         print(f"Valid new keywords: {len(valid_keywords)} | Duplicates: {len(duplicates)}")
 
@@ -127,7 +146,7 @@ def run_keyword_prompt(prompt: str, prompt_file_path: str, max_retries=3):
         description_en = f"Keyword library for {folder_name.replace('keyword_', '')}"
         description_vi = f"Thư viện keyword cho chức năng {folder_name.replace('keyword_', '')}"
 
-        # Sinh nội dung file
+        # Sinh method keyword
         methods_str = ""
         for kw in valid_keywords:
             if isinstance(kw, str):
@@ -143,6 +162,7 @@ def run_keyword_prompt(prompt: str, prompt_file_path: str, max_retries=3):
                 display_name_vi=display_name_vi
             )
 
+        #Sinh class hoàn chỉnh
         content = CLASS_TEMPLATE.format(
             class_name=class_name,
             description_en=description_en,
@@ -150,11 +170,10 @@ def run_keyword_prompt(prompt: str, prompt_file_path: str, max_retries=3):
             methods=methods_str
         )
 
-        # LƯU VÀO THƯ MỤC ĐÃ CÓ SẴN: AI/keywords/kw/keyword_xxx/
-        # Dùng đường dẫn tuyệt đối từ gốc project
-        project_root = Path(__file__).parent.parent.parent  # D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori
+        # Xác định thư mục project
+        project_root = Path(__file__).parent.parent.parent
         base_dir = project_root / "AI" / "keywords" / "kw"
-        target_dir = base_dir / folder_name
+        target_dir = base_dir / folder_name #Tạo thư mục keyword
         target_dir.mkdir(parents=True, exist_ok=True)
 
         output_file = target_dir / f"{class_name}.py"

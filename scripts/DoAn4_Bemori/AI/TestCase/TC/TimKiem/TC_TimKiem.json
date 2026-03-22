@@ -1,0 +1,50 @@
+[
+  {
+    "test_case_id": "TC_001",
+    "scenario": "Search with a valid keyword",
+    "precondition": [
+      "User is on the homepage"
+    ],
+    "steps": [
+      "Step 1: Enter a valid search keyword into the search field",
+      "Step 2: Click the search button",
+      "Step 3: Verify that a list of products matching the keyword is displayed"
+    ],
+    "expected_result": [
+      "The search results page shows products whose titles or descriptions contain the entered keyword",
+      "Each product entry displays an image, name, price and add-to-cart option"
+    ]
+  },
+  {
+    "test_case_id": "TC_002",
+    "scenario": "Search with no input (empty query)",
+    "precondition": [
+      "User is on the homepage"
+    ],
+    "steps": [
+      "Step 1: Leave the search field empty",
+      "Step 2: Click the search button",
+      "Step 3: Verify that all products in the store are displayed"
+    ],
+    "expected_result": [
+      "The product listing page shows the complete inventory of the store without any filtering",
+      "No search result message is shown"
+    ]
+  },
+  {
+    "test_case_id": "TC_003",
+    "scenario": "Search with a keyword that yields no results",
+    "precondition": [
+      "User is on the homepage"
+    ],
+    "steps": [
+      "Step 1: Enter an unlikely search keyword into the search field",
+      "Step 2: Click the search button",
+      "Step 3: Verify that a message indicating no products were found is displayed"
+    ],
+    "expected_result": [
+      "\"No matching products were found for your selection.\" message appears prominently on the page",
+      "The product list area remains empty or shows a placeholder image"
+    ]
+  }
+]

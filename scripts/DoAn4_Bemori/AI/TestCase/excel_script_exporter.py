@@ -19,15 +19,17 @@ def auto_adjust(ws):
 
 
 def export_script_to_excel(keyword_steps, output_path):
+
     wb = Workbook()
     wb.remove(wb.active)
 
     for tc in keyword_steps:
+
         ws = wb.create_sheet(title=safe_sheet_name(tc["test_case_id"]))
 
         ws.append(["STEP", "KEYWORD", "LOCATOR", "VALUE"])
 
-        for i, step in enumerate(tc["steps"], start=1):
+        for i, step in enumerate(tc.get("steps", []), start=1):
             ws.append([
                 i,
                 step.get("keyword", ""),

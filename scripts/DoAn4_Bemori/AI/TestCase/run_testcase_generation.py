@@ -69,9 +69,9 @@ def run_generation():
             data_path = full
             break
 
-    print(f"📂 TC: {tc_path}")
-    print(f"📂 Locator: {locator_path}")
-    print(f"📂 Data: {data_path if data_path else 'Không có'}")
+    print(f"TC: {tc_path}")
+    print(f"Locator: {locator_path}")
+    print(f"Data: {data_path if data_path else 'Không có'}")
 
     # ================= AI: TC → SCRIPT =================
     keyword_steps = generate_keyword_steps(
@@ -93,9 +93,9 @@ def run_generation():
     export_script_to_excel(keyword_steps, script_path)
 
     print("\n========== DONE ==========")
-    print(f"✅ JSON: {tc_path}")
-    print(f"✅ Excel TC: {template_path}")
-    print(f"✅ Script: {script_path}")
+    print(f"JSON: {tc_path}")
+    print(f"Excel TC: {template_path}")
+    print(f"Script: {script_path}")
 
 
 if __name__ == "__main__":

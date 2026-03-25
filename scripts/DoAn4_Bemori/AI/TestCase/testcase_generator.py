@@ -141,7 +141,7 @@ def generate_testcases_from_usecase(usecase_text: str):
         if start != -1 and end != -1:
             return json.loads(raw[start:end + 1])
 
-        raise Exception("❌ Không parse được JSON từ AI")
+        raise Exception("Không parse được JSON từ AI")
 
 
 def save_testcases(testcases, output_path):

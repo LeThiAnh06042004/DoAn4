@@ -1,50 +1,47 @@
 [
   {
     "test_case_id": "TC_001",
-    "scenario": "Search with a valid keyword",
+    "scenario": "Search with a valid keyword that returns products",
     "precondition": [
-      "User is on the homepage"
+      "User is on the home page"
     ],
     "steps": [
       "Step 1: Enter a valid search keyword into the search field",
       "Step 2: Click the search button",
-      "Step 3: Verify that a list of products matching the keyword is displayed"
+      "Step 3: Verify that a list of matching products is displayed"
     ],
     "expected_result": [
-      "The search results page shows products whose titles or descriptions contain the entered keyword",
-      "Each product entry displays an image, name, price and add-to-cart option"
+      "A product list appears with items that match the entered keyword"
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Search with no input (empty query)",
+    "scenario": "Search with an empty keyword to view all products",
     "precondition": [
-      "User is on the homepage"
+      "User is on the home page"
     ],
     "steps": [
       "Step 1: Leave the search field empty",
       "Step 2: Click the search button",
-      "Step 3: Verify that all products in the store are displayed"
+      "Step 3: Verify that the full product catalog is displayed"
     ],
     "expected_result": [
-      "The product listing page shows the complete inventory of the store without any filtering",
-      "No search result message is shown"
+      "The entire list of available products is shown on the page"
     ]
   },
   {
     "test_case_id": "TC_003",
     "scenario": "Search with a keyword that yields no results",
     "precondition": [
-      "User is on the homepage"
+      "User is on the home page"
     ],
     "steps": [
-      "Step 1: Enter an unlikely search keyword into the search field",
+      "Step 1: Enter an invalid or nonsensical search keyword into the search field",
       "Step 2: Click the search button",
-      "Step 3: Verify that a message indicating no products were found is displayed"
+      "Step 3: Verify that a 'no results found' message is displayed"
     ],
     "expected_result": [
-      "\"No matching products were found for your selection.\" message appears prominently on the page",
-      "The product list area remains empty or shows a placeholder image"
+      "A notification appears stating no products match the search criteria"
     ]
   }
 ]

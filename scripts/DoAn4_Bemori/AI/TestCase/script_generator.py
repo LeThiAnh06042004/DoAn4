@@ -121,7 +121,8 @@ def generate_keyword_steps(testcases, locator_path, data_path=None):
     with open(locator_path, "r", encoding="utf-8") as f:
         locators = yaml.safe_load(f)
 
-    locators_str = json.dumps(locators, indent=2, ensure_ascii=False)
+    locator_keys = list(locators.keys())
+    locators_str = json.dumps(locator_keys, ensure_ascii=False, indent=2)
 
     # ===== DATA =====
     data_content = ""

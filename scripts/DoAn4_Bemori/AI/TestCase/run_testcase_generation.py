@@ -92,7 +92,6 @@ def run_generation():
 
     export_script_to_excel(keyword_steps, script_path)
 
-    print("\n========== DONE ==========")
     print(f"JSON: {tc_path}")
     print(f"Excel TC: {template_path}")
     print(f"Script: {script_path}")

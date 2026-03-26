@@ -1,47 +1,47 @@
 [
   {
     "test_case_id": "TC_001",
-    "scenario": "Search with a valid keyword that returns products",
+    "scenario": "Search products with valid keyword",
     "precondition": [
       "User is on the home page"
     ],
     "steps": [
       "Step 1: Enter a valid search keyword into the search field",
       "Step 2: Click the search button",
-      "Step 3: Verify that a list of matching products is displayed"
+      "Step 3: Verify that the product list matching the keyword is displayed"
     ],
     "expected_result": [
-      "A product list appears with items that match the entered keyword"
+      "Product results relevant to the entered keyword are shown on the page"
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Search with an empty keyword to view all products",
+    "scenario": "Search products with empty keyword",
     "precondition": [
       "User is on the home page"
     ],
     "steps": [
       "Step 1: Leave the search field empty",
       "Step 2: Click the search button",
-      "Step 3: Verify that the full product catalog is displayed"
+      "Step 3: Verify that all products in the store are displayed"
     ],
     "expected_result": [
-      "The entire list of available products is shown on the page"
+      "Full product catalog is shown after searching with an empty keyword"
     ]
   },
   {
     "test_case_id": "TC_003",
-    "scenario": "Search with a keyword that yields no results",
+    "scenario": "Search products with no matching results",
     "precondition": [
       "User is on the home page"
     ],
     "steps": [
-      "Step 1: Enter an invalid or nonsensical search keyword into the search field",
+      "Step 1: Enter a search keyword that does not match any product into the search field",
       "Step 2: Click the search button",
-      "Step 3: Verify that a 'no results found' message is displayed"
+      "Step 3: Verify that the message \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\" is displayed"
     ],
     "expected_result": [
-      "A notification appears stating no products match the search criteria"
+      "A no‑results notification message appears on the page"
     ]
   }
 ]

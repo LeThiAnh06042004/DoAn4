@@ -1,47 +1,53 @@
 [
   {
     "test_case_id": "TC_001",
-    "scenario": "Search products with valid keyword",
+    "scenario": "Search with a valid keyword that returns products",
     "precondition": [
-      "User is on the home page"
+      "User is on the homepage"
     ],
     "steps": [
-      "Step 1: Enter a valid search keyword into the search field",
+      "Step 1: Enter a valid search term into the search field",
       "Step 2: Click the search button",
-      "Step 3: Verify that the product list matching the keyword is displayed"
+      "Step 3: Verify that a list of matching products is displayed"
     ],
     "expected_result": [
-      "Product results relevant to the entered keyword are shown on the page"
+      "The search results section contains at least one product card",
+      "Each product card displays product name, image, and price",
+      "The number of displayed products matches the expected count for the keyword"
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Search products with empty keyword",
+    "scenario": "Search with an empty keyword to view all products",
     "precondition": [
-      "User is on the home page"
+      "User is on the homepage"
     ],
     "steps": [
       "Step 1: Leave the search field empty",
       "Step 2: Click the search button",
-      "Step 3: Verify that all products in the store are displayed"
+      "Step 3: Verify that the full product catalog is displayed"
     ],
     "expected_result": [
-      "Full product catalog is shown after searching with an empty keyword"
+      "The product listing page shows all available products",
+      "No 'no results' message is displayed",
+      "Pagination or infinite scroll functions correctly for the full list"
     ]
   },
   {
     "test_case_id": "TC_003",
-    "scenario": "Search products with no matching results",
+    "scenario": "Search with a keyword that yields no matching products",
     "precondition": [
-      "User is on the home page"
+      "User is on the homepage"
     ],
     "steps": [
-      "Step 1: Enter a search keyword that does not match any product into the search field",
+      "Step 1: Enter an invalid or nonsensical search term into the search field",
       "Step 2: Click the search button",
-      "Step 3: Verify that the message \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\" is displayed"
+      "Step 3: Verify that a 'no results' message is displayed"
     ],
     "expected_result": [
-      "A no‑results notification message appears on the page"
+      "The system shows the message: \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\"",
+      "No product cards are displayed in the search results area",
+      "The search field retains the entered keyword for user reference"
     ]
   }
 ]

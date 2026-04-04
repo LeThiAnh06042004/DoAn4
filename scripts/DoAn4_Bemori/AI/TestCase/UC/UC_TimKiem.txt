@@ -1,4 +1,4 @@
-Use Case: Tìm kiếm sản phẩm
+Use Case: Tìm kiếm sản phẩm gấu bông
 
 Actor:
 Người dùng

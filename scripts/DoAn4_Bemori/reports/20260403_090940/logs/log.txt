@@ -1,0 +1,12 @@
+2026-04-03 09:09:40,299 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260403_090940\logs\log.txt
+2026-04-03 09:09:40,379 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260403_090940\html\report.html
+2026-04-03 09:09:42,356 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='g\u1ea5u r\u1ea5t \u0111\u1eb9p', TEN=' ng\u1ecdc h\xe0', SDT='0927856143'] =====
+2026-04-03 09:10:04,061 - ERROR - TestLogger - TEST FAILED: test_binh_luan[ND='g\u1ea5u r\u1ea5t \u0111\u1eb9p', TEN=' ng\u1ecdc h\xe0', SDT='0927856143']
+2026-04-03 09:10:04,061 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260403_090940\screenshots\test_binh_luan[ND='g\u1ea5u r\u1ea5t \u0111\u1eb9p', TEN=' ng\u1ecdc h\xe0', SDT='0927856143'].png
+2026-04-03 09:10:06,375 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='g\u1ea5u r\u1ea5t \u0111\u1eb9p', TEN=' ng\u1ecdc h\xe0', SDT='0927856143'] =====
+
+2026-04-03 09:10:06,391 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='g\u1ea5u r\u1ea5t cute', TEN=' abc', SDT='01928376'] =====
+2026-04-03 09:10:19,609 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='g\u1ea5u r\u1ea5t cute', TEN=' abc', SDT='01928376']
+2026-04-03 09:10:22,022 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='g\u1ea5u r\u1ea5t cute', TEN=' abc', SDT='01928376'] =====
+
+2026-04-03 09:10:22,025 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='nh\xecn c\u01b0ng qu\xe1 tr\u1eddi', TEN=' thu h\xe0', SDT='098712364532'] =====

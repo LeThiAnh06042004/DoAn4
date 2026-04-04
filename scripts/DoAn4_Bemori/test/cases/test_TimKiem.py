@@ -5,10 +5,10 @@ from core.kw_dispatcher import KeywordDispatcher
 from core.kw_common import KWCommon
 
 cases = data_loader.load_json_data(
-    r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\data_TimKiem_json.json"
+    r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/data/data_TimKiem_json.json"
 )
 
-LOCATOR_FILE = r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\locators\TimKiem_locators.yaml"
+LOCATOR_FILE = r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/locators/TimKiem_locators.yaml"
 
 
 class TestSearch:

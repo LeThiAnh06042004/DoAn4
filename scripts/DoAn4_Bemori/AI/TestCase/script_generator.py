@@ -6,9 +6,10 @@ import inspect
 from AI.ai_client import call_llm
 from core.kw_common import KWCommon
 from utils.config_loader import load_config
+from utils.locator_utils import build_locator_hint
 
 
-# ===== LOAD KEYWORDS =====
+# ================= KEYWORD =================
 def load_keywords_with_desc():
     keyword_docs = []
 
@@ -22,28 +23,41 @@ def load_keywords_with_desc():
     return keyword_docs
 
 
-# ===== PARSE JSON =====
+# ================= PARSE =================
 def extract_json(raw: str):
     raw = raw.strip()
+
+    # remove markdown
     raw = re.sub(r"```json", "", raw)
     raw = re.sub(r"```", "", raw)
+
+    # remove comment kiểu // ...
+    raw = re.sub(r"//.*", "", raw)
+
+    # remove comment kiểu /* ... */
+    raw = re.sub(r"/\*.*?\*/", "", raw, flags=re.DOTALL)
+
+    # remove trailing commas
+    raw = re.sub(r",\s*}", "}", raw)
+    raw = re.sub(r",\s*]", "]", raw)
 
     match = re.search(r"\[.*\]", raw, re.DOTALL)
 
     if match:
-        return json.loads(match.group(0))
+        json_str = match.group(0)
+        return json.loads(json_str)
 
     raise Exception("Không parse được JSON từ AI")
 
 
-# ===== INJECT SETUP / TEARDOWN =====
+# ================= SETUP =================
 def inject_setup_teardown(result):
 
     config = load_config()
     base_url = config.get("base_url", "")
 
     if not base_url:
-        print("⚠ base_url chưa được cấu hình!")
+        print("base_url chưa được cấu hình!")
 
     for tc in result:
 
@@ -67,9 +81,12 @@ def inject_setup_teardown(result):
     return result
 
 
-# ===== PROMPT =====
+# ================= PROMPT =================
 PROMPT = """
 Bạn là chuyên gia kiểm thử phần mềm.
+
+================ CHỦ ĐỀ HỆ THỐNG =================
+{topic}
 
 Hãy chuyển test case thành keyword-driven steps.
 
@@ -82,7 +99,33 @@ Hãy chuyển test case thành keyword-driven steps.
 3. Không được tự tạo keyword mới
 4. Không bỏ qua bước VERIFY
 5. Locator phải lấy từ danh sách
-6. Value dùng biến dạng ${{field}} nếu là input
+
+6. PHẢI sinh dữ liệu THỰC (value)
+   - Phù hợp với test case
+   - Phù hợp với ngữ cảnh
+
+7. Quy tắc dữ liệu:
+   - valid → dữ liệu hợp lệ
+   - invalid → dữ liệu sai
+   - empty → ""
+   - boundary → giá trị biên
+
+8. KHÔNG dùng placeholder (<valid>, <invalid>...)
+
+9. TẤT CẢ dữ liệu PHẢI liên quan đến CHỦ ĐỀ
+   - Value phải là thực thể, từ khóa hoặc nội dung thuộc domain của hệ thống
+   - Không được dùng dữ liệu chung chung hoặc không liên quan
+
+10. KHÔNG được sử dụng dữ liệu thuộc domain khác
+    - Ví dụ:
+      Nếu hệ thống là ecommerce → không dùng dữ liệu về ngân hàng
+      Nếu hệ thống là giáo dục → không dùng dữ liệu về sản phẩm
+
+11. Dữ liệu phải có ý nghĩa thực tế với người dùng cuối
+    - Không dùng chuỗi vô nghĩa như: "abc123", "qwerty"
+
+================ LOCATOR HINT =================
+{locator_hint}
 
 ================ OUTPUT =================
 [
@@ -92,7 +135,7 @@ Hãy chuyển test case thành keyword-driven steps.
       {{
         "keyword": "...",
         "locator": "...",
-        "value": "..."
+        "value": "dữ liệu thực tế đúng chủ đề"
       }}
     ]
   }}
@@ -104,55 +147,47 @@ Testcases:
 
 Locators:
 {locators}
-
-Data:
-{data}
 """
 
 
-# ===== MAIN =====
-def generate_keyword_steps(testcases, locator_path, data_path=None):
+# ================= MAIN =================
+def generate_keyword_steps(testcases, locator_path, topic):
 
-    # ===== KEYWORDS =====
+    # ===== KEYWORD =====
     keyword_docs = load_keywords_with_desc()
     keyword_str = "\n".join(keyword_docs)
 
-    # ===== LOCATORS =====
+    # ===== LOCATOR =====
     with open(locator_path, "r", encoding="utf-8") as f:
         locators = yaml.safe_load(f)
 
     locator_keys = list(locators.keys())
     locators_str = json.dumps(locator_keys, ensure_ascii=False, indent=2)
 
-    # ===== DATA =====
-    data_content = ""
-    if data_path:
-        try:
-            with open(data_path, "r", encoding="utf-8") as f:
-                data_content = f.read()
-        except:
-            pass
+    locator_hint = build_locator_hint(locator_keys)
+    locator_hint_str = json.dumps(locator_hint, ensure_ascii=False, indent=2)
 
-    # ===== PROMPT =====
+    # ===== BUILD PROMPT =====
     prompt = PROMPT.format(
         keywords=keyword_str,
         testcases=json.dumps(testcases, indent=2, ensure_ascii=False),
         locators=locators_str,
-        data=data_content
+        locator_hint=locator_hint_str,
+        topic=topic
     )
 
+    # ===== CALL AI =====
     raw = call_llm(prompt)
 
     print("===== RAW AI OUTPUT =====")
     print(raw)
 
-    # ===== PARSE =====
     result = extract_json(raw)
 
-    # ===== INJECT SETUP =====
+    # ===== SETUP =====
     result = inject_setup_teardown(result)
 
-    # ===== VALIDATION =====
+    # ===== VALIDATE =====
     valid_keywords = set([
         name for name, _ in inspect.getmembers(KWCommon, predicate=inspect.isfunction)
         if not name.startswith("_")
@@ -165,12 +200,12 @@ def generate_keyword_steps(testcases, locator_path, data_path=None):
             kw = step.get("keyword", "")
 
             if kw not in valid_keywords:
-                print(f"❌ Sai keyword: {kw}")
+                print(f"Sai keyword: {kw}")
 
             if "VERIFY" in kw:
                 has_verify = True
 
         if not has_verify:
-            print(f"⚠ Missing VERIFY: {tc['test_case_id']}")
+            print(f"Missing VERIFY: {tc['test_case_id']}")
 
     return result

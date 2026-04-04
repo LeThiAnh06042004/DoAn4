@@ -5,10 +5,10 @@ from core.kw_dispatcher import KeywordDispatcher
 from core.kw_common import KWCommon
 
 cases = data_loader.load_txt_data(
-    r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\data\data_MH.txt"
+    r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/data/data_MH.txt"
 )
 
-LOCATOR_FILE = r"D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\locators\MuaHang_locators.yaml"
+LOCATOR_FILE = r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/locators/MuaHang_locators.yaml"
 
 class TestMuaHang:
     @pytest.mark.parametrize(

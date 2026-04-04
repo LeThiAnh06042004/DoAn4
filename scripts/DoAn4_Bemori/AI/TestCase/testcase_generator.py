@@ -31,7 +31,7 @@ Precondition:
 Steps:
 - Chỉ mô tả hành động của người dùng
 - Không mô tả xử lý nội bộ hệ thống
-- KHÔNG sử dụng dữ liệu cụ thể (không dùng giá trị thật như "iphone", "123")
+- KHÔNG sử dụng dữ liệu cụ thể (không dùng giá trị thật như "gaubong", "123")
 - Sử dụng mô tả tổng quát:
   Ví dụ:
   - Enter valid data
@@ -125,16 +125,21 @@ Execution Paths:
 
 
 def generate_testcases_from_usecase(usecase_text: str):
+    # Inject dữ liệu vào prompt
     prompt = TESTCASE_PROMPT_TEMPLATE.format(
         execution_paths=usecase_text
     )
 
+    # gọi AI
     raw = call_llm(prompt).strip()
 
+    # PARSE JSON
+    # JSON chuẩn
     try:
         return json.loads(raw)
 
     except Exception:
+        # Cắt phần JSON bên trong
         start = raw.find("[")
         end = raw.rfind("]")
 
@@ -144,6 +149,7 @@ def generate_testcases_from_usecase(usecase_text: str):
         raise Exception("Không parse được JSON từ AI")
 
 
+# Lưu JSON
 def save_testcases(testcases, output_path):
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(testcases, f, ensure_ascii=False, indent=2)

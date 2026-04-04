@@ -9,15 +9,17 @@ from unidecode import unidecode
 
 TESTER_NAME = "Lê Thị Ánh"
 
-
+# Chuẩn hóa tên sheet: bỏ dấu TV, xoá khoảng trắng
 def normalize_sheet_name(name: str):
     return unidecode(name).replace(" ", "")[:31]
 
 
+# Cho phép xuống dòng trong cell
 def apply_wrap_text(cell):
     cell.alignment = Alignment(wrap_text=True, vertical="top")
 
 
+# Set width cố định (tuân tuân thủ template chuẩn, ko lệch layout)
 def auto_adjust_column_width(ws):
     column_widths = {
         "A": 12, "B": 40, "C": 30,
@@ -28,6 +30,7 @@ def auto_adjust_column_width(ws):
         ws.column_dimensions[col].width = width
 
 
+# Copy toàn bộ style từ dòng template (giữ nguyên format excel)
 def copy_style(src, dest):
     dest.font = copy(src.font)
     dest.border = copy(src.border)
@@ -36,77 +39,63 @@ def copy_style(src, dest):
     dest.alignment = copy(src.alignment)
 
 
+# Update số lượng test case
 def update_case_count(ws, count):
     ws["E3"] = f"Number of cases: {count}"
     ws["F3"] = f"Number of cases: {count}"
 
 
-# 🔥 DELETE ROW THỪA
-def remove_extra_rows(ws, start_row, total_cases):
-    last_needed_row = start_row + total_cases
-
-    if ws.max_row > last_needed_row:
-        ws.delete_rows(last_needed_row, ws.max_row - last_needed_row)
-
-
-# 🔥 THÊM ROW NẾU THIẾU
-def ensure_enough_rows(ws, start_row, total_cases, template_row):
-    needed_last_row = start_row + total_cases - 1
-
-    if ws.max_row < needed_last_row:
-        for _ in range(needed_last_row - ws.max_row):
-            ws.append([""] * 9)
-
-            new_row = ws.max_row
-            for col in range(1, 10):
-                copy_style(
-                    ws.cell(row=template_row, column=col),
-                    ws.cell(row=new_row, column=col)
-                )
-
-
+# Ghi test case vào Excel theo format chuẩn dựa trên template có sẵn
 def export_testcases_to_excel(testcases, module_name, template_path):
-
+    # Load file & setup sheet: Mở file Excel template có sẵn
     wb = load_workbook(template_path)
     ws = wb.active
 
+    # Đổi tên sheet theo module
     sheet_name = normalize_sheet_name(module_name)
     ws.title = sheet_name
 
+    # Ghi: Tên module, Tên tester
     ws["B2"] = sheet_name
     ws["B3"] = TESTER_NAME
 
+    # Xác định vị trí ghi data
     start_row = 5
     template_row = 5
     total_cases = len(testcases)
 
-    # ===== 1. XOÁ DÒNG THỪA =====
+    # XOÁ DÒNG THỪA
     last_needed_row = start_row + total_cases - 1
 
+    # Nếu file đang có nhiều dòng hơn cần thiết → xoá bớt
     if ws.max_row > last_needed_row:
         ws.delete_rows(last_needed_row + 1, ws.max_row - last_needed_row)
 
-    # ===== 2. THÊM DÒNG NẾU THIẾU =====
+    # THÊM DÒNG THIẾU
     needed_last_row = start_row + total_cases - 1
 
+    # Nếu chưa đủ dòng → thêm
     if ws.max_row < needed_last_row:
         for _ in range(needed_last_row - ws.max_row):
-            ws.append([""] * 9)
+            ws.append([""] * 9) # Thêm 1 dòng trống (9 cột)
 
             new_row = ws.max_row
             for col in range(1, 10):
+                # Copy style từ dòng template
                 copy_style(
                     ws.cell(row=template_row, column=col),
                     ws.cell(row=new_row, column=col)
                 )
 
-    # ===== 3. GHI DATA =====
-    test_date = datetime.today().strftime("%d/%m/%Y")
+    # Ghi dữ liệu test case
+    test_date = datetime.today().strftime("%d/%m/%Y") # Lấy ngày ht
 
+    # Duyệt từng test case
     for i, tc in enumerate(testcases):
-
+        # Xác định dòng cần ghi
         row = start_row + i
 
+        # Ghi từng field
         ws.cell(row=row, column=1, value=tc.get("test_case_id"))
         ws.cell(row=row, column=2, value=tc.get("scenario"))
         ws.cell(row=row, column=3, value="\n".join(tc.get("precondition", [])))
@@ -114,16 +103,18 @@ def export_testcases_to_excel(testcases, module_name, template_path):
         ws.cell(row=row, column=5, value="\n".join(tc.get("expected_result", [])))
         ws.cell(row=row, column=8, value=test_date)
 
+        # Copy style cho từng dòng
         for col in range(1, 10):
             copy_style(
                 ws.cell(row=template_row, column=col),
                 ws.cell(row=row, column=col)
             )
 
+        # Wrap text (xuống dòng)
         for col in range(1, 6):
             apply_wrap_text(ws.cell(row=row, column=col))
 
-    update_case_count(ws, total_cases)
-    auto_adjust_column_width(ws)
+    update_case_count(ws, total_cases) # Update số lượng test case
+    auto_adjust_column_width(ws) # Set độ rộng cột
 
     wb.save(template_path)

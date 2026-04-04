@@ -13,7 +13,7 @@ class BaseDriver:
     def __init__(self, browser=None):
         # Đọc config từ file, lấy đg dẫn tuyệt đối tới file
         ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        config_path = os.path.join(ROOT_DIR, "config", "config.yaml")
+        config_path = os.path.join(ROOT_DIR, "core", "config.yaml")
 
         with open(config_path, "r", encoding="utf-8") as f:
             self.config = yaml.safe_load(f)

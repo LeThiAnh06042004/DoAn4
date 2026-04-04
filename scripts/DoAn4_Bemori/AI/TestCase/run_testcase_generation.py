@@ -8,28 +8,30 @@ from AI.TestCase.excel_script_exporter import export_script_to_excel
 
 
 def run_generation():
+    # Xác định thư mục gốc
     base_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # ================= USE CASE =================
+    # Đọc Use Case
     uc_path = os.path.join(base_dir, "UC", "UC_TimKiem.txt")
 
     with open(uc_path, "r", encoding="utf-8") as f:
         use_case_text = f.read()
 
-    # ================= AI: GENERATE TC =================
+    # Gọi AI sinh Test Case
     testcases = testcase_generator.generate_testcases_from_usecase(use_case_text)
 
+    # Lấy tên chức năng
     function_name = os.path.basename(uc_path).replace("UC_", "").replace(".txt", "")
 
-    # ================= FOLDER =================
+    # Tạo folder lưu Test Case
     tc_folder = os.path.join(base_dir, "TC", function_name)
     os.makedirs(tc_folder, exist_ok=True)
 
-    # ================= SAVE JSON =================
+    # Lưu JSON
     tc_path = os.path.join(tc_folder, f"TC_{function_name}.json")
     testcase_generator.save_testcases(testcases, tc_path)
 
-    # ================= EXPORT TC EXCEL =================
+    # Export Excel Test Case
     template_path = os.path.join(base_dir, "Sample_TestCase.xlsx")
 
     export_testcases_to_excel(
@@ -38,49 +40,28 @@ def run_generation():
         template_path=template_path
     )
 
-    # ================= ROOT =================
+    # Xác định root project
     project_root = os.path.abspath(os.path.join(base_dir, "..", ".."))
 
-    # ================= LOCATOR =================
+    # Lấy locator
     locator_path = os.path.join(
         project_root,
+        "resources",
         "locators",
         f"{function_name}_locators.yaml"
     )
 
-    # ================= DATA =================
-    data_folder = os.path.join(project_root, "data")
-
-    possible_files = [
-        f"data_{function_name}.txt",
-        f"data_{function_name}.csv",
-        f"data_{function_name}.json",
-        f"data_{function_name}.xlsx",
-        f"data_{function_name}.xls",
-        f"data_{function_name}.yaml",
-        f"data_{function_name}.yml",
-        f"data_{function_name}.sqlite"
-    ]
-
-    data_path = None
-    for file in possible_files:
-        full = os.path.join(data_folder, file)
-        if os.path.exists(full):
-            data_path = full
-            break
-
     print(f"TC: {tc_path}")
     print(f"Locator: {locator_path}")
-    print(f"Data: {data_path if data_path else 'Không có'}")
 
-    # ================= AI: TC → SCRIPT =================
+    # TC → test Script
     keyword_steps = generate_keyword_steps(
         testcases=testcases,
         locator_path=locator_path,
-        data_path=data_path
+        topic="website bán gấu bông"
     )
 
-    # ================= EXPORT SCRIPT =================
+    # Export Script Excel
     script_path = os.path.join(
         base_dir,
         "scripts",

@@ -60,6 +60,12 @@ class KWCommon:
         except KeyError:
             raise KeyError(f"Locator key '{locator_input}' KHÔNG tồn tại trong YAML")
 
+    def find_element(self, locator_name):
+        by, value = self._resolve_locator(locator_name)
+        return self.wait.until(
+            EC.presence_of_element_located((by, value))
+        )
+
     # ==================================================
     # 1. NAVIGATION - Điều hướng trang web
     # ==================================================
@@ -103,7 +109,6 @@ class KWCommon:
         """ Kiểm tra tiêu đề trang có đúng không """
         assert self.driver.title == expected_title, f"Tiêu đề thực tế: {self.driver.title} != {expected_title}"
 
-    # MỚI - Thêm cho multi-tab và iframe
     def SWITCH_TO_NEW_TAB(self):
         """ Chuyển sang tab mới nhất (tab cuối cùng) """
         self.wait.until(EC.number_of_windows_to_be(len(self.driver.window_handles)))
@@ -223,7 +228,6 @@ class KWCommon:
         """ Cuộn trang xuống cuối """
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-    # MỚI - Thêm cho các tình huống nâng cao
     def DRAG_AND_DROP(self, source_locator, target_locator):
         """ Kéo thả từ element nguồn đến element đích """
         source_resolved = self._resolve_locator(source_locator)
@@ -247,16 +251,13 @@ class KWCommon:
     # ==================================================
     # 3. VERIFICATION - Xác minh & Assert
     # ==================================================
-    def VERIFY_ELEMENT_PRESENT(self, locator):
-        """ Kiểm tra element tồn tại trong DOM (có thể ẩn) """
-        resolved = self._resolve_locator(locator)
-        try:
-            self.wait.until(EC.presence_of_element_located(resolved))
-            self._if_condition = True
-            return True
-        except TimeoutException:
-            self._if_condition = False
-            return False
+    def VERIFY_ELEMENT_PRESENT(self, locator_name):
+        element = self.find_element(locator_name)
+
+        if not element:
+            raise AssertionError(f"Không tìm thấy element: {locator_name}")
+
+        return True
 
     def VERIFY_ELEMENT_VISIBLE(self, locator):
         """ Kiểm tra element hiển thị trên màn hình (visible) """
@@ -326,6 +327,12 @@ class KWCommon:
         except NoAlertPresentException:
             return False
 
+    def IS_ELEMENT_PRESENT(self, locator_name):
+        resolved = self._resolve_locator(locator_name)
+        elements = self.driver.find_elements(*resolved)
+        return len(elements) > 0
+
+
     # ==================================================
     # 4. SYSTEM / WAIT / DEBUG - Hệ thống, chờ đợi, debug
     # ==================================================
@@ -356,9 +363,9 @@ class KWCommon:
         except TimeoutException:
             return False
 
-    def WAIT_FOR_SECONDS(self, seconds: int):
-        """ Chờ cứng theo giây (không khuyến khích dùng nhiều) """
-        time.sleep(seconds)
+    def WAIT_FOR_SECONDS(self, seconds):
+        """ Chờ cứng theo giây """
+        time.sleep(int(seconds))
 
     def WAIT_FOR_PAGE_LOAD(self, timeout=15):
         """ Chờ trang load hoàn toàn (document.readyState == 'complete') """

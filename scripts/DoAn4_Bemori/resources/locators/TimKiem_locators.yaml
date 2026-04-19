@@ -1,15 +1,19 @@
 txtTimKiem:
   by: xpath
   value: //input[@placeholder="Nhập sản phẩm cần tìm"]
+  desc: ô nhập từ khoá tìm kiếm sản phẩm gấu bông
 
 btnTimKiem:
   by: xpath
   value: //button[@type="submit"]
+  desc: nút tìm kiếm sản phẩm gấu bông
 
 txtKoTimThay:
   by: xpath
   value: //div[@class="woocommerce-info"]
+  desc: thông báo không tìm thấy sản phẩm gấu bông
 
-txtTimThay:
+cboTimThay:
   by: xpath
   value: //select[@name="orderby"]
+  desc: combobox xuất hiện khi tìm thấy sản phẩm gấu bông

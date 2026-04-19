@@ -3,102 +3,76 @@ from AI.ai_client import call_llm
 
 
 TESTCASE_PROMPT_TEMPLATE = """
-Bạn là chuyên gia kiểm thử phần mềm.
+Bạn là chuyên gia kiểm thử phần mềm. Từ các execution path dưới đây hãy sinh các test case kiểm thử.
 
-Từ các execution path dưới đây hãy sinh các test case kiểm thử.
+================ NGÔN NGỮ ================
+- Toàn bộ nội dung test case phải được viết bằng TIẾNG VIỆT (scenario, precondition, steps, expected_result)
+- Riêng tên field JSON (test_case_id, steps...) giữ nguyên tiếng Anh
 
 ================ YÊU CẦU CHUNG ================
-
 1. Trả về kết quả dưới dạng JSON hợp lệ.
-
-2. Mỗi test case phải có các trường:
-
-- test_case_id
-- scenario
-- precondition
-- steps
-- expected_result
+2. Mỗi test case phải có các trường sau:
+   - test_case_id
+   - scenario
+   - precondition
+   - steps
+   - expected_result
 
 ================ QUY TẮC VIẾT TEST CASE ================
-
 Scenario:
-- Mô tả ngắn gọn mục tiêu kiểm thử
-- Không dài dòng
+- Mô tả ngắn gọn mục tiêu kiểm thử.
+- Không dài dòng.
 
 Precondition:
-- Mô tả trạng thái ban đầu của hệ thống
+- Mô tả trạng thái ban đầu của hệ thống.
 
 Steps:
-- Chỉ mô tả hành động của người dùng
-- Không mô tả xử lý nội bộ hệ thống
-- KHÔNG sử dụng dữ liệu cụ thể (không dùng giá trị thật như "gaubong", "123")
-- Sử dụng mô tả tổng quát:
-  Ví dụ:
-  - Enter valid data
-  - Enter invalid data
-  - Leave field empty
-  - Select an option
-  - Click submit button
-  - Navigate to page
-  - Verify displayed information
+- Chỉ mô tả hành động của người dùng.
+- Không mô tả xử lý nội bộ hệ thống.
+- KHÔNG sử dụng dữ liệu cụ thể (không dùng giá trị thật như "gaubong", "123").
+- Sử dụng mô tả tổng quát.
 
-- Mỗi step là 1 hành động rõ ràng
+================ CHUẨN HÓA NGÔN NGỮ HÀNH ĐỘNG ================
+- KHÔNG dùng tiếng Anh: Click, Verify, Input, Select...
+- Bắt buộc dùng:
+  + Nhập
+  + Nhấn
+  + Chọn
+  + Kiểm tra
+  + Điều hướng
+
+Ví dụ đúng:
+- Step 1: Nhập dữ liệu hợp lệ vào ô nhập
+- Step 2: Nhấn nút
+- Step 3: Kiểm tra kết quả hiển thị
+
+- Mỗi step là 1 hành động rõ ràng.
 
 QUY TẮC ĐÁNH SỐ STEP:
-- Bắt buộc format:
-  "Step 1: ..."
-  "Step 2: ..."
-- Không gộp nhiều hành động
-- Không bỏ số thứ tự
+- Bắt buộc format: "Step 1: ...", "Step 2: ..."
+- Không gộp nhiều hành động trong một step.
+- Không bỏ số thứ tự.
 
 Expected Result:
-- Chỉ mô tả kết quả quan sát được trên UI
-- Không mô tả logic hệ thống
+- Chỉ mô tả kết quả quan sát được trên UI.
+- Không mô tả logic hệ thống.
+
+================ NGOẠI LỆ QUAN TRỌNG (SYSTEM MESSAGE) ================
+- Nếu execution path có chứa thông báo hệ thống:
+  → PHẢI giữ nguyên nội dung thông báo
+  → KHÔNG được viết lại hoặc làm chung chung
 
 ================ QUY TẮC COVERAGE ================
-
-- Mỗi execution path → ít nhất 1 test case
-- Không trùng test case
-- Nếu steps giống nhau → gộp
-- Bao phủ các trường hợp:
-  + valid
-  + invalid
-  + boundary (nếu có)
-  + empty (nếu có)
+- Mỗi execution path → ít nhất 1 test case.
+- Không trùng test case.
 
 ================ QUY TẮC QUAN TRỌNG (PHỤC VỤ SCRIPT) ================
-
-- Steps phải rõ ràng để có thể chuyển sang keyword automation
-- Steps phải bao gồm cả bước kiểm tra (verify). Sau khi user thực hiện hành động, phải có bước verify
-  Ví dụ:
-  + Step 1: Enter valid data into the field
-  + Step 2: Click button
-  + Step 3: Verify that the result is displayed
-- Mỗi expected_result nên tương ứng với 1 bước verify trong steps
-- Mỗi hành động phải thể hiện rõ loại thao tác:
-  + nhập liệu (input)
-  + click
-  + chọn (select)
-  + kiểm tra (verify)
-  + điều hướng (navigate)
-- Sử dụng mô tả chung, ví dụ:
-  + Enter valid input into the field
-  + Enter invalid input
-  + Leave the field empty
-  + Click button
-  + Verify element is displayed
-  + Verify message is displayed
-- Không viết mơ hồ kiểu:
-  "User performs action"
-  "System handles request"
-- Expected result là một danh sách
-  + Mỗi dòng là một kết quả kiểm tra riêng biệt
-  + Mỗi expected result phải rõ ràng để có thể map thành một bước verify
-  + KHÔNG viết mơ hồ kiểu:
-    "system handles..."
-    "appropriate result"
+- Steps phải có bước kiểm tra
+- Mỗi expected_result tương ứng với 1 bước kiểm tra
+- Không viết mơ hồ kiểu: "User performs action", "System handles request"
 
 ================ FORMAT OUTPUT ================
+Chỉ trả về JSON array theo đúng định dạng sau, không thêm bất kỳ chữ nào khác:
 
 [
   {{
@@ -109,17 +83,12 @@ Expected Result:
       "Step 1: ...",
       "Step 2: ..."
     ],
-    "expected_result": [
-      "..."
-    ]
+    "expected_result": ["..."]
   }}
 ]
 
-CHỈ trả về JSON. Không giải thích.
-
 ================ INPUT ================
-
-Execution Paths:
+Execution Paths: 
 {execution_paths}
 """
 

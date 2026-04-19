@@ -27,7 +27,7 @@ class TestSearch:
         dispatcher.execute("INPUT_TEXT", ["txtTimKiem", keyword])
         dispatcher.execute("CLICK", ["btnTimKiem"])
 
-        has_result = dispatcher.execute("VERIFY_ELEMENT_PRESENT", ["txtTimThay"])
+        has_result = dispatcher.execute("VERIFY_ELEMENT_PRESENT", ["cboTimThay"])
         has_no_result = dispatcher.execute("VERIFY_ELEMENT_PRESENT", ["txtKoTimThay"])
 
         if has_result:

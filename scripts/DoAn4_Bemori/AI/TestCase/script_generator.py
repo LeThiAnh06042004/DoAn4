@@ -7,23 +7,26 @@ from AI.ai_client import call_llm
 from core.kw_common import KWCommon
 from utils.config_loader import load_config
 from utils.locator_utils import build_locator_hint
+from utils.locator_utils import normalize_locator_name
 
 
-# ================= KEYWORD =================
+# LOAD KEYWORD
 def load_keywords_with_desc():
     keyword_docs = []
 
+    # Lấy toàn bộ function trong class KWCommon
     for name, func in inspect.getmembers(KWCommon, predicate=inspect.isfunction):
-        if name.startswith("_"):
+        if name.startswith("_"): # Loại bỏ function private
             continue
 
+        # Lấy docstring
         doc = inspect.getdoc(func) or ""
         keyword_docs.append(f"{name}: {doc}")
 
     return keyword_docs
 
 
-# ================= PARSE =================
+# PARSE JSON
 def extract_json(raw: str):
     raw = raw.strip()
 
@@ -50,7 +53,7 @@ def extract_json(raw: str):
     raise Exception("Không parse được JSON từ AI")
 
 
-# ================= SETUP =================
+# SETUP
 def inject_setup_teardown(result):
 
     config = load_config()
@@ -81,7 +84,7 @@ def inject_setup_teardown(result):
     return result
 
 
-# ================= PROMPT =================
+# PROMPT
 PROMPT = """
 Bạn là chuyên gia kiểm thử phần mềm.
 
@@ -124,8 +127,16 @@ Hãy chuyển test case thành keyword-driven steps.
 11. Dữ liệu phải có ý nghĩa thực tế với người dùng cuối
     - Không dùng chuỗi vô nghĩa như: "abc123", "qwerty"
 
-================ LOCATOR HINT =================
-{locator_hint}
+================ LOCATORS =================
+{locators}
+
+Mỗi locator gồm:
+- name: tên locator
+- type: loại element (input, button, dropdown...)
+- desc: mô tả chức năng
+
+→ Chọn locator phù hợp nhất với step dựa trên desc và type
+→ Không chọn sai locator
 
 ================ OUTPUT =================
 [
@@ -150,7 +161,7 @@ Locators:
 """
 
 
-# ================= MAIN =================
+# MAIN
 def generate_keyword_steps(testcases, locator_path, topic):
 
     # ===== KEYWORD =====
@@ -161,18 +172,28 @@ def generate_keyword_steps(testcases, locator_path, topic):
     with open(locator_path, "r", encoding="utf-8") as f:
         locators = yaml.safe_load(f)
 
-    locator_keys = list(locators.keys())
-    locators_str = json.dumps(locator_keys, ensure_ascii=False, indent=2)
+    # ===== BUILD LOCATOR CONTEXT =====
+    locator_context = []
 
-    locator_hint = build_locator_hint(locator_keys)
-    locator_hint_str = json.dumps(locator_hint, ensure_ascii=False, indent=2)
+    for key, value in locators.items():
+        desc = value.get("desc", "")
+        by = value.get("by", "")
+
+        locator_context.append({
+            "name": key,
+            "type": normalize_locator_name(key),  # txt -> input, btn -> button...
+            "desc": desc,
+            "by": by
+        })
+
+    # convert sang json để đưa vào prompt
+    locators_str = json.dumps(locator_context, ensure_ascii=False, indent=2)
 
     # ===== BUILD PROMPT =====
     prompt = PROMPT.format(
         keywords=keyword_str,
         testcases=json.dumps(testcases, indent=2, ensure_ascii=False),
         locators=locators_str,
-        locator_hint=locator_hint_str,
         topic=topic
     )
 

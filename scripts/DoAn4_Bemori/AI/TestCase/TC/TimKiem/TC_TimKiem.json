@@ -1,53 +1,49 @@
 [
   {
     "test_case_id": "TC_001",
-    "scenario": "Search with a valid keyword that returns products",
+    "scenario": "Kiểm thử tìm kiếm sản phẩm với từ khóa hợp lệ",
     "precondition": [
-      "User is on the homepage"
+      "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Enter a valid search term into the search field",
-      "Step 2: Click the search button",
-      "Step 3: Verify that a list of matching products is displayed"
+      "Step 1: Nhập từ khóa tìm kiếm vào ô tìm kiếm",
+      "Step 2: Nhấn nút tìm kiếm",
+      "Step 3: Kiểm tra danh sách sản phẩm hiển thị",
+      "Step 4: Kiểm tra mỗi mục trong danh sách có chứa từ khóa đã nhập"
     ],
     "expected_result": [
-      "The search results section contains at least one product card",
-      "Each product card displays product name, image, and price",
-      "The number of displayed products matches the expected count for the keyword"
+      "Sau khi nhấn nút, hệ thống xử lý yêu cầu và hiện ra danh sách các sản phẩm phù hợp",
+      "Mỗi mục trên danh sách phải hiển thị tên, hình ảnh và giá của sản phẩm liên quan đến từ khóa"
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Search with an empty keyword to view all products",
+    "scenario": "Kiểm thử tìm kiếm khi không nhập từ khóa",
     "precondition": [
-      "User is on the homepage"
+      "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Leave the search field empty",
-      "Step 2: Click the search button",
-      "Step 3: Verify that the full product catalog is displayed"
+      "Step 1: Để trống ô tìm kiếm",
+      "Step 2: Nhấn nút tìm kiếm",
+      "Step 3: Kiểm tra danh sách sản phẩm hiển thị"
     ],
     "expected_result": [
-      "The product listing page shows all available products",
-      "No 'no results' message is displayed",
-      "Pagination or infinite scroll functions correctly for the full list"
+      "Hệ thống hiển thị toàn bộ danh sách sản phẩm trong cửa hàng"
     ]
   },
   {
     "test_case_id": "TC_003",
-    "scenario": "Search with a keyword that yields no matching products",
+    "scenario": "Kiểm thử tìm kiếm khi không có kết quả phù hợp",
     "precondition": [
-      "User is on the homepage"
+      "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Enter an invalid or nonsensical search term into the search field",
-      "Step 2: Click the search button",
-      "Step 3: Verify that a 'no results' message is displayed"
+      "Step 1: Nhập từ khóa không tồn tại vào ô tìm kiếm",
+      "Step 2: Nhấn nút tìm kiếm",
+      "Step 3: Kiểm tra thông báo hiển thị"
     ],
     "expected_result": [
-      "The system shows the message: \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\"",
-      "No product cards are displayed in the search results area",
-      "The search field retains the entered keyword for user reference"
+      "\"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\""
     ]
   }
 ]

@@ -1,0 +1,64 @@
+2026-04-16 08:39:30,779 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260416_083930\logs\log.txt
+2026-04-16 08:39:30,916 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260416_083930\html\report.html
+2026-04-16 08:39:32,184 - INFO - TestLogger - Bắt đầu: test_run[TC_001] =====
+2026-04-16 08:39:38,039 - INFO - TestLogger - ===== TESTCASE: TC_001 =====
+2026-04-16 08:39:38,039 - INFO - TestLogger - DATA: None
+2026-04-16 08:39:38,040 - INFO - TestLogger - START TEST EXECUTION
+2026-04-16 08:39:38,040 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-04-16 08:39:51,839 - INFO - TestLogger - PASS
+2026-04-16 08:39:51,840 - INFO - TestLogger - STEP 2: INPUT_TEXT | txtTimKiem | gấu bông nhỏ
+2026-04-16 08:39:52,327 - INFO - TestLogger - PASS
+2026-04-16 08:39:52,328 - INFO - TestLogger - STEP 3: CLICK | btnTimKiem | 
+2026-04-16 08:39:55,261 - INFO - TestLogger - PASS
+2026-04-16 08:39:55,261 - INFO - TestLogger - STEP 4: WAIT_FOR_ELEMENT_VISIBLE | cboTimThay | 
+2026-04-16 08:39:55,336 - INFO - TestLogger - PASS
+2026-04-16 08:39:55,337 - INFO - TestLogger - STEP 5: VERIFY_ELEMENT_PRESENT | cboTimThay | 
+2026-04-16 08:39:55,362 - INFO - TestLogger - PASS
+2026-04-16 08:39:55,363 - INFO - TestLogger - STEP 6: CLOSE_BROWSER |  | 
+2026-04-16 08:39:57,586 - INFO - TestLogger - PASS
+2026-04-16 08:39:57,586 - INFO - TestLogger - TESTCASE PASSED: TC_001
+2026-04-16 08:39:57,590 - INFO - TestLogger - TEST PASSED: test_run[TC_001]
+2026-04-16 08:40:13,959 - INFO - TestLogger - Kết thúc: test_run[TC_001] =====
+
+2026-04-16 08:40:13,965 - INFO - TestLogger - Bắt đầu: test_run[TC_002] =====
+2026-04-16 08:40:20,465 - INFO - TestLogger - ===== TESTCASE: TC_002 =====
+2026-04-16 08:40:20,465 - INFO - TestLogger - DATA: None
+2026-04-16 08:40:20,466 - INFO - TestLogger - START TEST EXECUTION
+2026-04-16 08:40:20,466 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-04-16 08:40:20,887 - INFO - TestLogger - PASS
+2026-04-16 08:40:20,888 - INFO - TestLogger - STEP 2: CLEAR_TEXT | txtTimKiem | 
+2026-04-16 08:40:31,423 - INFO - TestLogger - PASS
+2026-04-16 08:40:31,423 - INFO - TestLogger - STEP 3: CLICK | btnTimKiem | 
+2026-04-16 08:40:35,292 - INFO - TestLogger - PASS
+2026-04-16 08:40:35,293 - INFO - TestLogger - STEP 4: WAIT_FOR_ELEMENT_VISIBLE | cboTimThay | 
+2026-04-16 08:40:35,378 - INFO - TestLogger - PASS
+2026-04-16 08:40:35,379 - INFO - TestLogger - STEP 5: VERIFY_ELEMENT_PRESENT | cboTimThay | 
+2026-04-16 08:40:35,407 - INFO - TestLogger - PASS
+2026-04-16 08:40:35,407 - INFO - TestLogger - STEP 6: CLOSE_BROWSER |  | 
+2026-04-16 08:40:37,868 - INFO - TestLogger - PASS
+2026-04-16 08:40:37,869 - INFO - TestLogger - TESTCASE PASSED: TC_002
+2026-04-16 08:40:37,872 - INFO - TestLogger - TEST PASSED: test_run[TC_002]
+2026-04-16 08:40:54,256 - INFO - TestLogger - Kết thúc: test_run[TC_002] =====
+
+2026-04-16 08:40:54,261 - INFO - TestLogger - Bắt đầu: test_run[TC_003] =====
+2026-04-16 08:41:00,416 - INFO - TestLogger - ===== TESTCASE: TC_003 =====
+2026-04-16 08:41:00,416 - INFO - TestLogger - DATA: None
+2026-04-16 08:41:00,417 - INFO - TestLogger - START TEST EXECUTION
+2026-04-16 08:41:00,417 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-04-16 08:41:09,347 - INFO - TestLogger - PASS
+2026-04-16 08:41:09,348 - INFO - TestLogger - STEP 2: INPUT_TEXT | txtTimKiem | gấu ông máy bay hạ cánh
+2026-04-16 08:41:09,908 - INFO - TestLogger - PASS
+2026-04-16 08:41:09,908 - INFO - TestLogger - STEP 3: CLICK | btnTimKiem | 
+2026-04-16 08:41:12,368 - INFO - TestLogger - PASS
+2026-04-16 08:41:12,369 - INFO - TestLogger - STEP 4: WAIT_FOR_ELEMENT_VISIBLE | txtKoTimThay | 
+2026-04-16 08:41:12,449 - INFO - TestLogger - PASS
+2026-04-16 08:41:12,449 - INFO - TestLogger - STEP 5: VERIFY_ELEMENT_PRESENT | txtKoTimThay | 
+2026-04-16 08:41:12,475 - INFO - TestLogger - PASS
+2026-04-16 08:41:12,476 - INFO - TestLogger - STEP 6: VERIFY_TEXT_CONTAINS | txtKoTimThay | Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.
+2026-04-16 08:41:12,559 - INFO - TestLogger - PASS
+2026-04-16 08:41:12,560 - INFO - TestLogger - STEP 7: CLOSE_BROWSER |  | 
+2026-04-16 08:41:14,823 - INFO - TestLogger - PASS
+2026-04-16 08:41:14,824 - INFO - TestLogger - TESTCASE PASSED: TC_003
+2026-04-16 08:41:14,828 - INFO - TestLogger - TEST PASSED: test_run[TC_003]
+2026-04-16 08:41:31,145 - INFO - TestLogger - Kết thúc: test_run[TC_003] =====
+

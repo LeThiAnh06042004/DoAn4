@@ -17,8 +17,8 @@ class HomePage(BasePage):
             return ""
 
     def get_no_result_message(self):
-        """Lấy thông báo khi không tìm thấy sản phẩm"""
+        """Combobox xuất hiện khi không tìm thấy sản phẩm"""
         try:
-            return self.get_text("txtKoTimThay")
+            return self.get_text("cboKoTimThay")
         except:
             return ""

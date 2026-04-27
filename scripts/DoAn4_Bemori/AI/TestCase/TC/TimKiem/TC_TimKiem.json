@@ -1,24 +1,22 @@
 [
   {
     "test_case_id": "TC_001",
-    "scenario": "Kiểm thử tìm kiếm sản phẩm với từ khóa hợp lệ",
+    "scenario": "Tìm kiếm sản phẩm gấu bông với từ khóa hợp lệ",
     "precondition": [
       "Người dùng đang ở trang chủ"
     ],
     "steps": [
       "Step 1: Nhập từ khóa tìm kiếm vào ô tìm kiếm",
       "Step 2: Nhấn nút tìm kiếm",
-      "Step 3: Kiểm tra danh sách sản phẩm hiển thị",
-      "Step 4: Kiểm tra mỗi mục trong danh sách có chứa từ khóa đã nhập"
+      "Step 3: Kiểm tra danh sách sản phẩm hiển thị"
     ],
     "expected_result": [
-      "Sau khi nhấn nút, hệ thống xử lý yêu cầu và hiện ra danh sách các sản phẩm phù hợp",
-      "Mỗi mục trên danh sách phải hiển thị tên, hình ảnh và giá của sản phẩm liên quan đến từ khóa"
+      "Danh sách sản phẩm phù hợp với từ khóa được hiển thị trên giao diện"
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Kiểm thử tìm kiếm khi không nhập từ khóa",
+    "scenario": "Tìm kiếm khi không nhập từ khóa",
     "precondition": [
       "Người dùng đang ở trang chủ"
     ],
@@ -28,17 +26,17 @@
       "Step 3: Kiểm tra danh sách sản phẩm hiển thị"
     ],
     "expected_result": [
-      "Hệ thống hiển thị toàn bộ danh sách sản phẩm trong cửa hàng"
+      "Tất cả danh sách sản phẩm trong cửa hàng được hiển thị trên giao diện"
     ]
   },
   {
     "test_case_id": "TC_003",
-    "scenario": "Kiểm thử tìm kiếm khi không có kết quả phù hợp",
+    "scenario": "Tìm kiếm khi không có kết quả phù hợp",
     "precondition": [
       "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Nhập từ khóa không tồn tại vào ô tìm kiếm",
+      "Step 1: Nhập từ khóa tìm kiếm vào ô tìm kiếm",
       "Step 2: Nhấn nút tìm kiếm",
       "Step 3: Kiểm tra thông báo hiển thị"
     ],

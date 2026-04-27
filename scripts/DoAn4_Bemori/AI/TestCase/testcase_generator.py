@@ -63,8 +63,12 @@ Expected Result:
   → KHÔNG được viết lại hoặc làm chung chung
 
 ================ QUY TẮC COVERAGE ================
-- Mỗi execution path → ít nhất 1 test case.
-- Không trùng test case.
+- Basic Flow tạo ra 1 test case
+- Mỗi Alternate Flow tạo ra 1 test case riêng
+- KHÔNG tạo test case từ Post Condition
+- KHÔNG tạo test case trùng lặp logic
+
+→ Tổng số test case = số Basic Flow + số Alternate Flow
 
 ================ QUY TẮC QUAN TRỌNG (PHỤC VỤ SCRIPT) ================
 - Steps phải có bước kiểm tra

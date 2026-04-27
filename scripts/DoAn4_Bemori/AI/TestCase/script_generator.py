@@ -6,85 +6,74 @@ import inspect
 from AI.ai_client import call_llm
 from core.kw_common import KWCommon
 from utils.config_loader import load_config
-from utils.locator_utils import build_locator_hint
 from utils.locator_utils import normalize_locator_name
+from utils.action_detector import detect_action, detect_intent
+from utils.keyword_mapper import map_keyword
 
 
-# LOAD KEYWORD
+# ================= LOAD KEYWORD =================
 def load_keywords_with_desc():
     keyword_docs = []
 
-    # Lấy toàn bộ function trong class KWCommon
     for name, func in inspect.getmembers(KWCommon, predicate=inspect.isfunction):
-        if name.startswith("_"): # Loại bỏ function private
+        if name.startswith("_"):
             continue
 
-        # Lấy docstring
         doc = inspect.getdoc(func) or ""
         keyword_docs.append(f"{name}: {doc}")
 
     return keyword_docs
 
 
-# PARSE JSON
+# ================= PARSE JSON =================
 def extract_json(raw: str):
     raw = raw.strip()
 
-    # remove markdown
     raw = re.sub(r"```json", "", raw)
     raw = re.sub(r"```", "", raw)
-
-    # remove comment kiểu // ...
     raw = re.sub(r"//.*", "", raw)
-
-    # remove comment kiểu /* ... */
     raw = re.sub(r"/\*.*?\*/", "", raw, flags=re.DOTALL)
-
-    # remove trailing commas
     raw = re.sub(r",\s*}", "}", raw)
     raw = re.sub(r",\s*]", "]", raw)
 
     match = re.search(r"\[.*\]", raw, re.DOTALL)
 
     if match:
-        json_str = match.group(0)
-        return json.loads(json_str)
+        return json.loads(match.group(0))
 
     raise Exception("Không parse được JSON từ AI")
 
 
-# SETUP
+# ================= SETUP =================
 def inject_setup_teardown(result):
-
     config = load_config()
     base_url = config.get("base_url", "")
 
-    if not base_url:
-        print("base_url chưa được cấu hình!")
-
     for tc in result:
-
         steps = tc.get("steps", [])
 
-        if not steps:
-            continue
+        keywords = [s.get("keyword", "") for s in steps]
 
-        steps.insert(0, {
-            "keyword": "OPEN_URL",
-            "locator": "",
-            "value": base_url
-        })
+        # thêm OPEN_URL
+        if "OPEN_URL" not in keywords:
+            steps.insert(0, {
+                "keyword": "OPEN_URL",
+                "locator": "",
+                "value": base_url
+            })
 
-        steps.append({
-            "keyword": "CLOSE_BROWSER",
-            "locator": "",
-            "value": ""
-        })
+        # thêm CLOSE_BROWSER
+        if "CLOSE_BROWSER" not in keywords:
+            steps.append({
+                "keyword": "CLOSE_BROWSER",
+                "locator": "",
+                "value": ""
+            })
 
     return result
 
 
-# PROMPT
+# ================= PROMPT =================
 PROMPT = """
 Bạn là chuyên gia kiểm thử phần mềm.
 
@@ -95,6 +84,68 @@ Hãy chuyển test case thành keyword-driven steps.
 
 ================ KEYWORDS =================
 {keywords}
+
+================ QUY TẮC CHỌN KEYWORD (RẤT QUAN TRỌNG) =================
+
+Dựa vào Ý NGHĨA của step để chọn đúng keyword:
+
+1. Nhập liệu (input):
+→ dùng:
+- INPUT_TEXT
+- CLEAR_TEXT
+- SEND_KEYS
+- PRESS_ENTER
+
+2. Click / thao tác:
+→ dùng:
+- CLICK
+- DOUBLE_CLICK
+- RIGHT_CLICK
+- CLICK_JS
+
+3. Chọn (dropdown):
+→ dùng:
+- SELECT_BY_TEXT
+- SELECT_BY_VALUE
+- SELECT_BY_INDEX
+
+4. Điều hướng:
+→ dùng:
+- OPEN_URL
+- GO_BACK
+- REFRESH_PAGE
+
+5. Kiểm tra hiển thị:
+→ dùng:
+- VERIFY_ELEMENT_VISIBLE
+- VERIFY_ELEMENT_PRESENT
+
+6. Kiểm tra nội dung cụ thể:
+→ CHỈ dùng khi Expected Output có TEXT RÕ RÀNG
+→ dùng:
+- VERIFY_ELEMENT_TEXT_EQUALS
+- VERIFY_TEXT_CONTAINS
+
+================ QUY TẮC BẮT BUỘC =================
+
+- Nếu step là "nhập" → PHẢI dùng INPUT_TEXT
+- Nếu step là "click" → PHẢI dùng CLICK
+- Nếu step là "kiểm tra hiển thị" → dùng VERIFY_ELEMENT_VISIBLE
+- Nếu step có thông báo cụ thể → PHẢI dùng VERIFY_ELEMENT_TEXT_EQUALS + value
+
+QUAN TRỌNG:
+
+- Nếu locator là dropdown/list (cbo, list, dropdown)
+→ KHÔNG được dùng verify text
+→ CHỈ dùng VERIFY_ELEMENT_VISIBLE
+
+- Nếu Expected Output KHÔNG có text cụ thể
+→ KHÔNG được dùng VERIFY_ELEMENT_TEXT_EQUALS
+
+- Nếu Expected Output CÓ text cụ thể
+→ BẮT BUỘC phải:
+  + dùng VERIFY_ELEMENT_TEXT_EQUALS
+  + value = chính xác nội dung đó
 
 ================ YÊU CẦU =================
 1. Chỉ được dùng keyword trong danh sách trên
@@ -161,32 +212,89 @@ Locators:
 """
 
 
-# MAIN
+# ================= VALID KEYWORD =================
+def get_all_valid_keywords():
+    return set([
+        name for name, _ in inspect.getmembers(KWCommon, predicate=inspect.isfunction)
+        if not name.startswith("_")
+    ])
+
+
+# ================= AUTO FIX KEYWORD =================
+def auto_fix_keyword(step_text, current_keyword):
+    action = detect_action(step_text)
+    intent = detect_intent(step_text)
+
+    expected_keyword = map_keyword(action, intent)
+
+    if expected_keyword and expected_keyword != current_keyword:
+        print(f"🔧 Auto-fix: {current_keyword} -> {expected_keyword} | step: {step_text}")
+        return expected_keyword
+
+    return current_keyword
+
+
+# ================= VALIDATE =================
+def validate_and_fix(result, testcases):
+
+    valid_keywords = get_all_valid_keywords()
+
+    for tc, original_tc in zip(result, testcases):
+
+        ai_steps = tc.get("steps", [])
+        raw_steps = original_tc.get("steps", [])
+
+        # bỏ setup/teardown
+        ai_steps_filtered = [
+            s for s in ai_steps
+            if s.get("keyword") not in ["OPEN_URL", "CLOSE_BROWSER"]
+        ]
+
+        for i in range(min(len(ai_steps_filtered), len(raw_steps))):
+
+            step_obj = ai_steps_filtered[i]
+            raw_step = raw_steps[i]
+
+            kw = step_obj.get("keyword", "")
+
+            # ===== CHECK KEYWORD EXIST =====
+            if kw not in valid_keywords:
+                print(f"❌ Sai keyword (không tồn tại): {kw}")
+                fixed_kw = auto_fix_keyword(raw_step, kw)
+                step_obj["keyword"] = fixed_kw
+                continue
+
+            # ===== CHECK MAPPING =====
+            fixed_kw = auto_fix_keyword(raw_step, kw)
+
+            if fixed_kw != kw:
+                print(f"❌ Sai mapping: {kw} -> {fixed_kw} | step: {raw_step}")
+                step_obj["keyword"] = fixed_kw
+
+    return result
+
+
+# ================= MAIN =================
 def generate_keyword_steps(testcases, locator_path, topic):
 
-    # ===== KEYWORD =====
+    # ===== LOAD KEYWORD DOC =====
     keyword_docs = load_keywords_with_desc()
     keyword_str = "\n".join(keyword_docs)
 
-    # ===== LOCATOR =====
+    # ===== LOAD LOCATOR =====
     with open(locator_path, "r", encoding="utf-8") as f:
         locators = yaml.safe_load(f)
 
-    # ===== BUILD LOCATOR CONTEXT =====
     locator_context = []
 
     for key, value in locators.items():
-        desc = value.get("desc", "")
-        by = value.get("by", "")
-
         locator_context.append({
             "name": key,
-            "type": normalize_locator_name(key),  # txt -> input, btn -> button...
-            "desc": desc,
-            "by": by
+            "type": normalize_locator_name(key),
+            "desc": value.get("desc", ""),
+            "by": value.get("by", "")
         })
 
-    # convert sang json để đưa vào prompt
     locators_str = json.dumps(locator_context, ensure_ascii=False, indent=2)
 
     # ===== BUILD PROMPT =====
@@ -203,30 +311,13 @@ def generate_keyword_steps(testcases, locator_path, topic):
     print("===== RAW AI OUTPUT =====")
     print(raw)
 
+    # ===== PARSE =====
     result = extract_json(raw)
 
-    # ===== SETUP =====
+    # ===== ADD SETUP =====
     result = inject_setup_teardown(result)
 
-    # ===== VALIDATE =====
-    valid_keywords = set([
-        name for name, _ in inspect.getmembers(KWCommon, predicate=inspect.isfunction)
-        if not name.startswith("_")
-    ])
-
-    for tc in result:
-        has_verify = False
-
-        for step in tc["steps"]:
-            kw = step.get("keyword", "")
-
-            if kw not in valid_keywords:
-                print(f"Sai keyword: {kw}")
-
-            if "VERIFY" in kw:
-                has_verify = True
-
-        if not has_verify:
-            print(f"Missing VERIFY: {tc['test_case_id']}")
+    # ===== VALIDATE + AUTO FIX =====
+    result = validate_and_fix(result, testcases)
 
     return result

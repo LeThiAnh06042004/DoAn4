@@ -7,6 +7,7 @@ from AI.ai_client import call_llm
 from core.kw_common import KWCommon
 from utils.config_loader import load_config
 from utils.locator_utils import normalize_locator_name
+from utils.locator_mapper import map_locator
 from utils.action_detector import detect_action, detect_intent
 from utils.keyword_mapper import map_keyword
 
@@ -213,7 +214,9 @@ Locators:
 
 
 # ================= VALID KEYWORD =================
+# lấy danh sách keyword hợp lệ
 def get_all_valid_keywords():
+    # Lấy tất cả function trong class KWCommon và loại bỏ các hàm private
     return set([
         name for name, _ in inspect.getmembers(KWCommon, predicate=inspect.isfunction)
         if not name.startswith("_")
@@ -221,72 +224,80 @@ def get_all_valid_keywords():
 
 
 # ================= AUTO FIX KEYWORD =================
-def auto_fix_keyword(step_text, current_keyword):
+# sửa lại thành kw đúng
+def auto_fix_keyword(step_text):
     action = detect_action(step_text)
     intent = detect_intent(step_text)
 
-    expected_keyword = map_keyword(action, intent)
-
-    if expected_keyword and expected_keyword != current_keyword:
-        print(f"🔧 Auto-fix: {current_keyword} -> {expected_keyword} | step: {step_text}")
-        return expected_keyword
-
-    return current_keyword
+    return map_keyword(action, intent)
 
 
 # ================= VALIDATE =================
-def validate_and_fix(result, testcases):
-
-    valid_keywords = get_all_valid_keywords()
+def validate_and_fix(result, testcases, locator_context):
 
     for tc, original_tc in zip(result, testcases):
-
+        # Mapping step-by-step
         ai_steps = tc.get("steps", [])
         raw_steps = original_tc.get("steps", [])
 
-        # bỏ setup/teardown
-        ai_steps_filtered = [
-            s for s in ai_steps
-            if s.get("keyword") not in ["OPEN_URL", "CLOSE_BROWSER"]
-        ]
+        idx = 0  # index cho raw_steps
 
-        for i in range(min(len(ai_steps_filtered), len(raw_steps))):
+        for step_obj in ai_steps:
 
-            step_obj = ai_steps_filtered[i]
-            raw_step = raw_steps[i]
+            keyword = step_obj.get("keyword", "")
 
-            kw = step_obj.get("keyword", "")
-
-            # ===== CHECK KEYWORD EXIST =====
-            if kw not in valid_keywords:
-                print(f"❌ Sai keyword (không tồn tại): {kw}")
-                fixed_kw = auto_fix_keyword(raw_step, kw)
-                step_obj["keyword"] = fixed_kw
+            # Bỏ qua setup/teardown
+            if keyword in ["OPEN_URL", "CLOSE_BROWSER"]:
                 continue
 
-            # ===== CHECK MAPPING =====
-            fixed_kw = auto_fix_keyword(raw_step, kw)
+            if idx >= len(raw_steps):
+                break
 
-            if fixed_kw != kw:
-                print(f"❌ Sai mapping: {kw} -> {fixed_kw} | step: {raw_step}")
-                step_obj["keyword"] = fixed_kw
+            # Mapping step tương ứng
+            raw_step = raw_steps[idx]
+
+            # FIX KEYWORD
+            old_kw = step_obj.get("keyword", "")
+            new_kw = auto_fix_keyword(raw_step)
+
+            # Nếu kw mới khác kw cũ -> sửa
+            if new_kw:
+                if new_kw != old_kw:
+                    print(f"Fix keyword: {old_kw} -> {new_kw} | step: {raw_step}")
+
+                step_obj["keyword"] = new_kw  # gán lại
+            else:
+                # fallback giữ nguyên nếu không detect được
+                new_kw = old_kw
+
+            # FIX LOCATOR
+            old_locator = step_obj.get("locator", "")
+            new_locator = map_locator(raw_step, locator_context)
+
+            # Nếu lct mới khác lct cũ -> sửa
+            if new_locator:
+                if new_locator != old_locator:
+                    print(f"Fix locator: {old_locator} -> {new_locator} | step: {raw_step}")
+
+                step_obj["locator"] = new_locator  # gán lại
+
+            idx += 1  # tăng index raw step
 
     return result
-
 
 # ================= MAIN =================
 def generate_keyword_steps(testcases, locator_path, topic):
 
-    # ===== LOAD KEYWORD DOC =====
+    # load keyword docs để prompt AI
     keyword_docs = load_keywords_with_desc()
     keyword_str = "\n".join(keyword_docs)
 
-    # ===== LOAD LOCATOR =====
+    # load locator
     with open(locator_path, "r", encoding="utf-8") as f:
         locators = yaml.safe_load(f)
 
+    # chuẩn hóa locator
     locator_context = []
-
     for key, value in locators.items():
         locator_context.append({
             "name": key,
@@ -297,7 +308,7 @@ def generate_keyword_steps(testcases, locator_path, topic):
 
     locators_str = json.dumps(locator_context, ensure_ascii=False, indent=2)
 
-    # ===== BUILD PROMPT =====
+    # build prompt
     prompt = PROMPT.format(
         keywords=keyword_str,
         testcases=json.dumps(testcases, indent=2, ensure_ascii=False),
@@ -305,19 +316,15 @@ def generate_keyword_steps(testcases, locator_path, topic):
         topic=topic
     )
 
-    # ===== CALL AI =====
-    raw = call_llm(prompt)
+    raw = call_llm(prompt)  # gọi AI
 
     print("===== RAW AI OUTPUT =====")
     print(raw)
 
-    # ===== PARSE =====
-    result = extract_json(raw)
+    result = extract_json(raw)  # parse JSON
 
-    # ===== ADD SETUP =====
-    result = inject_setup_teardown(result)
+    result = inject_setup_teardown(result)  # inject setup/teardown
 
-    # ===== VALIDATE + AUTO FIX =====
-    result = validate_and_fix(result, testcases)
+    result = validate_and_fix(result, testcases, locator_context)  # fix
 
     return result

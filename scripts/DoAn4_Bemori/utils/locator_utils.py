@@ -2,7 +2,7 @@
 def normalize_locator_name(name):
     name = name.lower() # Chuẩn hóa về chữ thường
 
-    # mapping theo prefix
+    # mapping theo prefix dựa vào quy ước đặt tên locator
     if name.startswith("txt"):
         return "input field"
     if name.startswith("btn"):
@@ -40,11 +40,11 @@ def build_locator_hint(locators):
 
     for key, value in locators.items():
 
-        # Ưu tiên dùng desc nếu có
+        # nếu YAML có mô tả → dùng luôn
         if isinstance(value, dict) and "desc" in value:
             hint[key] = value["desc"]
 
-        # fallback nếu chưa có desc
+        # fallback sang hàm trước nếu chưa có desc
         else:
             hint[key] = normalize_locator_name(key)
 

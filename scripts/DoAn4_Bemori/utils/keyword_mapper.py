@@ -1,3 +1,4 @@
+# hàm nhận action và intent để chọn keyword
 def map_keyword(action, intent):
 
     # ================= INPUT =================
@@ -38,6 +39,8 @@ def map_keyword(action, intent):
             return "VERIFY_ELEMENT_COUNT"
         if intent == "selected":
             return "VERIFY_ELEMENT_SELECTED"
+        if intent == "attribute":
+            return "VERIFY_ATTRIBUTE"
         if intent == "alert":
             return "VERIFY_ALERT_PRESENT"
         return "VERIFY_ELEMENT_VISIBLE"
@@ -50,5 +53,37 @@ def map_keyword(action, intent):
     # ================= NAVIGATION =================
     if action == "navigate":
         return "OPEN_URL"
+
+    # ================= DRAG DROP =================
+    if action == "drag_drop":
+        return "DRAG_AND_DROP"
+
+    # ================= SCROLL =================
+    if action == "scroll":
+        if intent == "top":
+            return "SCROLL_TO_TOP"
+        if intent == "bottom":
+            return "SCROLL_TO_BOTTOM"
+        return "SCROLL_TO_ELEMENT"
+
+    # ================= HOVER =================
+    if action == "hover":
+        return "HOVER"
+
+    # ================= UPLOAD =================
+    if action == "upload":
+        return "UPLOAD_FILE"
+
+    # ================= WAIT =================
+    if action == "wait":
+        if intent == "clickable":
+            return "WAIT_FOR_ELEMENT_CLICKABLE"
+        if intent == "page_load":
+            return "WAIT_FOR_PAGE_LOAD"
+        return "WAIT_FOR_ELEMENT_VISIBLE"
+
+    # ================= LOG =================
+    if action == "log":
+        return "LOG_INFO"
 
     return None

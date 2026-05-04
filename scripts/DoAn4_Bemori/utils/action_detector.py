@@ -1,5 +1,13 @@
+# xác định LOẠI HÀNH ĐỘNG CHÍNH
 def detect_action(text: str):
-    text = text.lower()
+    text = text.lower() # tránh lỗi hoa/thường
+
+    # nếu có “kiểm tra” -> verify
+    if any(x in text for x in ["kiểm tra", "verify"]):
+        # kiểm tra nội dung → verify_text
+        if any(x in text for x in ["thông báo", "text", "nội dung"]):
+            return "verify_text"
+        return "verify" # kiểm tra tồn tại → verify
 
     if any(x in text for x in ["nhập", "input", "enter dữ liệu"]):
         return "input"
@@ -10,17 +18,31 @@ def detect_action(text: str):
     if any(x in text for x in ["chọn", "select"]):
         return "select"
 
-    if any(x in text for x in ["kiểm tra", "verify"]):
-        if any(x in text for x in ["thông báo", "text", "nội dung"]):
-            return "verify_text"
-        return "verify"
+    if any(x in text for x in ["kéo", "thả", "drag"]):
+        return "drag_drop"
+
+    if any(x in text for x in ["scroll", "cuộn"]):
+        return "scroll"
+
+    if any(x in text for x in ["hover", "di chuột"]):
+        return "hover"
+
+    if any(x in text for x in ["upload", "tải lên"]):
+        return "upload"
 
     if any(x in text for x in ["mở", "điều hướng", "navigate"]):
         return "navigate"
 
-    return "other"
+    if any(x in text for x in ["chờ", "wait"]):
+        return "wait"
+
+    if any(x in text for x in ["log", "ghi log"]):
+        return "log"
+
+    return "other" # fallback nếu không detect được
 
 
+# xác định CHI TIẾT HÀNH VI
 def detect_intent(text: str):
     text = text.lower()
 
@@ -55,14 +77,14 @@ def detect_intent(text: str):
         return "select_index"
 
     # ===== VERIFY =====
-    if "hiển thị" in text:
-        return "visible"
+    if "không tồn tại" in text:
+        return "not_present"
 
     if "tồn tại" in text:
         return "present"
 
-    if "không tồn tại" in text:
-        return "not_present"
+    if "hiển thị" in text:
+        return "visible"
 
     if "chứa" in text:
         return "contains"
@@ -76,7 +98,25 @@ def detect_intent(text: str):
     if "được chọn" in text:
         return "selected"
 
+    if "attribute" in text:
+        return "attribute"
+
     if "alert" in text:
         return "alert"
 
+    # ===== WAIT =====
+    if "click được" in text:
+        return "clickable"
+
+    if "load" in text:
+        return "page_load"
+
+    # ===== SCROLL =====
+    if "top" in text:
+        return "top"
+
+    if "bottom" in text:
+        return "bottom"
+
+    # ===== DEFAULT =====
     return "default"

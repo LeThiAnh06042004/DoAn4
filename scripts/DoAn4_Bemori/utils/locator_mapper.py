@@ -12,14 +12,14 @@ def map_locator(step_text, locators):
         loc_type = loc.get("type", "").lower()
 
         # =========================================
-        # 1. MATCH DESC (QUAN TRỌNG NHẤT)
+        # 1. MATCH DESC
         # =========================================
         for token in tokens:
             if token in desc:
                 score += 3
 
         # =========================================
-        # 2. MATCH TYPE (HỖ TRỢ)
+        # 2. MATCH TYPE
         # =========================================
         for token in tokens:
             if token in loc_type:

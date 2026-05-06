@@ -1,0 +1,8 @@
+2026-05-05 08:58:02,076 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260505_085802\logs\log.txt
+2026-05-05 08:58:02,197 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260505_085802\html\report.html
+2026-05-05 08:58:04,482 - INFO - TestLogger - Bắt đầu: test_search[g\u1ea5u d\xe2u] =====
+2026-05-05 08:59:00,056 - ERROR - TestLogger - TEST FAILED: test_search[g\u1ea5u d\xe2u]
+2026-05-05 08:59:00,056 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260505_085802\screenshots\test_search[g\u1ea5u d\xe2u].png
+2026-05-05 08:59:02,281 - INFO - TestLogger - Kết thúc: test_search[g\u1ea5u d\xe2u] =====
+
+2026-05-05 08:59:02,302 - INFO - TestLogger - Bắt đầu: test_search[doraemon] =====

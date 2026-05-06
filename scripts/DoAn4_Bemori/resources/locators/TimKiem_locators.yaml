@@ -8,7 +8,7 @@ btnTimKiem:
   value: //button[@type="submit"]
   desc: nút tìm kiếm sản phẩm gấu bông
 
-txtKoTimThay:
+lblKoTimThay:
   by: xpath
   value: //div[@class="woocommerce-info"]
   desc: thông báo không tìm thấy sản phẩm gấu bông

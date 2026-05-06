@@ -9,19 +9,19 @@ class CommentPage(BasePage):
         super().__init__(driver, "BinhLuan_locators.yaml")
 
     def click_SP(self):
-        self.click("txtSP")
+        self.click("lnkSanPham")
 
     def nhapND(self, nd):
-        self.send_keys("txtNoiDungBL", nd)
+        self.send_keys("txtNoiDungBinhLuan", nd)
 
     def nhapHoTen(self, ten):
         self.send_keys("txtHoTen", ten)
 
     def nhapSDT(self, sdt):
-        self.send_keys("txtSDT", sdt)
+        self.send_keys("txtSoDienThoai", sdt)
 
     def click_BinhLuan(self):
-        self.click("btnBinhLuan")
+        self.click("btnGuiBinhLuan")
 
         # ===== FIX ALERT =====
         try:
@@ -39,22 +39,22 @@ class CommentPage(BasePage):
 
     # ===== GET MESSAGE =====
     def get_TBThanhCong(self):
-        return self._safe_get_text("TBThanhCong")
+        return self._safe_get_text("lblThongBaoThanhCong")
 
     def get_TBNhapBL(self):
-        return self._safe_get_text("TBNhapBL")
+        return self._safe_get_text("lblThongBaoNhapBinhLuan")
 
     def get_TBNhapTen(self):
-        return self._safe_get_text("TBNhapTen")
+        return self._safe_get_text("lblThongBaoNhapTen")
 
     def get_TBNhapSDT(self):
-        return self._safe_get_text("TBNhapSDT")
+        return self._safe_get_text("lblThongBaoNhapSoDienThoai")
 
     def get_TBChiCoSo(self):
-        return self._safe_get_text("TBChiCoSo")
+        return self._safe_get_text("lblThongBaoSoDienThoaiChiCoSo")
 
     def get_TB10So(self):
-        return self._safe_get_text("TB10so")
+        return self._safe_get_text("lblThongBaoSoDienThoai10so")
 
     def _safe_get_text(self, locator):
         try:

@@ -1,0 +1,23 @@
+2026-05-05 09:08:55,315 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260505_090855\logs\log.txt
+2026-05-05 09:08:55,377 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260505_090855\html\report.html
+2026-05-05 09:08:57,497 - INFO - TestLogger - Bắt đầu: test_search[g\u1ea5u d\xe2u] =====
+2026-05-05 09:09:29,692 - INFO - TestLogger - TEST PASSED: test_search[g\u1ea5u d\xe2u]
+2026-05-05 09:09:31,952 - INFO - TestLogger - Kết thúc: test_search[g\u1ea5u d\xe2u] =====
+
+2026-05-05 09:09:31,958 - INFO - TestLogger - Bắt đầu: test_search[doraemon] =====
+2026-05-05 09:10:16,835 - INFO - TestLogger - TEST PASSED: test_search[doraemon]
+2026-05-05 09:10:19,102 - INFO - TestLogger - Kết thúc: test_search[doraemon] =====
+
+2026-05-05 09:10:19,108 - INFO - TestLogger - Bắt đầu: test_search[pikachu] =====
+2026-05-05 09:10:33,029 - ERROR - TestLogger - TEST FAILED: test_search[pikachu]
+2026-05-05 09:10:33,030 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260505_090855\screenshots\test_search[pikachu].png
+2026-05-05 09:10:35,207 - INFO - TestLogger - Kết thúc: test_search[pikachu] =====
+
+2026-05-05 09:10:35,216 - INFO - TestLogger - Bắt đầu: test_search[@#$123] =====
+2026-05-05 09:11:10,280 - INFO - TestLogger - TEST PASSED: test_search[@#$123]
+2026-05-05 09:11:12,515 - INFO - TestLogger - Kết thúc: test_search[@#$123] =====
+
+2026-05-05 09:11:12,520 - INFO - TestLogger - Bắt đầu: test_search[abcdef] =====
+2026-05-05 09:11:40,881 - INFO - TestLogger - TEST PASSED: test_search[abcdef]
+2026-05-05 09:11:43,170 - INFO - TestLogger - Kết thúc: test_search[abcdef] =====
+

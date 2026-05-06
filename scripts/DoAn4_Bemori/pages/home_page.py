@@ -12,13 +12,12 @@ class HomePage(BasePage):
 
     def get_search_results(self):
         try:
-            return self.get_text("txtTimThay")
+            return self.get_text("cboTimThay")
         except:
             return ""
 
     def get_no_result_message(self):
-        """Combobox xuất hiện khi không tìm thấy sản phẩm"""
         try:
-            return self.get_text("cboKoTimThay")
+            return self.get_text("lblKoTimThay")
         except:
             return ""

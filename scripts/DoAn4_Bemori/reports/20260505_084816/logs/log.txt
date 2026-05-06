@@ -1,0 +1,7 @@
+2026-05-05 08:48:16,582 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260505_084816\logs\log.txt
+2026-05-05 08:48:16,633 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260505_084816\html\report.html
+2026-05-05 08:48:18,657 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='g\u1ea5u r\u1ea5t \u0111\u1eb9p', TEN=' ng\u1ecdc h\xe0', SDT='0927856143'] =====
+2026-05-05 08:48:43,673 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='g\u1ea5u r\u1ea5t \u0111\u1eb9p', TEN=' ng\u1ecdc h\xe0', SDT='0927856143']
+2026-05-05 08:48:46,030 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='g\u1ea5u r\u1ea5t \u0111\u1eb9p', TEN=' ng\u1ecdc h\xe0', SDT='0927856143'] =====
+
+2026-05-05 08:48:46,040 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='g\u1ea5u r\u1ea5t cute', TEN=' abc', SDT='01928376'] =====

@@ -1,44 +1,54 @@
-txtSP:
+lnkSanPham:
   by: xpath
-  #value: //h4[contains(text(),"Gấu Bông Quả Dưa Hấu Vui Vẻ")]
   value: //h4[contains(text(),"Gấu Bông Trái Cây Vui Vẻ")]
+  desc: link truy cập vào trang chi tiết sản phẩm
 
-txtNoiDungBL:
+txtNoiDungBinhLuan:
   by: xpath
   value: //textarea[@placeholder="Nội dung bình luận (*)"]
+  desc: ô nhập nội dung bình luận
 
 txtHoTen:
   by: xpath
   value: //input[@placeholder="Họ tên (*)"]
+  desc: ô nhập họ tên của người bình luận
 
-txtSDT:
+txtSoDienThoai:
   by: xpath
   value: //input[@placeholder="Số điện thoại (*)"]
+  desc: ô nhập số điện thoại của người bình luận
 
-btnBinhLuan:
+btnGuiBinhLuan:
   by: css
   value: button.btn.btn-primary.btn-block
+  desc: nút gửi bình luận
 
-TBThanhCong:
+lblThongBaoThanhCong:
   by: xpath
   value: //div[contains(text(),"Gửi bình luận thành công.")]
+  desc: thông báo gửi bình luận thành công
 
-TBNhapBL:
+lblThongBaoNhapBinhLuan:
   by: xpath
   value: //div[contains(text(),"Bạn chưa nhập bình luận.")]
+  desc: thông báo chưa nhập bình luận
 
-TBNhapTen:
+lblThongBaoNhapTen:
   by: xpath
   value: //div[contains(text(),"Bạn chưa nhập tên.")]
+  desc: thông báo chưa nhập tên của người bình luận
 
-TBNhapSDT:
+lblThongBaoNhapSoDienThoai:
   by: xpath
   value: //div[contains(text(),"Bạn chưa nhập số điện thoại.")]
+  desc: thông báo chưa nhập số điện thoại của người bình luận
 
-TBChiCoSo:
+lblThongBaoSoDienThoaiChiCoSo:
   by: xpath
   value: //div[contains(text(),"Số điện thoại chỉ bao gồm những số.")]
+  desc: thông báo số điện thoại chỉ gồm những số
 
-TB10so:
+lblThongBaoSoDienThoai10so:
   by: xpath
   value: //div[contains(text(),"Số điện thoại phải có ít nhất 10 số.")]
+  desc: thông báo số điện thoại phải có ít nhất 10 số

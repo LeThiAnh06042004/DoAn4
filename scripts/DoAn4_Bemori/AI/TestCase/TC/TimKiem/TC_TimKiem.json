@@ -1,53 +1,47 @@
 [
   {
     "test_case_id": "TC_001",
-    "scenario": "Kiểm thử chức năng tìm kiếm sản phẩm gấu bông có từ khóa",
+    "scenario": "Tìm kiếm sản phẩm với từ khóa hợp lệ",
     "precondition": [
-      "Người dùng đang ở trang chủ."
+      "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Nhập từ khóa tìm kiếm vào ô tìm kiếm.",
-      "Step 2: Nhấn nút tìm kiếm.",
-      "Step 3: Kiểm tra danh sách sản phẩm phù hợp được hiển thị."
+      "Step 1: Nhập từ khóa tìm kiếm vào ô tìm kiếm",
+      "Step 2: Nhấn nút \"Tìm kiếm\"",
+      "Step 3: Kiểm tra kết quả hiển thị danh sách sản phẩm phù hợp với từ khóa"
     ],
     "expected_result": [
-      "Khi nhập từ khóa, ô tìm kiếm chứa ký tự đã nhập.",
-      "Sau khi nhấn nút tìm kiếm, trang tải lại và chuyển sang chế độ kết quả.",
-      "Danh sách sản phẩm hiển thị các mục có tên hoặc mô tả khớp với từ khóa."
+      "Hệ thống hiển thị danh sách các sản phẩm khớp với từ khóa đã nhập."
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Kiểm thử chức năng tìm kiếm khi không nhập bất kỳ từ khóa nào",
+    "scenario": "Tìm kiếm sản phẩm khi không nhập từ khóa",
     "precondition": [
-      "Người dùng đang ở trang chủ."
+      "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Để trống ô tìm kiếm (không nhập gì).",
-      "Step 2: Nhấn nút tìm kiếm.",
-      "Step 3: Kiểm tra rằng hệ thống hiển thị toàn bộ danh sách sản phẩm trong cửa hàng."
+      "Step 1: Không nhập bất kỳ ký tự nào vào ô tìm kiếm",
+      "Step 2: Nhấn nút \"Tìm kiếm\"",
+      "Step 3: Kiểm tra kết quả hiển thị danh sách tất cả các sản phẩm trong cửa hàng"
     ],
     "expected_result": [
-      "Ô tìm kiếm không chứa ký tự nào.",
-      "Sau khi nhấn nút tìm kiếm, trang tải lại và chuyển sang chế độ kết quả.",
-      "Hiển thị danh sách đầy đủ tất cả các sản phẩm có sẵn trong cửa hàng."
+      "Hệ thống hiển thị toàn bộ danh sách sản phẩm hiện có trong cửa hàng."
     ]
   },
   {
     "test_case_id": "TC_003",
-    "scenario": "Kiểm thử chức năng khi không tìm thấy sản phẩm phù hợp với từ khóa",
+    "scenario": "Tìm kiếm sản phẩm khi không tìm thấy kết quả phù hợp",
     "precondition": [
-      "Người dùng đang ở trang chủ."
+      "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Nhập một từ khóa không tồn tại vào ô tìm kiếm.",
-      "Step 2: Nhấn nút tìm kiếm.",
-      "Step 3: Kiểm tra thông báo \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\"."
+      "Step 1: Nhập từ khóa không tồn tại trong danh mục sản phẩm vào ô tìm kiếm",
+      "Step 2: Nhấn nút \"Tìm kiếm\"",
+      "Step 3: Kiểm tra thông báo hiển thị trên giao diện"
     ],
     "expected_result": [
-      "Ô tìm kiếm chứa từ khóa đã nhập.",
-      "Sau khi nhấn nút tìm kiếm, trang tải lại và chuyển sang chế độ kết quả.",
-      "Hiển thị thông báo \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\"."
+      "\"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\""
     ]
   }
 ]

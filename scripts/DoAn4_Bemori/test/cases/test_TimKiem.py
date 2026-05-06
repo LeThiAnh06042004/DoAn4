@@ -3,6 +3,7 @@ from utils import data_loader
 from utils.locator_reader import LocatorReader
 from core.kw_dispatcher import KeywordDispatcher
 from core.kw_common import KWCommon
+import time
 
 cases = data_loader.load_json_data(
     r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/data/data_TimKiem_json.json"
@@ -27,8 +28,30 @@ class TestSearch:
         dispatcher.execute("INPUT_TEXT", ["txtTimKiem", keyword])
         dispatcher.execute("CLICK", ["btnTimKiem"])
 
-        has_result = dispatcher.execute("VERIFY_ELEMENT_PRESENT", ["cboTimThay"])
-        has_no_result = dispatcher.execute("VERIFY_ELEMENT_PRESENT", ["txtKoTimThay"])
+        timeout = 10
+        poll = 0.5
+        end_time = time.time() + timeout
+
+        has_result = False
+        has_no_result = False
+
+        while time.time() < end_time:
+            try:
+                has_result = dispatcher.execute("VERIFY_ELEMENT_PRESENT", ["cboTimThay"])
+            except:
+                has_result = False
+
+            try:
+                has_no_result = dispatcher.execute("VERIFY_ELEMENT_PRESENT", ["lblKoTimThay"])
+            except:
+                has_no_result = False
+
+            if has_result or has_no_result:
+                break
+
+            time.sleep(poll)
+
+        print(f"DEBUG: has_result={has_result}, has_no_result={has_no_result}")
 
         if has_result:
             print("→ Có kết quả tìm kiếm (combobox sắp xếp hiện)")

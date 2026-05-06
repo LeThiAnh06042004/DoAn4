@@ -25,6 +25,8 @@ def normalize_locator_name(name):
         return "image"
     if name.startswith("icon"):
         return "icon"
+    if name.startswith("ta") or "textarea" in name:
+        return "textarea"
 
     return "element" # nếu ko match th trả về element
 

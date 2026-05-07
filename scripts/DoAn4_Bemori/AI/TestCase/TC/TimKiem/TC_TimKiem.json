@@ -8,40 +8,43 @@
     "steps": [
       "Step 1: Nhập từ khóa tìm kiếm vào ô tìm kiếm",
       "Step 2: Nhấn nút \"Tìm kiếm\"",
-      "Step 3: Kiểm tra kết quả hiển thị danh sách sản phẩm phù hợp với từ khóa"
+      "Step 3: Kiểm tra danh sách sản phẩm hiển thị",
+      "Step 4: Kiểm tra các chi tiết sản phẩm trong danh sách"
     ],
     "expected_result": [
-      "Hệ thống hiển thị danh sách các sản phẩm khớp với từ khóa đã nhập."
+      "Hệ thống kiểm tra từ khóa tìm kiếm thành công",
+      "Danh sách sản phẩm phù hợp với từ khóa được hiển thị",
+      "Mỗi sản phẩm trong danh sách có thông tin đầy đủ và đúng dữ liệu"
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Tìm kiếm sản phẩm khi không nhập từ khóa",
+    "scenario": "Tìm kiếm sản phẩm khi nhập không có từ khóa",
     "precondition": [
       "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Không nhập bất kỳ ký tự nào vào ô tìm kiếm",
+      "Step 1: Không nhập dữ liệu vào ô tìm kiếm",
       "Step 2: Nhấn nút \"Tìm kiếm\"",
-      "Step 3: Kiểm tra kết quả hiển thị danh sách tất cả các sản phẩm trong cửa hàng"
+      "Step 3: Kiểm tra danh sách sản phẩm hiển thị"
     ],
     "expected_result": [
-      "Hệ thống hiển thị toàn bộ danh sách sản phẩm hiện có trong cửa hàng."
+      "Hệ thống hiển thị toàn bộ danh sách sản phẩm trong cửa hàng"
     ]
   },
   {
     "test_case_id": "TC_003",
-    "scenario": "Tìm kiếm sản phẩm khi không tìm thấy kết quả phù hợp",
+    "scenario": "Tìm kiếm sản phẩm khi không có kết quả phù hợp",
     "precondition": [
       "Người dùng đang ở trang chủ"
     ],
     "steps": [
-      "Step 1: Nhập từ khóa không tồn tại trong danh mục sản phẩm vào ô tìm kiếm",
+      "Step 1: Nhập từ khóa tìm kiếm không tồn tại vào ô tìm kiếm",
       "Step 2: Nhấn nút \"Tìm kiếm\"",
-      "Step 3: Kiểm tra thông báo hiển thị trên giao diện"
+      "Step 3: Kiểm tra thông báo hiển thị"
     ],
     "expected_result": [
-      "\"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\""
+      "Hệ thống hiển thị thông báo \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\""
     ]
   }
 ]

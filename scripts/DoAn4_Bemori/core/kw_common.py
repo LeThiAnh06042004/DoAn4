@@ -158,12 +158,23 @@ class KWCommon:
         resolved = self._resolve_locator(locator)
         self.actions.move_to_element(self.driver.find_element(*resolved)).perform()
 
-    def INPUT_TEXT(self, locator, text: str):
+    def INPUT_TEXT(self, locator, text: str = ""):
         """ Nhập văn bản vào input, tự động clear trước """
+        # xử lý dữ liệu None
+        if text is None:
+            text = ""
         resolved = self._resolve_locator(locator)
         element = self.driver.find_element(*resolved)
         element.clear()
-        element.send_keys(text)
+        # chỉ send_keys khi có dữ liệu
+        if str(text).strip():
+            element.send_keys(str(text))
+
+    def GET_TEXT(self, locator):
+        """Lấy text của element"""
+        resolved = self._resolve_locator(locator)
+        element = self.driver.find_element(*resolved)
+        return element.text
 
     def CLEAR_TEXT(self, locator):
         """ Xóa nội dung trong input """

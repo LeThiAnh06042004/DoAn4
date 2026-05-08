@@ -4,8 +4,9 @@ from utils.locator_reader import LocatorReader
 from core.kw_dispatcher import KeywordDispatcher
 from core.kw_common import KWCommon
 
-cases = data_loader.load_csv_data(
-    r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/data/data_BinhLuan.csv"
+cases = data_loader.load_sqlite_data(
+    r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/data/data_BinhLuan.sqlite",
+    "BinhLuan"
 )
 
 LOCATOR_FILE = r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/locators/BinhLuan_locators.yaml"
@@ -17,9 +18,9 @@ class TestBinhLuan:
         ids=[f"ND='{c['nd']}', TEN='{c['ten']}', SDT='{c['sdt']}'" for c in cases]
     )
     def test_binh_luan(self, driver, case):
-        nd = case["nd"]
-        ten = case["ten"]
-        sdt = case["sdt"]
+        nd = case["nd"].strip()
+        ten = case["ten"].strip()
+        sdt = case["sdt"].strip()
 
         locator_reader = LocatorReader(LOCATOR_FILE)
         kw = KWCommon(driver, locator_reader=locator_reader)

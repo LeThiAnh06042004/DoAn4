@@ -1,0 +1,81 @@
+2026-05-08 16:44:02,287 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_164402\logs\log.txt
+2026-05-08 16:44:02,403 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_164402\html\report.html
+2026-05-08 16:44:03,902 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='', TEN='ng\u1ecdc', SDT='0182736459'] =====
+2026-05-08 16:44:27,585 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='', TEN='ng\u1ecdc', SDT='0182736459']
+2026-05-08 16:44:29,860 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='', TEN='ng\u1ecdc', SDT='0182736459'] =====
+
+2026-05-08 16:44:29,866 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='   ', TEN='ng\u1ecdc', SDT='0182736459'] =====
+2026-05-08 16:44:56,708 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='   ', TEN='ng\u1ecdc', SDT='0182736459']
+2026-05-08 16:44:59,008 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='   ', TEN='ng\u1ecdc', SDT='0182736459'] =====
+
+2026-05-08 16:44:59,014 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='', SDT='0182736459'] =====
+2026-05-08 16:45:18,973 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='', SDT='0182736459']
+2026-05-08 16:45:21,320 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='', SDT='0182736459'] =====
+
+2026-05-08 16:45:21,325 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='     ', SDT='0182736459'] =====
+2026-05-08 16:45:42,728 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='     ', SDT='0182736459']
+2026-05-08 16:45:45,237 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='     ', SDT='0182736459'] =====
+
+2026-05-08 16:45:45,242 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdct', SDT='0123456789'] =====
+2026-05-08 16:46:05,563 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdct', SDT='0123456789']
+2026-05-08 16:46:08,011 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdct', SDT='0123456789'] =====
+
+2026-05-08 16:46:08,017 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345678'] =====
+2026-05-08 16:46:37,094 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345678']
+2026-05-08 16:46:39,412 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345678'] =====
+
+2026-05-08 16:46:39,418 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdcc', SDT='01234567890'] =====
+2026-05-08 16:46:59,350 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdcc', SDT='01234567890']
+2026-05-08 16:47:01,780 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdcc', SDT='01234567890'] =====
+
+2026-05-08 16:47:01,786 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdcn', SDT='012345678901'] =====
+2026-05-08 16:47:23,518 - ERROR - TestLogger - TEST FAILED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdcn', SDT='012345678901']
+2026-05-08 16:47:23,518 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_164402\screenshots\test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdcn', SDT='012345678901'].png
+2026-05-08 16:47:25,726 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdcn', SDT='012345678901'] =====
+
+2026-05-08 16:47:25,738 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='01234567'] =====
+2026-05-08 16:47:45,610 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='01234567']
+2026-05-08 16:47:47,821 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='01234567'] =====
+
+2026-05-08 16:47:47,827 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT=''] =====
+2026-05-08 16:48:10,331 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='']
+2026-05-08 16:48:12,639 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT=''] =====
+
+2026-05-08 16:48:12,646 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='   '] =====
+2026-05-08 16:48:35,442 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='   ']
+2026-05-08 16:48:37,724 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='   '] =====
+
+2026-05-08 16:48:37,728 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='sodienthoai'] =====
+2026-05-08 16:49:02,743 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='sodienthoai']
+2026-05-08 16:49:05,053 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='sodienthoai'] =====
+
+2026-05-08 16:49:05,059 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0987654321'] =====
+2026-05-08 16:49:24,562 - ERROR - TestLogger - TEST FAILED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0987654321']
+2026-05-08 16:49:24,562 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_164402\screenshots\test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0987654321'].png
+2026-05-08 16:49:26,803 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0987654321'] =====
+
+2026-05-08 16:49:26,816 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345abcd'] =====
+2026-05-08 16:49:48,358 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345abcd']
+2026-05-08 16:49:50,572 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345abcd'] =====
+
+2026-05-08 16:49:50,578 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345!@#$'] =====
+2026-05-08 16:50:10,349 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345!@#$']
+2026-05-08 16:50:14,171 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='012345!@#$'] =====
+
+2026-05-08 16:50:14,177 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='abcde!@#$%'] =====
+2026-05-08 16:50:33,944 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='abcde!@#$%']
+2026-05-08 16:50:36,244 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='abcde!@#$%'] =====
+
+2026-05-08 16:50:36,249 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0123abc%^$'] =====
+2026-05-08 16:51:10,213 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0123abc%^$']
+2026-05-08 16:51:12,584 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0123abc%^$'] =====
+
+2026-05-08 16:51:12,592 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='!@#$%^!@#$'] =====
+2026-05-08 16:51:34,455 - INFO - TestLogger - TEST PASSED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='!@#$%^!@#$']
+2026-05-08 16:51:36,766 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='!@#$%^!@#$'] =====
+
+2026-05-08 16:51:36,772 - INFO - TestLogger - Bắt đầu: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0182736459'] =====
+2026-05-08 16:52:08,488 - ERROR - TestLogger - TEST FAILED: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0182736459']
+2026-05-08 16:52:08,488 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_164402\screenshots\test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0182736459'].png
+2026-05-08 16:52:10,692 - INFO - TestLogger - Kết thúc: test_binh_luan[ND='\u0111\u1eb9p qu\xe1', TEN='ng\u1ecdc', SDT='0182736459'] =====
+

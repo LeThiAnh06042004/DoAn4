@@ -1,7 +1,7 @@
 import pytest
 
 from utils.excel_reader import read_excel_to_testcases
-from utils.data_loader import load_json_data
+from utils.data_loader import *
 from utils.locator_reader import LocatorReader
 from core.kw_common import KWCommon
 from core.kw_dispatcher import KeywordDispatcher
@@ -12,7 +12,7 @@ from utils.logger import logging
 # ================= CONFIG =================
 #SCRIPT_PATH = "AI/TestCase/scripts/SCR/SCR_TimKiem.xlsx"
 SCRIPT_PATH = "test/cases/test_TK.xlsx"
-DATA_PATH = "resources/data/data_TimKiem_json.json"
+DATA_PATH = "resources/data/data_TimKiem.yaml"
 LOCATOR_PATH = "resources/locators/TimKiem_locators.yaml"
 
 TARGET_TC = None      # None = all | "TC_001" = run 1
@@ -45,7 +45,7 @@ if TARGET_TC:
 
 
 # ===== LOAD DATA =====
-data = load_json_data(DATA_PATH) if USE_DATA else [None]
+data = load_yaml_data(DATA_PATH) if USE_DATA else [None]
 
 
 # ===== BUILD TEST MATRIX =====

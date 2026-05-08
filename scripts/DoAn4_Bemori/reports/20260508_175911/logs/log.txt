@@ -1,0 +1,93 @@
+2026-05-08 17:59:11,216 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\logs\log.txt
+2026-05-08 17:59:11,295 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\html\report.html
+2026-05-08 17:59:12,922 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'0] =====
+2026-05-08 17:59:40,539 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'0]
+2026-05-08 17:59:42,924 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'0] =====
+
+2026-05-08 17:59:42,932 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'0] =====
+2026-05-08 18:00:01,435 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'0]
+2026-05-08 18:00:03,706 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'0] =====
+
+2026-05-08 18:00:03,712 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'1] =====
+2026-05-08 18:00:22,194 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'1]
+2026-05-08 18:00:24,484 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'1] =====
+
+2026-05-08 18:00:24,490 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='', DC='H\u01b0ng Y\xean', YC='test'0] =====
+2026-05-08 18:00:48,702 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='', DC='H\u01b0ng Y\xean', YC='test'0]
+2026-05-08 18:00:50,988 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='', DC='H\u01b0ng Y\xean', YC='test'0] =====
+
+2026-05-08 18:00:50,995 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='', DC='H\u01b0ng Y\xean', YC='test'1] =====
+2026-05-08 18:01:09,306 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='', DC='H\u01b0ng Y\xean', YC='test'1]
+2026-05-08 18:01:11,586 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='', DC='H\u01b0ng Y\xean', YC='test'1] =====
+
+2026-05-08 18:01:11,592 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'1] =====
+2026-05-08 18:01:45,547 - ERROR - TestLogger - TEST FAILED: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'1]
+2026-05-08 18:01:45,548 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\screenshots\test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'1].png
+2026-05-08 18:01:47,857 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC='test'1] =====
+
+2026-05-08 18:01:47,876 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='021873769', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:02:24,585 - ERROR - TestLogger - TEST FAILED: test_mua_hang[TEN='Linh', SDT='021873769', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:02:24,585 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\screenshots\test_mua_hang[TEN='Linh', SDT='021873769', DC='H\u01b0ng Y\xean', YC='test'].png
+2026-05-08 18:02:26,880 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='021873769', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:02:26,900 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='02187376923', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:02:48,543 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='02187376923', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:02:50,895 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='02187376923', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:02:50,901 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='02187376', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:03:30,558 - ERROR - TestLogger - TEST FAILED: test_mua_hang[TEN='Linh', SDT='02187376', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:03:30,559 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\screenshots\test_mua_hang[TEN='Linh', SDT='02187376', DC='H\u01b0ng Y\xean', YC='test'].png
+2026-05-08 18:03:32,805 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='02187376', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:03:32,823 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='021873769235', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:03:55,147 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='021873769235', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:03:57,671 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='021873769235', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:03:57,677 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='sodienthoai', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:04:17,598 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='sodienthoai', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:04:19,897 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='sodienthoai', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:04:19,903 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='0218737693', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:04:54,485 - ERROR - TestLogger - TEST FAILED: test_mua_hang[TEN='Linh', SDT='0218737693', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:04:54,485 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\screenshots\test_mua_hang[TEN='Linh', SDT='0218737693', DC='H\u01b0ng Y\xean', YC='test'].png
+2026-05-08 18:04:56,821 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='0218737693', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:04:56,842 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='!@#$%^&!@#', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:05:15,065 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='!@#$%^&!@#', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:05:17,332 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='!@#$%^&!@#', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:05:17,337 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='02187abcde', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:05:37,174 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='02187abcde', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:05:39,503 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='02187abcde', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:05:39,505 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='abcde!@#$%', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:06:05,890 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='abcde!@#$%', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:06:08,207 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='abcde!@#$%', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:06:08,212 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='02187!@#$%', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:06:42,473 - ERROR - TestLogger - TEST FAILED: test_mua_hang[TEN='Linh', SDT='02187!@#$%', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:06:42,474 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\screenshots\test_mua_hang[TEN='Linh', SDT='02187!@#$%', DC='H\u01b0ng Y\xean', YC='test'].png
+2026-05-08 18:06:44,694 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='02187!@#$%', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:06:44,713 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='021abcd!@#', DC='H\u01b0ng Y\xean', YC='test'] =====
+2026-05-08 18:07:19,849 - ERROR - TestLogger - TEST FAILED: test_mua_hang[TEN='Linh', SDT='021abcd!@#', DC='H\u01b0ng Y\xean', YC='test']
+2026-05-08 18:07:19,850 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\screenshots\test_mua_hang[TEN='Linh', SDT='021abcd!@#', DC='H\u01b0ng Y\xean', YC='test'].png
+2026-05-08 18:07:22,079 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='021abcd!@#', DC='H\u01b0ng Y\xean', YC='test'] =====
+
+2026-05-08 18:07:22,098 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='0218737692', DC='', YC='test'0] =====
+2026-05-08 18:07:38,027 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='0218737692', DC='', YC='test'0]
+2026-05-08 18:07:40,291 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='0218737692', DC='', YC='test'0] =====
+
+2026-05-08 18:07:40,296 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='0218737692', DC='', YC='test'1] =====
+2026-05-08 18:07:58,132 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='0218737692', DC='', YC='test'1]
+2026-05-08 18:08:00,417 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='0218737692', DC='', YC='test'1] =====
+
+2026-05-08 18:08:00,423 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC=''0] =====
+2026-05-08 18:08:35,502 - ERROR - TestLogger - TEST FAILED: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC=''0]
+2026-05-08 18:08:35,502 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_175911\screenshots\test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC=''0].png
+2026-05-08 18:08:37,760 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC=''0] =====
+
+2026-05-08 18:08:37,770 - INFO - TestLogger - Bắt đầu: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC=''1] =====
+2026-05-08 18:08:57,787 - INFO - TestLogger - TEST PASSED: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC=''1]
+2026-05-08 18:09:00,232 - INFO - TestLogger - Kết thúc: test_mua_hang[TEN='Linh', SDT='0218737692', DC='H\u01b0ng Y\xean', YC=''1] =====
+

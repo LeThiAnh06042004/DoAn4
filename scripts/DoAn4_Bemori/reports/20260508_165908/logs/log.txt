@@ -1,0 +1,59 @@
+2026-05-08 16:59:08,192 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_165908\logs\log.txt
+2026-05-08 16:59:08,275 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_165908\html\report.html
+2026-05-08 16:59:10,332 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[0912547839] =====
+2026-05-08 16:59:34,010 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[0912547839]
+2026-05-08 16:59:36,520 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[0912547839] =====
+
+2026-05-08 16:59:36,526 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[0123456789] =====
+2026-05-08 16:59:55,753 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[0123456789]
+2026-05-08 16:59:58,123 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[0123456789] =====
+
+2026-05-08 16:59:58,129 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[012345678] =====
+2026-05-08 17:00:24,307 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[012345678]
+2026-05-08 17:00:26,601 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[012345678] =====
+
+2026-05-08 17:00:26,606 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[01234567890] =====
+2026-05-08 17:00:48,364 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[01234567890]
+2026-05-08 17:00:50,990 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[01234567890] =====
+
+2026-05-08 17:00:50,996 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[01234567] =====
+2026-05-08 17:01:10,346 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[01234567]
+2026-05-08 17:01:14,189 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[01234567] =====
+
+2026-05-08 17:01:14,194 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[012345678901] =====
+2026-05-08 17:01:36,623 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[012345678901]
+2026-05-08 17:01:39,112 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[012345678901] =====
+
+2026-05-08 17:01:39,118 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[EMPTY] =====
+2026-05-08 17:02:05,619 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[EMPTY]
+2026-05-08 17:02:08,047 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[EMPTY] =====
+
+2026-05-08 17:02:08,053 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[   ] =====
+2026-05-08 17:03:18,975 - ERROR - TestLogger - TEST FAILED: test_dat_hang_nhanh[   ]
+2026-05-08 17:03:18,975 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260508_165908\screenshots\test_dat_hang_nhanh[   ].png
+2026-05-08 17:03:21,204 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[   ] =====
+
+2026-05-08 17:03:21,219 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[sodienthoai] =====
+2026-05-08 17:03:43,875 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[sodienthoai]
+2026-05-08 17:03:46,305 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[sodienthoai] =====
+
+2026-05-08 17:03:46,311 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[!@#$%^!@#$] =====
+2026-05-08 17:04:07,734 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[!@#$%^!@#$]
+2026-05-08 17:04:10,207 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[!@#$%^!@#$] =====
+
+2026-05-08 17:04:10,214 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[012345abcd] =====
+2026-05-08 17:04:29,969 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[012345abcd]
+2026-05-08 17:04:32,268 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[012345abcd] =====
+
+2026-05-08 17:04:32,274 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[012345!@#$] =====
+2026-05-08 17:04:58,324 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[012345!@#$]
+2026-05-08 17:05:00,642 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[012345!@#$] =====
+
+2026-05-08 17:05:00,647 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[abcde!@#$%] =====
+2026-05-08 17:05:20,982 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[abcde!@#$%]
+2026-05-08 17:05:23,417 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[abcde!@#$%] =====
+
+2026-05-08 17:05:23,421 - INFO - TestLogger - Bắt đầu: test_dat_hang_nhanh[0123abc!@#] =====
+2026-05-08 17:05:44,233 - INFO - TestLogger - TEST PASSED: test_dat_hang_nhanh[0123abc!@#]
+2026-05-08 17:05:48,001 - INFO - TestLogger - Kết thúc: test_dat_hang_nhanh[0123abc!@#] =====
+

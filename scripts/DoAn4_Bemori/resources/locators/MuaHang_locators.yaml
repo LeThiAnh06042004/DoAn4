@@ -1,55 +1,97 @@
 txtSP:
   by: xpath
   value: //h4[contains(text(),"Gấu Bông Quả Dưa Hấu Vui Vẻ")]
+  semantic:
+    - sản phẩm
+    - product item
 
 btnMuaHang:
   by: xpath
   value: //a[normalize-space()="Mua hàng"]
+  semantic:
+    - nút mua hàng
+    - buy button
 
 txtTenNM:
   by: xpath
   value: //input[@placeholder="Họ và tên người mua"]
+  semantic:
+    - ô họ tên người mua
+    - buyer name input
 
 txtSDT_NM:
   by: xpath
   value: //input[@placeholder="Số điện thoại người mua"]
+  semantic:
+    - ô số điện thoại
+    - phone number input
 
 ckbTang:
   by: xpath
   value: //label[contains(text(),"Bạn mua để tặng, người nhận là người khác?")]
+  semantic:
+    - checkbox tặng quà
+    - gift checkbox
 
 txtDiaChiNH:
   by: xpath
   value: //input[@placeholder="Địa chỉ nhận hàng"]
+  semantic:
+    - ô địa chỉ nhận hàng
+    - shipping address input
 
 txtYCThem:
   by: xpath
   value: '//textarea[@placeholder="Yêu cầu thêm (Ví dụ: Gói quà, hút chân không, viết giúp thiệp, giấu tên người gửi, thời gian nhận hàng...)"]'
+  semantic:
+    - ô yêu cầu thêm
+    - note textarea
 
 btnMua:
   by: xpath
   value: //button[normalize-space()="Mua hàng"]
+  semantic:
+    - nút xác nhận mua hàng
+    - confirm order button
 
 TBThanhCong:
   by: xpath
   value: //div[@role="document"]//p[contains(text(),"ng trong messenger.")]
+  semantic:
+    - thông báo đặt hàng thành công
+    - success message
 
 TBNhapTen:
   by: xpath
   value: //div[@class="modal-body"][contains(text(),"Bạn chưa nhập họ và tên người mua.")]
+  semantic:
+    - thông báo chưa nhập họ tên
+    - missing name message
 
 TBNhapSDT:
   by: xpath
   value: //div[@class="modal-body"][contains(text(),"Bạn chưa nhập số điện thoại người mua.")]
+  semantic:
+    - thông báo chưa nhập số điện thoại
+    - missing phone message
 
 TBNhapDC:
   by: xpath
   value: //div[@class="modal-body"][contains(text(),"Bạn chưa nhập địa chỉ nhận hàng.")]
+  semantic:
+    - thông báo chưa nhập địa chỉ
+    - missing address message
 
 TB10so:
   by: xpath
   value: //div[@class="modal-body"][contains(text(),"Số điện thoại phải có ít nhất 10 số.")]
+  semantic:
+    - thông báo số điện thoại tối thiểu 10 số
+    - invalid phone length message
 
 TBChiCoSo:
   by: xpath
   value: //div[@class="modal-body"][contains(text(),"Số điện thoại chỉ bao gồm những số.")]
+  semantic:
+    - thông báo số điện thoại chỉ gồm số
+    - invalid phone format message

@@ -1,27 +1,48 @@
 SP:
   by: xpath
   value: //h4[contains(text(),"Gấu Bông Quả Dưa Hấu Vui Vẻ")]
+  semantic:
+    - sản phẩm
+    - product item
 
 txtDHN:
   by: xpath
   value: //input[@placeholder="Nhập số điện thoại"]
+  semantic:
+    - ô nhập số điện thoại
+    - phone number input
 
 btnGui:
   by: xpath
   value: //button[@class="btn btn-primary btn-sm"]
+  semantic:
+    - nút gửi
+    - submit button
 
 txtThanhCong:
   by: xpath
   value: //p[contains(text(),"ng trong messenger.")]
+  semantic:
+    - thông báo thành công
+    - success message
 
 txtTB_rong:
   by: xpath
   value: //div[contains(text(),"Bạn chưa nhập số điện thoại.")]
+  semantic:
+    - thông báo chưa nhập số điện thoại
+    - missing phone message
 
 txtTB_chicoso:
   by: xpath
   value: //div[contains(text(),"Số điện thoại chỉ bao gồm những số.")]
+  semantic:
+    - thông báo số điện thoại chỉ gồm số
+    - invalid phone format message
 
 txtTB_duoi10:
   by: xpath
   value: //div[contains(text(),"Số điện thoại phải có ít nhất 10 số.")]
+  semantic:
+    - thông báo số điện thoại tối thiểu 10 số
+    - invalid phone length message

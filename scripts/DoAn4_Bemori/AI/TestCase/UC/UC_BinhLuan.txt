@@ -28,7 +28,7 @@ AF3: Số điện thoại rỗng
 4a. Người dùng không nhập số điện thoại
 6a. Hệ thống hiển thị thông báo "Bạn chưa nhập số điện thoại."
 
-AF4: Số điện thoại chứa ký tự không hợp lệ
+AF4: Số điện thoại chứa ký tự không phải số
 4a. Người dùng nhập số điện thoại chứa ký tự không phải số
 6a. Hệ thống hiển thị thông báo "Số điện thoại chỉ bao gồm những số."
 

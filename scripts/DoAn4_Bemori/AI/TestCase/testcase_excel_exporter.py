@@ -62,13 +62,19 @@ def update_case_count(ws, count):
 
 # Ghi test case vào Excel theo format chuẩn dựa trên template có sẵn
 def export_testcases_to_excel(testcases, module_name, template_path):
-    # Load file & setup sheet: Mở file Excel template có sẵn
     wb = load_workbook(template_path)
-    ws = wb.active
 
-    # Đổi tên sheet theo module
     sheet_name = normalize_sheet_name(module_name)
-    ws.title = sheet_name
+
+    # Nếu sheet đã tồn tại → dùng lại
+    if sheet_name in wb.sheetnames:
+        ws = wb[sheet_name]
+
+    # Nếu chưa có → copy từ template sheet
+    else:
+        template_ws = wb.active
+        ws = wb.copy_worksheet(template_ws)
+        ws.title = sheet_name
 
     # Ghi: Tên module, Tên tester
     ws["B2"] = sheet_name

@@ -1,6 +1,0 @@
-2026-01-31 15:29:23,531 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260131_152923\logs\log.txt
-2026-01-31 15:29:23,611 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260131_152923\html\report.html
-2026-01-31 15:29:24,923 - INFO - TestLogger - Bắt đầu: test_keyword_driven =====
-2026-01-31 15:29:47,170 - INFO - TestLogger - TEST PASSED: test_keyword_driven
-2026-01-31 15:29:49,461 - INFO - TestLogger - Kết thúc: test_keyword_driven =====
-

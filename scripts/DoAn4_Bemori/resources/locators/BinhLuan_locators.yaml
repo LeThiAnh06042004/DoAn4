@@ -1,54 +1,78 @@
 lnkSanPham:
   by: xpath
   value: //h4[contains(text(),"Gấu Bông Trái Cây Vui Vẻ")]
-  desc: link truy cập vào trang chi tiết sản phẩm
+  semantic:
+    - liên kết sản phẩm
+    - sản phẩm
+    - product
+    - product link
 
 txtNoiDungBinhLuan:
   by: xpath
   value: //textarea[@placeholder="Nội dung bình luận (*)"]
-  desc: ô nhập nội dung bình luận
+  semantic:
+    - ô nhập bình luận
+    - comment textarea
 
 txtHoTen:
   by: xpath
   value: //input[@placeholder="Họ tên (*)"]
-  desc: ô nhập họ tên của người bình luận
+  semantic:
+    - ô nhập họ tên
+    - name input
 
 txtSoDienThoai:
   by: xpath
   value: //input[@placeholder="Số điện thoại (*)"]
-  desc: ô nhập số điện thoại của người bình luận
+  semantic:
+    - ô nhập số điện thoại
+    - phone number input
 
 btnGuiBinhLuan:
   by: css
   value: button.btn.btn-primary.btn-block
-  desc: nút gửi bình luận
+  semantic:
+    - nút gửi bình luận
+    - submit comment button
 
 lblThongBaoThanhCong:
   by: xpath
   value: //div[contains(text(),"Gửi bình luận thành công.")]
-  desc: thông báo gửi bình luận thành công
+  semantic:
+    - thông báo gửi bình luận thành công
+    - comment success message
 
 lblThongBaoNhapBinhLuan:
   by: xpath
   value: //div[contains(text(),"Bạn chưa nhập bình luận.")]
-  desc: thông báo chưa nhập bình luận
+  semantic:
+    - thông báo chưa nhập bình luận
+    - missing comment message
 
 lblThongBaoNhapTen:
   by: xpath
   value: //div[contains(text(),"Bạn chưa nhập tên.")]
-  desc: thông báo chưa nhập tên của người bình luận
+  semantic:
+    - thông báo chưa nhập tên
+    - missing name message
 
 lblThongBaoNhapSoDienThoai:
   by: xpath
   value: //div[contains(text(),"Bạn chưa nhập số điện thoại.")]
-  desc: thông báo chưa nhập số điện thoại của người bình luận
+  semantic:
+    - thông báo chưa nhập số điện thoại
+    - missing phone message
 
 lblThongBaoSoDienThoaiChiCoSo:
   by: xpath
   value: //div[contains(text(),"Số điện thoại chỉ bao gồm những số.")]
-  desc: thông báo số điện thoại chỉ gồm những số
+  semantic:
+    - thông báo số điện thoại chỉ gồm số
+    - invalid phone format message
 
 lblThongBaoSoDienThoai10so:
   by: xpath
   value: //div[contains(text(),"Số điện thoại phải có ít nhất 10 số.")]
-  desc: thông báo số điện thoại phải có ít nhất 10 số
+  semantic:
+    - thông báo số điện thoại tối thiểu 10 số
+    - invalid phone length message

@@ -6,33 +6,67 @@ lnkSanPham:
     - sản phẩm
     - product
     - product link
+    - trang chi tiết sản phẩm
+    - mở chi tiết sản phẩm
 
 txtNoiDungBinhLuan:
   by: xpath
   value: //textarea[@placeholder="Nội dung bình luận (*)"]
   semantic:
-    - ô nhập bình luận
+    - ô nhập nội dung bình luận
+    - nhập nội dung bình luận
+    - nội dung bình luận
+    - bình luận
     - comment textarea
+    - comment content
+  data_key:
+    - nd
+    - NoiDung
+    - NoiDungBinhLuan
+    - BinhLuan
+    - Comment
+    - CommentContent
 
 txtHoTen:
   by: xpath
   value: //input[@placeholder="Họ tên (*)"]
   semantic:
     - ô nhập họ tên
+    - nhập họ tên
+    - họ tên
+    - tên
     - name input
+  data_key:
+    - ten
+    - Ten
+    - HoTen
+    - Name
+    - FullName
+    - CustomerName
 
 txtSoDienThoai:
   by: xpath
   value: //input[@placeholder="Số điện thoại (*)"]
   semantic:
     - ô nhập số điện thoại
+    - nhập số điện thoại
+    - số điện thoại
     - phone number input
+  data_key:
+    - sdt
+    - SDT
+    - SoDienThoai
+    - DienThoai
+    - Phone
+    - PhoneNumber
+    - Mobile
 
 btnGuiBinhLuan:
   by: css
   value: button.btn.btn-primary.btn-block
   semantic:
     - nút gửi bình luận
+    - gửi bình luận
     - submit comment button
 
 lblThongBaoThanhCong:
@@ -40,13 +74,16 @@ lblThongBaoThanhCong:
   value: //div[contains(text(),"Gửi bình luận thành công.")]
   semantic:
     - thông báo gửi bình luận thành công
+    - gửi bình luận thành công
     - comment success message
+    - success message
 
 lblThongBaoNhapBinhLuan:
   by: xpath
   value: //div[contains(text(),"Bạn chưa nhập bình luận.")]
   semantic:
     - thông báo chưa nhập bình luận
+    - bạn chưa nhập bình luận
     - missing comment message
 
 lblThongBaoNhapTen:
@@ -54,6 +91,7 @@ lblThongBaoNhapTen:
   value: //div[contains(text(),"Bạn chưa nhập tên.")]
   semantic:
     - thông báo chưa nhập tên
+    - bạn chưa nhập tên
     - missing name message
 
 lblThongBaoNhapSoDienThoai:
@@ -61,6 +99,7 @@ lblThongBaoNhapSoDienThoai:
   value: //div[contains(text(),"Bạn chưa nhập số điện thoại.")]
   semantic:
     - thông báo chưa nhập số điện thoại
+    - bạn chưa nhập số điện thoại
     - missing phone message
 
 lblThongBaoSoDienThoaiChiCoSo:
@@ -68,6 +107,8 @@ lblThongBaoSoDienThoaiChiCoSo:
   value: //div[contains(text(),"Số điện thoại chỉ bao gồm những số.")]
   semantic:
     - thông báo số điện thoại chỉ gồm số
+    - số điện thoại chỉ bao gồm những số
+    - số điện thoại chứa ký tự
     - invalid phone format message
 
 lblThongBaoSoDienThoai10so:
@@ -75,4 +116,7 @@ lblThongBaoSoDienThoai10so:
   value: //div[contains(text(),"Số điện thoại phải có ít nhất 10 số.")]
   semantic:
     - thông báo số điện thoại tối thiểu 10 số
+    - số điện thoại phải có ít nhất 10 số
+    - số điện thoại dưới 10 số
+    - số điện thoại ít hơn 10 số
     - invalid phone length message

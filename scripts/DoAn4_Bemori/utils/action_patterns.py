@@ -1,4 +1,3 @@
-
 ACTION_PATTERNS = {
 
     "INPUT_TEXT": [
@@ -14,7 +13,13 @@ ACTION_PATTERNS = {
         "click",
         "nhấn",
         "bấm",
-        "tap"
+        "tap",
+        "truy cập",
+        "chuyển tới",
+        "điều hướng",
+        "đi đến",
+        "vào trang chi tiết",
+        "mở sản phẩm"
     ],
 
     "DOUBLE_CLICK": [
@@ -57,23 +62,41 @@ ACTION_PATTERNS = {
         "uncheck"
     ],
 
+
+    "VERIFY_TEXT_CONTAINS": [
+        "chứa",
+        "contains",
+        "có chứa",
+        "bao gồm",
+        "message contains"
+    ],
+
+
+    "VERIFY_ELEMENT_TEXT_EQUALS": [
+        "hiển thị thông báo",
+        "kiểm tra thông báo",
+        "kiểm tra nội dung",
+        "hiển thị nội dung",
+        "thông báo",
+        "nội dung",
+        "hiển thị chính xác",
+        "hiển thị đúng",
+        "thông báo chính xác",
+        "kiểm tra chính xác",
+        "kiểm tra đúng nội dung",
+        "verify text",
+        "verify message",
+        "verify exact text",
+        "verify exact message",
+        "exact text",
+        "exact message"
+    ],
+
     "VERIFY_ELEMENT_VISIBLE": [
         "kiểm tra hiển thị",
         "verify visible",
         "hiển thị",
         "xuất hiện"
-    ],
-
-    "VERIFY_ELEMENT_TEXT_EQUALS": [
-        "kiểm tra thông báo",
-        "kiểm tra nội dung",
-        "verify text",
-        "verify message"
-    ],
-
-    "VERIFY_TEXT_CONTAINS": [
-        "chứa",
-        "contains"
     ],
 
     "VERIFY_ELEMENT_PRESENT": [

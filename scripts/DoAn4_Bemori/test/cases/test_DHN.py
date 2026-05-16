@@ -25,25 +25,25 @@ class TestDatHangNhanh:
         dispatcher = KeywordDispatcher(kw)
 
         dispatcher.execute("OPEN_URL", ["https://gaubongonline.vn/"])
-        dispatcher.execute("WAIT_FOR_ELEMENT_VISIBLE", ["SP", 10])
-        dispatcher.execute("CLICK", ["SP"])
-        dispatcher.execute("INPUT_TEXT", ["txtDHN", sdt])
+        dispatcher.execute("WAIT_FOR_ELEMENT_VISIBLE", ["lnkSanPham", 10])
+        dispatcher.execute("CLICK", ["lnkSanPham"])
+        dispatcher.execute("INPUT_TEXT", ["txtDatHangNhanh", sdt])
         dispatcher.execute("CLICK", ["btnGui"])
 
         dispatcher.execute("WAIT_FOR_SECONDS", [3])
 
         if sdt == "":
-            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["txtTB_rong", "Bạn chưa nhập số điện thoại."]), \
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["lblThongBaoNhapSoDienThoai", "Bạn chưa nhập số điện thoại."]), \
                 "Không hiển thị lỗi SĐT rỗng"
 
         elif not sdt.isdigit():
-            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["txtTB_chicoso", "Số điện thoại chỉ bao gồm những số."]), \
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["lblThongBaoSoDienThoaiChiCoSo", "Số điện thoại chỉ bao gồm những số."]), \
                 "Không hiển thị lỗi SĐT chỉ gồm số"
 
         elif len(sdt) < 10:
-            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["txtTB_duoi10", "Số điện thoại phải có ít nhất 10 số."]), \
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["lblThongBaoSoDienThoai10so", "Số điện thoại phải có ít nhất 10 số."]), \
                 "Không hiển thị lỗi SĐT < 10 số"
 
         else:
-            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["txtThanhCong", "ng trong messenger."]), \
+            assert dispatcher.execute("VERIFY_TEXT_CONTAINS", ["lblThanhCong", "ng trong messenger."]), \
                 "Đặt hàng nhanh không thành công"

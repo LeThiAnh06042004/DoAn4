@@ -35,19 +35,19 @@ class TestMuaHang:
 
         dispatcher.execute("OPEN_URL", ["https://gaubongonline.vn/"])
 
-        dispatcher.execute("WAIT_FOR_ELEMENT_VISIBLE", ["txtSP", 10])
+        dispatcher.execute("WAIT_FOR_ELEMENT_VISIBLE", ["lnkSanPham", 10])
 
-        dispatcher.execute("CLICK", ["txtSP"])
+        dispatcher.execute("CLICK", ["lnkSanPham"])
 
         dispatcher.execute("CLICK", ["btnMuaHang"])
 
-        dispatcher.execute("INPUT_TEXT", ["txtTenNM", ten])
+        dispatcher.execute("INPUT_TEXT", ["txtTenNguoiMua", ten])
 
-        dispatcher.execute("INPUT_TEXT", ["txtSDT_NM", sdt])
+        dispatcher.execute("INPUT_TEXT", ["txtSoDienThoaiNguoiMua", sdt])
 
-        dispatcher.execute("INPUT_TEXT", ["txtDiaChiNH", dc])
+        dispatcher.execute("INPUT_TEXT", ["txtDiaChiNhanHang", dc])
 
-        dispatcher.execute("INPUT_TEXT", ["txtYCThem", yc])
+        dispatcher.execute("INPUT_TEXT", ["txtYeuCauThem", yc])
 
         dispatcher.execute("CLICK", ["btnMua"])
 
@@ -57,70 +57,70 @@ class TestMuaHang:
 
             dispatcher.execute(
                 "WAIT_FOR_ELEMENT_VISIBLE",
-                ["TBNhapTen", 10]
+                ["lblThongBaoNhapTen", 10]
             )
 
             assert dispatcher.execute(
                 "VERIFY_TEXT_CONTAINS",
-                ["TBNhapTen", "Bạn chưa nhập họ và tên người mua."]
+                ["lblThongBaoNhapTen", "Bạn chưa nhập họ và tên người mua."]
             ), "Không hiển thị lỗi thiếu họ tên người mua"
 
         elif sdt == "":
 
             dispatcher.execute(
                 "WAIT_FOR_ELEMENT_VISIBLE",
-                ["TBNhapSDT", 10]
+                ["lblThongBaoNhapSoDienThoai", 10]
             )
 
             assert dispatcher.execute(
                 "VERIFY_TEXT_CONTAINS",
-                ["TBNhapSDT", "Bạn chưa nhập số điện thoại người mua."]
+                ["lblThongBaoNhapSoDienThoai", "Bạn chưa nhập số điện thoại người mua."]
             ), "Không hiển thị lỗi thiếu số điện thoại người mua"
 
         elif not sdt.isdigit():
 
             dispatcher.execute(
                 "WAIT_FOR_ELEMENT_VISIBLE",
-                ["TBChiCoSo", 10]
+                ["lblThongBaoDienThoaiChiCoSo", 10]
             )
 
             assert dispatcher.execute(
                 "VERIFY_TEXT_CONTAINS",
-                ["TBChiCoSo", "Số điện thoại chỉ bao gồm những số."]
+                ["lblThongBaoDienThoaiChiCoSo", "Số điện thoại chỉ bao gồm những số."]
             ), "Không hiển thị lỗi SDT chỉ gồm số"
 
         elif len(sdt) < 10:
 
             dispatcher.execute(
                 "WAIT_FOR_ELEMENT_VISIBLE",
-                ["TB10so", 10]
+                ["lblThongBaoDienThoai10so", 10]
             )
 
             assert dispatcher.execute(
                 "VERIFY_TEXT_CONTAINS",
-                ["TB10so", "Số điện thoại phải có ít nhất 10 số."]
+                ["lblThongBaoDienThoai10so", "Số điện thoại phải có ít nhất 10 số."]
             ), "Không hiển thị lỗi SDT < 10 số"
 
         elif dc == "":
 
             dispatcher.execute(
                 "WAIT_FOR_ELEMENT_VISIBLE",
-                ["TBNhapDC", 10]
+                ["lblThongBaoNhapDiaChi", 10]
             )
 
             assert dispatcher.execute(
                 "VERIFY_TEXT_CONTAINS",
-                ["TBNhapDC", "Bạn chưa nhập địa chỉ nhận hàng."]
+                ["lblThongBaoNhapDiaChi", "Bạn chưa nhập địa chỉ nhận hàng."]
             ), "Không hiển thị lỗi thiếu địa chỉ nhận hàng"
 
         else:
 
             dispatcher.execute(
                 "WAIT_FOR_ELEMENT_VISIBLE",
-                ["TBThanhCong", 10]
+                ["lblThongBaoThanhCong", 10]
             )
 
             assert dispatcher.execute(
                 "VERIFY_TEXT_CONTAINS",
-                ["TBThanhCong", "ng trong messenger."]
+                ["lblThongBaoThanhCong", "ng trong messenger."]
             ), "Đặt hàng không thành công"

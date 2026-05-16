@@ -4,6 +4,14 @@ txtTimKiem:
   semantic:
     - ô tìm kiếm
     - search input
+    - nhập từ khóa tìm kiếm
+    - ô nhập từ khóa
+  data_key:
+    - TuKhoa
+    - Keyword
+    - TimKiem
+    - Search
+    - SearchKeyword
 
 btnTimKiem:
   by: xpath
@@ -18,6 +26,8 @@ lblKoTimThay:
   semantic:
     - thông báo không tìm thấy
     - no result message
+    - không tìm thấy sản phẩm
+    - không có kết quả
 
 cboTimThay:
   by: xpath

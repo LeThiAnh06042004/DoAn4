@@ -1,0 +1,112 @@
+[
+  {
+    "test_case_id": "TC_001",
+    "scenario": "Mua hàng thành công khi tất cả thông tin hợp lệ",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập họ và tên người mua vào ô nhập",
+      "Step 3: Nhập số điện thoại vào ô nhập",
+      "Step 4: Nhập địa chỉ nhận hàng vào ô nhập",
+      "Step 5: Nhập yêu cầu thêm (nếu có) vào ô nhập",
+      "Step 6: Nhấn nút \"Mua hàng\"",
+      "Step 7: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống kiểm tra dữ liệu nhập thành công và gửi thông tin đơn hàng",
+      "Hiển thị thông báo có chứa “Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.”"
+    ]
+  },
+  {
+    "test_case_id": "TC_002",
+    "scenario": "Không nhập họ và tên người mua",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Không nhập họ và tên người mua",
+      "Step 3: Nhập số điện thoại vào ô nhập",
+      "Step 4: Nhập địa chỉ nhận hàng vào ô nhập",
+      "Step 5: Nhấn nút \"Mua hàng\"",
+      "Step 6: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống hiển thị thông báo \"Bạn chưa nhập họ và tên người mua.\""
+    ]
+  },
+  {
+    "test_case_id": "TC_003",
+    "scenario": "Không nhập số điện thoại",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập họ và tên người mua vào ô nhập",
+      "Step 3: Không nhập số điện thoại",
+      "Step 4: Nhập địa chỉ nhận hàng vào ô nhập",
+      "Step 5: Nhấn nút \"Mua hàng\"",
+      "Step 6: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống hiển thị thông báo \"Bạn chưa nhập số điện thoại.\""
+    ]
+  },
+  {
+    "test_case_id": "TC_004",
+    "scenario": "Nhập số điện thoại chứa ký tự không phải số",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập họ và tên người mua vào ô nhập",
+      "Step 3: Nhập số điện thoại chứa ký tự không phải số vào ô nhập",
+      "Step 4: Nhập địa chỉ nhận hàng vào ô nhập",
+      "Step 5: Nhấn nút \"Mua hàng\"",
+      "Step 6: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống hiển thị thông báo \"Số điện thoại chỉ bao gồm những số.\""
+    ]
+  },
+  {
+    "test_case_id": "TC_005",
+    "scenario": "Nhập số điện thoại ít hơn 10 chữ số",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập họ và tên người mua vào ô nhập",
+      "Step 3: Nhập số điện thoại có ít hơn 10 chữ số vào ô nhập",
+      "Step 4: Nhập địa chỉ nhận hàng vào ô nhập",
+      "Step 5: Nhấn nút \"Mua hàng\"",
+      "Step 6: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống hiển thị thông báo \"Số điện thoại phải có ít nhất 10 số.\""
+    ]
+  },
+  {
+    "test_case_id": "TC_006",
+    "scenario": "Không nhập địa chỉ nhận hàng",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập họ và tên người mua vào ô nhập",
+      "Step 3: Nhập số điện thoại vào ô nhập",
+      "Step 4: Không nhập địa chỉ nhận hàng",
+      "Step 5: Nhấn nút \"Mua hàng\"",
+      "Step 6: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống hiển thị thông báo \"Bạn chưa nhập địa chỉ nhận hàng.\""
+    ]
+  }
+]

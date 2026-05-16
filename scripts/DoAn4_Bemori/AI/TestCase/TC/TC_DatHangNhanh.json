@@ -1,0 +1,67 @@
+[
+  {
+    "test_case_id": "TC_001",
+    "scenario": "Đặt hàng nhanh thành công",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập số điện thoại hợp lệ",
+      "Step 3: Nhấn nút \"Gửi\"",
+      "Step 4: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống kiểm tra dữ liệu nhập thành công và gửi thông tin đặt hàng nhanh",
+      "Hiển thị thông báo có chứa “Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.”"
+    ]
+  },
+  {
+    "test_case_id": "TC_002",
+    "scenario": "Số điện thoại rỗng",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Không nhập số điện thoại",
+      "Step 3: Nhấn nút \"Gửi\"",
+      "Step 4: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống hiển thị thông báo \"Bạn chưa nhập số điện thoại.\""
+    ]
+  },
+  {
+    "test_case_id": "TC_003",
+    "scenario": "Số điện thoại chứa ký tự không phải số",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập số điện thoại có ký tự không phải số",
+      "Step 3: Nhấn nút \"Gửi\"",
+      "Step 4: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống hiển thị thông báo \"Số điện thoại chỉ bao gồm những số.\""
+    ]
+  },
+  {
+    "test_case_id": "TC_004",
+    "scenario": "Số điện thoại ít hơn 10 chữ số",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập số điện thoại có ít hơn 10 chữ số",
+      "Step 3: Nhấn nút \"Gửi\"",
+      "Step 4: Kiểm tra thông báo hiển thị"
+    ],
+    "expected_result": [
+      "Hệ thống hiển thị thông báo \"Số điện thoại phải có ít nhất 10 số.\""
+    ]
+  }
+]

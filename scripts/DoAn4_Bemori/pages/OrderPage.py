@@ -8,29 +8,29 @@ class OrderPage(BasePage):
         super().__init__(driver, "MuaHang_locators.yaml")
 
     def click_SP(self):
-        self.click("txtSP")
+        self.click("lnkSanPham")
 
     def click_MuaHang(self):
         self.click("btnMuaHang")
 
     def nhapTen(self, ten):
-        self.send_keys("txtTenNM", ten)
+        self.send_keys("txtTenNguoiMua", ten)
 
     def nhapSDT(self, sdt):
-        self.send_keys("txtSDT_NM", sdt)
+        self.send_keys("txtSoDienThoaiNguoiMua", sdt)
 
     def nhapDC(self, dc):
-        self.send_keys("txtDiaChiNH", dc)
+        self.send_keys("txtDiaChiNhanHang", dc)
 
     def nhapYCThem(self, yc):
-        self.send_keys("txtYCThem", yc)
+        self.send_keys("txtYeuCauThem", yc)
 
     def click_Mua(self):
         self.click("btnMua")
 
     def get_TBThanhCong(self):
         try:
-            locator = self.get_locator("TBThanhCong")
+            locator = self.get_locator("lblThongBaoThanhCong")
             element = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located(locator)
             )
@@ -40,7 +40,7 @@ class OrderPage(BasePage):
 
     def get_TBNhapTen(self):
         try:
-            locator = self.get_locator("TBNhapTen")
+            locator = self.get_locator("lblThongBaoNhapTen")
             element = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located(locator)
             )
@@ -50,7 +50,7 @@ class OrderPage(BasePage):
 
     def get_TBNhapSDT(self):
         try:
-            locator = self.get_locator("TBNhapSDT")
+            locator = self.get_locator("lblThongBaoNhapSoDienThoai")
             element = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located(locator)
             )
@@ -60,7 +60,7 @@ class OrderPage(BasePage):
 
     def get_TBNhapDC(self):
         try:
-            locator = self.get_locator("TBNhapDC")
+            locator = self.get_locator("lblThongBaoNhapDiaChi")
             element = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located(locator)
             )
@@ -70,7 +70,7 @@ class OrderPage(BasePage):
 
     def get_TBChiCoSo(self):
         try:
-            locator = self.get_locator("TBChiCoSo")
+            locator = self.get_locator("lblThongBaoDienThoaiChiCoSo")
             element = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located(locator)
             )
@@ -80,7 +80,7 @@ class OrderPage(BasePage):
 
     def get_TB10So(self):
         try:
-            locator = self.get_locator("TB10so")
+            locator = self.get_locator("lblThongBaoDienThoai10so")
             element = WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located(locator)
             )

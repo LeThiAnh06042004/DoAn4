@@ -1,0 +1,47 @@
+[
+  {
+    "test_case_id": "TC_001",
+    "scenario": "Tìm kiếm sản phẩm với từ khóa hợp lệ",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Nhập từ khóa tìm kiếm vào ô tìm kiếm",
+      "Step 2: Nhấn nút \"Tìm kiếm\"",
+      "Step 3: Kiểm tra kết quả hiển thị danh sách sản phẩm phù hợp với từ khóa"
+    ],
+    "expected_result": [
+      "Danh sách sản phẩm được hiển thị dựa trên từ khóa tìm kiếm"
+    ]
+  },
+  {
+    "test_case_id": "TC_002",
+    "scenario": "Tìm kiếm khi không nhập từ khóa",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Không nhập dữ liệu vào ô tìm kiếm",
+      "Step 2: Nhấn nút \"Tìm kiếm\"",
+      "Step 3: Kiểm tra kết quả hiển thị danh sách tất cả sản phẩm trong cửa hàng"
+    ],
+    "expected_result": [
+      "Danh sách toàn bộ sản phẩm được hiển thị"
+    ]
+  },
+  {
+    "test_case_id": "TC_003",
+    "scenario": "Tìm kiếm khi không tìm thấy sản phẩm phù hợp",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Nhập từ khóa chưa tồn tại trong kho hàng vào ô tìm kiếm",
+      "Step 2: Nhấn nút \"Tìm kiếm\"",
+      "Step 3: Kiểm tra thông báo hiển thị \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\""
+    ],
+    "expected_result": [
+      "\"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\" được hiển thị trên giao diện"
+    ]
+  }
+]

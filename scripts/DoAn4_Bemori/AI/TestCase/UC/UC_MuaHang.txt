@@ -15,9 +15,7 @@ Basic Flow:
 6. Người dùng nhấn nút "Mua hàng"
 7. Hệ thống kiểm tra dữ liệu nhập
 8. Hệ thống gửi thông tin đơn hàng
-9. Hệ thống hiển thị thông báo:
-“Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.
-Gấu Bông Online sẽ hoàn thiện thông tin và cập nhật hành trình đơn hàng cho bạn qua messenger nha!”
+9. Hệ thống hiển thị thông báo có chứa “Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger."
 
 Alternate Flow:
 AF1: Họ và tên người mua rỗng

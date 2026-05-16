@@ -8,34 +8,34 @@ class QuickOrderPage(BasePage):
         super().__init__(driver, "DatHangNhanh_locators.yaml")
 
     def click_SP(self):
-        self.click("SP")
+        self.click("lnkSanPham")
 
     def nhapDHN(self, sdt):
-        self.send_keys("txtDHN", sdt)
+        self.send_keys("txtDatHangNhanh", sdt)
 
     def click_Gui(self):
         self.click("btnGui")
 
     def get_TBThanhCong(self):
         try:
-            return self.get_text("txtThanhCong")
+            return self.get_text("lblThanhCong")
         except:
             return ""
 
     def get_TBrong(self):
         try:
-            return self.get_text("txtTB_rong")
+            return self.get_text("lblThongBaoNhapSoDienThoai")
         except:
             return ""
 
     def get_TBChiCoSo(self):
         try:
-            return self.get_text("txtTB_chicoso")
+            return self.get_text("lblThongBaoSoDienThoaiChiCoSo")
         except:
             return ""
 
     def get_TBduoi10(self):
         try:
-            return self.get_text("txtTB_duoi10")
+            return self.get_text("lblThongBaoSoDienThoai10so")
         except:
             return ""

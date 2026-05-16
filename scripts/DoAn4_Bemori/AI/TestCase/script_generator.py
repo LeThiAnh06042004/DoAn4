@@ -1,51 +1,264 @@
-import json
-import re
 import yaml
-import inspect
 
-from AI.ai_client import call_llm
-from core.kw_common import KWCommon
 from utils.config_loader import load_config
-from utils.locator_utils import normalize_locator_name
-from utils.semantic_locator_mapper import map_locator_semantic
 from utils.action_extractor import extract_action
+from utils.semantic_locator_mapper import map_locator_semantic
+
+from utils.data_binding_utils import (
+    build_locator_context,
+    load_test_data,
+    get_locator_obj,
+    infer_condition_for_input,
+    find_matching_data_row,
+    get_value_from_row,
+    ensure_list,
+    normalize_key
+)
+
+from utils.verify_utils import (
+    build_verify_steps_from_expected,
+    extract_quoted_text,
+    is_duplicate_step
+)
 
 
+def is_message_locator(loc):
+    text = " ".join([
+        loc.get("name", ""),
+        " ".join(ensure_list(loc.get("semantic", [])))
+    ])
 
-# ================= LOAD KEYWORD =================
-def load_keywords_with_desc():
-    keyword_docs = []
+    text_norm = normalize_key(text)
 
-    for name, func in inspect.getmembers(KWCommon, predicate=inspect.isfunction):
-        if name.startswith("_"):
+    message_keywords = [
+        "thongbao",
+        "message",
+        "success",
+        "missing",
+        "invalid",
+        "loi",
+        "thanhcong"
+    ]
+
+    return any(
+        key in text_norm
+        for key in message_keywords
+    )
+
+
+def filter_locators_by_keyword(keyword, locator_context):
+    if keyword == "INPUT_TEXT":
+        return [
+            loc for loc in locator_context
+            if loc.get("type") in [
+                "input field",
+                "textarea"
+            ]
+        ]
+
+    if keyword in [
+        "CLICK",
+        "DOUBLE_CLICK",
+        "RIGHT_CLICK"
+    ]:
+        return [
+            loc for loc in locator_context
+            if loc.get("type") in [
+                "button",
+                "link",
+                "image",
+                "icon",
+                "element"
+            ]
+        ]
+
+    if keyword in [
+        "VERIFY_ELEMENT_TEXT_EQUALS",
+        "VERIFY_TEXT_CONTAINS"
+    ]:
+        message_locators = [
+            loc for loc in locator_context
+            if is_message_locator(loc)
+        ]
+
+        if message_locators:
+            return message_locators
+
+        return [
+            loc for loc in locator_context
+            if loc.get("type") == "label"
+        ]
+
+    if keyword in [
+        "VERIFY_ELEMENT_VISIBLE",
+        "VERIFY_ELEMENT_PRESENT"
+    ]:
+        return [
+            loc for loc in locator_context
+            if loc.get("type") in [
+                "label",
+                "element",
+                "combobox",
+                "table"
+            ]
+        ]
+
+    return locator_context
+
+
+def map_input_locator_by_rule(step_text, locator_context):
+    text_norm = normalize_key(step_text)
+
+    best_locator = None
+    best_score = 0
+
+    stop_words = [
+        "nhap",
+        "onhap",
+        "vao",
+        "input",
+        "field",
+        "textbox",
+        "textarea"
+    ]
+
+    for loc in locator_context:
+        if loc.get("type") not in [
+            "input field",
+            "textarea"
+        ]:
             continue
 
-        doc = inspect.getdoc(func) or ""
-        keyword_docs.append(f"{name}: {doc}")
+        score = 0
 
-    return keyword_docs
+        candidates = []
+
+        candidates.append(loc.get("name", ""))
+
+        candidates.extend(
+            ensure_list(loc.get("semantic", []))
+        )
+
+        candidates.extend(
+            ensure_list(loc.get("data_key", []))
+        )
+
+        for candidate in candidates:
+            candidate_norm = normalize_key(candidate)
+
+            if not candidate_norm:
+                continue
+
+            cleaned = candidate_norm
+
+            for word in stop_words:
+                cleaned = cleaned.replace(word, "")
+
+            if not cleaned:
+                continue
+
+            if cleaned in text_norm:
+                score += len(cleaned) * 5
+
+            elif candidate_norm in text_norm:
+                score += len(candidate_norm) * 4
+
+            else:
+                # So khớp từng phần nhỏ trong semantic
+                parts = [
+                    p for p in cleaned.split()
+                    if p and p not in stop_words
+                ]
+
+                for part in parts:
+                    if normalize_key(part) in text_norm:
+                        score += len(part)
+
+        print(
+            f"[INPUT RULE] step='{step_text}' "
+            f"| locator={loc.get('name')} "
+            f"| score={score}"
+        )
+
+        if score > best_score:
+            best_score = score
+            best_locator = loc.get("name")
+
+    print(
+        f"[INPUT RULE BEST] step='{step_text}' "
+        f"=> {best_locator} | score={best_score}"
+    )
+
+    if best_score > 0:
+        return best_locator
+
+    return None
 
 
-# ================= PARSE JSON =================
-def extract_json(raw: str):
-    raw = raw.strip()
+def map_locator_by_keyword(
+        step_text,
+        keyword,
+        locator_context
+):
+    if keyword == "INPUT_TEXT":
+        rule_locator = map_input_locator_by_rule(
+            step_text,
+            locator_context
+        )
 
-    raw = re.sub(r"```json", "", raw)
-    raw = re.sub(r"```", "", raw)
-    raw = re.sub(r"//.*", "", raw)
-    raw = re.sub(r"/\*.*?\*/", "", raw, flags=re.DOTALL)
-    raw = re.sub(r",\s*}", "}", raw)
-    raw = re.sub(r",\s*]", "]", raw)
+        if rule_locator:
+            return rule_locator
 
-    match = re.search(r"\[.*\]", raw, re.DOTALL)
+    candidates = filter_locators_by_keyword(
+        keyword,
+        locator_context
+    )
 
-    if match:
-        return json.loads(match.group(0))
+    if not candidates:
+        candidates = locator_context
 
-    raise Exception("Không parse được JSON từ AI")
+    return map_locator_semantic(
+        step_text,
+        candidates
+    )
 
 
-# ================= SETUP =================
+def build_expected_verify_steps(
+        expected_results,
+        raw_steps,
+        locator_context
+):
+    verify_infos = build_verify_steps_from_expected(
+        expected_results,
+        raw_steps
+    )
+
+    verify_steps = []
+
+    for info in verify_infos:
+        keyword = info.get("keyword")
+        value = info.get("value")
+
+        if not value:
+            continue
+
+        locator_text = f"thông báo {value}"
+
+        locator = map_locator_by_keyword(
+            locator_text,
+            keyword,
+            locator_context
+        )
+
+        verify_steps.append({
+            "keyword": keyword,
+            "locator": locator,
+            "value": value
+        })
+
+    return verify_steps
+
+
 def inject_setup_teardown(result):
     config = load_config()
     base_url = config.get("base_url", "")
@@ -53,9 +266,11 @@ def inject_setup_teardown(result):
     for tc in result:
         steps = tc.get("steps", [])
 
-        keywords = [s.get("keyword", "") for s in steps]
+        keywords = [
+            s.get("keyword", "")
+            for s in steps
+        ]
 
-        # thêm OPEN_URL
         if "OPEN_URL" not in keywords:
             steps.insert(0, {
                 "keyword": "OPEN_URL",
@@ -63,7 +278,6 @@ def inject_setup_teardown(result):
                 "value": base_url
             })
 
-        # thêm CLOSE_BROWSER
         if "CLOSE_BROWSER" not in keywords:
             steps.append({
                 "keyword": "CLOSE_BROWSER",
@@ -74,414 +288,154 @@ def inject_setup_teardown(result):
     return result
 
 
-# ================= PROMPT =================
-PROMPT = """
-Bạn là chuyên gia kiểm thử phần mềm.
-
-================ CHỦ ĐỀ HỆ THỐNG =================
-{topic}
-
-Hãy chuyển test case thành keyword-driven steps.
-
-================ KEYWORDS =================
-{keywords}
-
-================ QUY TẮC CHỌN KEYWORD (RẤT QUAN TRỌNG) =================
-
-Dựa vào Ý NGHĨA của step để chọn đúng keyword:
-
-1. Nhập liệu (input):
-→ dùng:
-- INPUT_TEXT
-- CLEAR_TEXT
-- SEND_KEYS
-- PRESS_ENTER
-
-2. Click / thao tác:
-→ dùng:
-- CLICK
-- DOUBLE_CLICK
-- RIGHT_CLICK
-- CLICK_JS
-
-3. Chọn (dropdown):
-→ dùng:
-- SELECT_BY_TEXT
-- SELECT_BY_VALUE
-- SELECT_BY_INDEX
-
-4. Điều hướng:
-→ dùng:
-- OPEN_URL
-- GO_BACK
-- REFRESH_PAGE
-
-5. Kiểm tra hiển thị:
-→ dùng:
-- VERIFY_ELEMENT_VISIBLE
-- VERIFY_ELEMENT_PRESENT
-
-6. Kiểm tra nội dung cụ thể:
-→ CHỈ dùng khi Expected Output có TEXT RÕ RÀNG
-→ dùng:
-- VERIFY_ELEMENT_TEXT_EQUALS
-- VERIFY_TEXT_CONTAINS
-
-================ QUY TẮC BẮT BUỘC =================
-
-- Nếu step là "nhập" → PHẢI dùng INPUT_TEXT
-- Nếu step là "click" → PHẢI dùng CLICK
-- Nếu step là "kiểm tra hiển thị" → dùng VERIFY_ELEMENT_VISIBLE
-- Nếu step có thông báo cụ thể → PHẢI dùng VERIFY_ELEMENT_TEXT_EQUALS + value
-
-QUAN TRỌNG:
-
-- Nếu locator là dropdown/list (cbo, list, dropdown)
-→ KHÔNG được dùng verify text
-→ CHỈ dùng VERIFY_ELEMENT_VISIBLE
-
-- Nếu Expected Output KHÔNG có text cụ thể
-→ KHÔNG được dùng VERIFY_ELEMENT_TEXT_EQUALS
-
-- Nếu Expected Output CÓ text cụ thể
-→ BẮT BUỘC phải:
-  + dùng VERIFY_ELEMENT_TEXT_EQUALS
-  + value = chính xác nội dung đó
-
-================ YÊU CẦU =================
-1. Chỉ được dùng keyword trong danh sách trên
-2. Keyword phải EXACT với tên method
-3. Không được tự tạo keyword mới
-4. Không bỏ qua bước VERIFY
-5. Locator phải lấy từ danh sách
-
-6. PHẢI sinh dữ liệu THỰC (value)
-   - Phù hợp với test case
-   - Phù hợp với ngữ cảnh
-
-7. Quy tắc dữ liệu:
-   - valid → dữ liệu hợp lệ
-   - invalid → dữ liệu sai
-   - empty → ""
-   - boundary → giá trị biên
-
-8. KHÔNG dùng placeholder (<valid>, <invalid>...)
-
-9. TẤT CẢ dữ liệu PHẢI liên quan đến CHỦ ĐỀ
-   - Value phải là thực thể, từ khóa hoặc nội dung thuộc domain của hệ thống
-   - Không được dùng dữ liệu chung chung hoặc không liên quan
-
-10. KHÔNG được sử dụng dữ liệu thuộc domain khác
-    - Ví dụ:
-      Nếu hệ thống là ecommerce → không dùng dữ liệu về ngân hàng
-      Nếu hệ thống là giáo dục → không dùng dữ liệu về sản phẩm
-
-11. Dữ liệu phải có ý nghĩa thực tế với người dùng cuối
-    - Không dùng chuỗi vô nghĩa như: "abc123", "qwerty"
-
-================ LOCATORS =================
-{locators}
-
-Mỗi locator gồm:
-- name: tên locator
-- type: loại element (input, button, dropdown...)
-- desc: mô tả chức năng
-
-→ Chọn locator phù hợp nhất với step dựa trên desc và type
-→ Không chọn sai locator
-
-================ OUTPUT =================
-[
-  {{
-    "test_case_id": "...",
-    "steps": [
-      {{
-        "keyword": "...",
-        "locator": "...",
-        "value": "dữ liệu thực tế đúng chủ đề"
-      }}
-    ]
-  }}
-]
-
-================ INPUT =================
-Testcases:
-{testcases}
-
-Locators:
-{locators}
-"""
-
-
-# ================= VALID KEYWORD =================
-# lấy danh sách keyword hợp lệ
-def get_all_valid_keywords():
-
-    # Lấy tất cả function trong class KWCommon
-    # và loại bỏ các hàm private
-    return set([
-
-        name
-
-        for name, _ in inspect.getmembers(
-            KWCommon,
-            predicate=inspect.isfunction
-        )
-
-        if not name.startswith("_")
-    ])
-
-
-# ================= AUTO FIX KEYWORD =================
-def auto_fix_keyword(step_text):
-
-    keyword = extract_action(step_text)
-
-    if keyword:
-        return keyword
-
-    return None
-
-
-# ================= VALIDATE =================
-def validate_and_fix(
-        result,
-        testcases,
-        locator_context
-):
-
-    # Duyệt TC để mỗi TC AI được ghép với TC gốc tương ứng
-    for tc, original_tc in zip(
-            result,
-            testcases
-    ):
-        # LẤY DATA TRONG 1 TESTCASE
-        ai_steps = tc.get("steps", []) # step AI sinh ra
-        raw_steps = original_tc.get("steps", []) # câu gốc
-        expected_results = original_tc.get("expected_result", []) # expected output để validate VERIFY
-
-        idx = 0
-
-        # Duyệt từng step
-        for step_obj in list(ai_steps):
-
-            keyword = step_obj.get("keyword", "")
-
-            # Bỏ qua step system
-            if keyword in ["OPEN_URL", "CLOSE_BROWSER"]:
-                continue
-
-            if idx >= len(raw_steps):
-                break
-
-            # Lấy câu gốc để phân tích
-            raw_step = raw_steps[idx]
-
-            # FIX KEYWORD
-            # CHUYỂN câu text (raw_step) → keyword
-            old_kw = step_obj.get("keyword", "")
-            new_kw = auto_fix_keyword(raw_step)
-
-            if new_kw:
-                if new_kw != old_kw:
-                    print(f"[Fix Keyword] {old_kw} -> {new_kw} | step: {raw_step}")
-
-                step_obj["keyword"] = new_kw #update lại
-            else:
-                new_kw = old_kw
-
-
-            # BUILD LOCATOR TEXT: Tạo input cho semantic locator mapping
-            locator_text = raw_step
-
-            # Nếu là VERIFY thì Thêm expected_result vào context
-            if "VERIFY" in new_kw and expected_results:
-                locator_text += " " + " ".join(expected_results)
-
-
-            # FIX LOCATOR
-            # Lấy locator hiện tại
-            old_locator = step_obj.get("locator", "")
-
-            # danh sách hợp lệ
-            valid_locator_names = {
-                loc["name"] for loc in locator_context
-            }
-
-            # kiểm tra có cần sửa không
-            need_fix_locator = (
-                    not old_locator
-                    or old_locator not in valid_locator_names
-            )
-
-            if need_fix_locator:
-                # nếu cần fix
-                new_locator = map_locator_semantic(
-                    locator_text,
-                    locator_context
-                )
-
-                if new_locator and new_locator != old_locator:
-                    print(f"[Fix Locator] {old_locator} -> {new_locator} | step: {locator_text}")
-
-                step_obj["locator"] = new_locator or old_locator
-
-
-            # FIX VALUE CHO VERIFY TEXT
-            # Chuẩn hoá expected text cho verify
-            if new_kw in [
-                "VERIFY_ELEMENT_TEXT_EQUALS",
-                "VERIFY_TEXT_CONTAINS"
-            ] and expected_results:
-
-                # lấy expected
-                expected_text = expected_results[0]
-
-                # clean text để bỏ rác ngôn từ UI
-                expected_text = (
-                    expected_text
-                    .replace("Hệ thống hiển thị", "")
-                    .replace("xuất hiện", "")
-                    .replace("thông báo", "")
-                    .strip()
-                    .strip('"')
-                    .strip("'")
-                )
-
-                step_obj["value"] = expected_text
-
-            # ==================================================
-            # XOÁ VERIFY TRÙNG
-            # ==================================================
-            if new_kw in [
-                "VERIFY_ELEMENT_TEXT_EQUALS",
-                "VERIFY_TEXT_CONTAINS"
-            ]:
-
-                current_locator = step_obj.get("locator", "")
-                current_value = str(step_obj.get("value", "")).strip()
-
-                duplicated = False
-
-                # kiểm tra toàn bộ step
-                for other_step in list(ai_steps):
-
-                    if other_step is step_obj:
-                        continue
-
-                    if (
-                        other_step.get("keyword") == new_kw
-                        and other_step.get("locator") == current_locator
-                        and str(other_step.get("value", "")).strip() == current_value
-                    ):
-                        duplicated = True
-                        break
-
-                # nếu trùng
-                if duplicated:
-                    print(f"[REMOVE DUPLICATE VERIFY] {current_locator}")
-                    ai_steps.remove(step_obj)
-                    continue
-
-            idx += 1 # chuyển sang step tiếp theo
-
-    return result
-
-
-# ================= MAIN =================
 def generate_keyword_steps(
         testcases,
         locator_path,
-        topic
+        data_path
 ):
-
-    # load keyword docs
-    keyword_docs = load_keywords_with_desc()
-
-    keyword_str = "\n".join(
-        keyword_docs
-    )
-
-    # load locator yaml
-    with open(
-            locator_path,
-            "r",
-            encoding="utf-8"
-    ) as f:
-
+    with open(locator_path, "r", encoding="utf-8") as f:
         locators = yaml.safe_load(f)
 
-    # ==================================================
-    # BUILD LOCATOR CONTEXT
-    # ==================================================
-    locator_context = []
+    locator_context = build_locator_context(
+        locators
+    )
 
-    for key, value in locators.items():
+    data_rows = load_test_data(
+        data_path
+    )
 
-        locator_context.append({
+    if isinstance(data_rows, dict):
+        data_rows = [data_rows]
 
-            "name": key,
+    result = []
 
-            "type": normalize_locator_name(
-                key
-            ),
+    for tc in testcases:
+        raw_steps = tc.get("steps", [])
+        expected_results = tc.get("expected_result", [])
 
-            "semantic": value.get(
-                "semantic",
-                ""
-            ),
+        temp_steps = []
+        input_infos = []
 
-            "by": value.get(
-                "by",
-                ""
+        # PASS 1: keyword + locator + condition
+        for raw_step in raw_steps:
+            keyword = extract_action(raw_step)
+
+            if not keyword:
+                continue
+
+            if keyword in [
+                "VERIFY_ELEMENT_TEXT_EQUALS",
+                "VERIFY_TEXT_CONTAINS",
+                "VERIFY_ELEMENT_VISIBLE",
+                "VERIFY_ELEMENT_PRESENT"
+            ]:
+                continue
+
+            locator_text = raw_step
+
+            quoted_field = extract_quoted_text(raw_step)
+
+            if keyword == "INPUT_TEXT" and quoted_field:
+                locator_text = f"{raw_step} {quoted_field} {quoted_field}"
+
+            locator = map_locator_by_keyword(
+                locator_text,
+                keyword,
+                locator_context
             )
+
+            locator_obj = get_locator_obj(
+                locator,
+                locator_context
+            )
+
+            condition = infer_condition_for_input(
+                raw_step=raw_step,
+                tc=tc,
+                locator_obj=locator_obj
+            )
+
+            temp_steps.append({
+                "keyword": keyword,
+                "locator": locator,
+                "locator_obj": locator_obj,
+                "condition": condition,
+                "raw_step": raw_step
+            })
+
+            if keyword == "INPUT_TEXT":
+                input_infos.append({
+                    "locator": locator,
+                    "locator_obj": locator_obj,
+                    "condition": condition,
+                    "raw_step": raw_step
+                })
+
+        matched_row = find_matching_data_row(
+            data_rows,
+            input_infos
+        )
+
+        print("=== MATCHED DATA ROW ===")
+        print(matched_row)
+
+        generated_steps = []
+        visible_verify_seen = set()
+
+        # PASS 2: fill value
+        for item in temp_steps:
+            keyword = item["keyword"]
+            locator = item["locator"]
+            locator_obj = item["locator_obj"]
+            condition = item["condition"]
+
+            value = ""
+
+            if keyword == "INPUT_TEXT":
+                value = get_value_from_row(
+                    matched_row,
+                    locator_obj,
+                    condition
+                )
+
+            step_obj = {
+                "keyword": keyword,
+                "locator": locator,
+                "value": value
+            }
+
+            if keyword == "VERIFY_ELEMENT_VISIBLE":
+                if locator in visible_verify_seen:
+                    continue
+
+                visible_verify_seen.add(locator)
+
+            if is_duplicate_step(
+                generated_steps,
+                step_obj
+            ):
+                continue
+
+            generated_steps.append(step_obj)
+
+        verify_steps = build_expected_verify_steps(
+            expected_results,
+            raw_steps,
+            locator_context
+        )
+
+        for verify_step in verify_steps:
+            if not is_duplicate_step(
+                generated_steps,
+                verify_step
+            ):
+                generated_steps.append(
+                    verify_step
+                )
+
+        result.append({
+            "test_case_id": tc.get("test_case_id", ""),
+            "steps": generated_steps
         })
 
-    locators_str = json.dumps(
-        locator_context,
-        ensure_ascii=False,
-        indent=2
-    )
-
-    # ==================================================
-    # BUILD PROMPT
-    # ==================================================
-    prompt = PROMPT.format(
-
-        keywords=keyword_str,
-
-        testcases=json.dumps(
-            testcases,
-            indent=2,
-            ensure_ascii=False
-        ),
-
-        locators=locators_str,
-
-        topic=topic
-    )
-
-    # ==================================================
-    # CALL AI
-    # ==================================================
-    raw = call_llm(prompt)
-
-    print("===== RAW AI OUTPUT =====")
-    print(raw)
-
-    # parse JSON
-    result = extract_json(raw)
-
-    # inject setup / teardown
-    result = inject_setup_teardown(
-        result
-    )
-
-    # validate & fix
-    result = validate_and_fix(
-        result,
-        testcases,
-        locator_context
-    )
-
-    return result
+    return inject_setup_teardown(result)

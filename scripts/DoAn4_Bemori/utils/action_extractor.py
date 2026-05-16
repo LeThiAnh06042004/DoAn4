@@ -1,34 +1,73 @@
 from utils.action_patterns import ACTION_PATTERNS
 
+
 # Chuẩn hoá câu input trước khi match
 def normalize_text(text):
-    return text.lower().strip()
+    if text is None:
+        return ""
+
+    return str(text).lower().strip()
 
 
-# Nhận 1 step -> 1 kw phù hợp nhất
+# Nhận 1 step -> 1 keyword phù hợp nhất
 def extract_action(step_text):
 
-    text = normalize_text(step_text) #chuẩn hoá input
+    text = normalize_text(step_text)
 
-    # kw phù hợp nhất sẽ được lưu ở biến này và score cao nhất sẽ thắng
+    # ==================================================
+    # ƯU TIÊN INPUT_TEXT
+    # Lý do:
+    # "Nhập nội dung bình luận" có chữ "nội dung"
+    # nên nếu chỉ tính score, nó dễ bị nhận nhầm thành VERIFY.
+    # ==================================================
+    input_patterns = [
+        "không nhập",
+        "nhập",
+        "điền",
+        "gõ",
+        "type",
+        "enter",
+        "fill"
+    ]
+
+    if any(pattern in text for pattern in input_patterns):
+        return "INPUT_TEXT"
+
+    # ==================================================
+    # ƯU TIÊN CLICK / ĐIỀU HƯỚNG
+    # ==================================================
+    click_patterns = [
+        "điều hướng",
+        "truy cập",
+        "chuyển tới",
+        "đi đến",
+        "vào trang chi tiết",
+        "mở sản phẩm",
+        "nhấn",
+        "bấm",
+        "click",
+        "tap"
+    ]
+
+    if any(pattern in text for pattern in click_patterns):
+        return "CLICK"
+
+    # ==================================================
+    # CÁC KEYWORD CÒN LẠI: dùng score như cũ
+    # ==================================================
     best_keyword = None
     best_score = 0
 
-    # Duệt toàn bộ rule và tính điểm
     for keyword, patterns in ACTION_PATTERNS.items():
 
         score = 0
 
         for pattern in patterns:
-            # Kiểm tra xem pattern có xuất hiện không
-            # Nếu có cộng “mức độ quan trọng” cho keyword đó và = độ dài chuỗi pattern
             if pattern in text:
                 score += len(pattern)
 
-        # keyword nào match nhiều pattern hơn sẽ chọn
         if score > best_score:
             best_score = score
             best_keyword = keyword
 
     return best_keyword
-

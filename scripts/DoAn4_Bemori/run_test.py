@@ -10,13 +10,12 @@ from utils.logger import logging
 
 
 # ================= CONFIG =================
-#SCRIPT_PATH = "AI/TestCase/scripts/SCR/SCR_TimKiem.xlsx"
-SCRIPT_PATH = "test/cases/test_TK.xlsx"
-DATA_PATH = "resources/data/data_TimKiem.yaml"
-LOCATOR_PATH = "resources/locators/TimKiem_locators.yaml"
+SCRIPT_PATH = "test/cases/SCR_BinhLuan.xlsx"
+DATA_PATH = "resources/data/data_BinhLuan.sqlite"
+LOCATOR_PATH = "resources/locators/BinhLuan_locators.yaml"
 
-TARGET_TC = None      # None = all | "TC_001" = run 1
-USE_DATA = True          # True = dùng data
+TARGET_TC = None     # None = all | "TC_001" = run 1
+USE_DATA = False          # True = dùng data
 # ==========================================
 
 

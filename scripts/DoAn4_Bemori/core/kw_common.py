@@ -300,10 +300,31 @@ class KWCommon:
             return False
 
     def VERIFY_ELEMENT_TEXT_EQUALS(self, locator, expected_text: str):
-        """ Kiểm tra text của element bằng đúng chuỗi """
+        """Kiểm tra text của element bằng đúng chuỗi"""
+
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+
         resolved = self._resolve_locator(locator)
-        actual = self.driver.find_element(*resolved).text.strip()
-        assert actual == expected_text.strip(), f"Text thực tế: '{actual}' != '{expected_text}'"
+
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(resolved)
+        )
+
+        actual = element.text.strip()
+
+        if not actual:
+            actual = element.get_attribute("textContent") or ""
+
+        if not actual:
+            actual = element.get_attribute("innerText") or ""
+
+        actual = actual.strip()
+        expected = expected_text.strip()
+
+        assert actual == expected, (
+            f"Text thực tế: '{actual}' != '{expected}'"
+        )
 
     def VERIFY_ATTRIBUTE(self, locator, attr_name: str, expected_value: str):
         """ Kiểm tra giá trị của attribute (class, href, value...) """

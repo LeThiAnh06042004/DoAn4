@@ -99,7 +99,7 @@ btnMua:
   by: xpath
   value: //button[normalize-space()="Mua hàng"]
   semantic:
-    - nút xác nhận mua hàng
+    - nút xác nhận mua
     - confirm order button
     - xác nhận đặt hàng
     - submit order

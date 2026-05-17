@@ -10,9 +10,9 @@ from utils.logger import logging
 
 
 # ================= CONFIG =================
-SCRIPT_PATH = "test/cases/SCR_BinhLuan.xlsx"
-DATA_PATH = "resources/data/data_BinhLuan.sqlite"
-LOCATOR_PATH = "resources/locators/BinhLuan_locators.yaml"
+SCRIPT_PATH = "test/cases/SCR_MuaHang.xlsx"
+DATA_PATH = "resources/data/data_MuaHang.txt"
+LOCATOR_PATH = "resources/locators/MuaHang_locators.yaml"
 
 TARGET_TC = None     # None = all | "TC_001" = run 1
 USE_DATA = False          # True = dùng data

@@ -291,34 +291,53 @@ class KWCommon:
             return False
 
     def VERIFY_TEXT_CONTAINS(self, locator, expected_text: str):
-        """ Kiểm tra text của element có chứa chuỗi mong đợi """
-        resolved = self._resolve_locator(locator)
+        """Kiểm tra text của element có chứa chuỗi mong đợi"""
+        import unicodedata
+        import re
+        from selenium.common.exceptions import (
+            NoSuchElementException,
+            TimeoutException
+        )
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+        def normalize_text(text):
+            if text is None:
+                return ""
+            text = str(text)
+            # Chuẩn hoá Unicode tiếng Việt
+            text = unicodedata.normalize("NFC", text)
+            # Chuẩn hoá khoảng trắng
+            text = re.sub(r"\s+", " ", text)
+            return text.strip()
         try:
-            actual = self.driver.find_element(*resolved).text.strip()
-            return expected_text.strip() in actual
-        except NoSuchElementException:
+            resolved = self._resolve_locator(locator)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located(resolved)
+            )
+            actual = element.text.strip()
+            if not actual:
+                actual = element.get_attribute("textContent") or ""
+            if not actual:
+                actual = element.get_attribute("innerText") or ""
+            actual_norm = normalize_text(actual)
+            expected_norm = normalize_text(expected_text)
+            return expected_norm in actual_norm
+        except (NoSuchElementException, TimeoutException):
             return False
 
     def VERIFY_ELEMENT_TEXT_EQUALS(self, locator, expected_text: str):
         """Kiểm tra text của element bằng đúng chuỗi"""
-
         from selenium.webdriver.support.ui import WebDriverWait
         from selenium.webdriver.support import expected_conditions as EC
-
         resolved = self._resolve_locator(locator)
-
         element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(resolved)
         )
-
         actual = element.text.strip()
-
         if not actual:
             actual = element.get_attribute("textContent") or ""
-
         if not actual:
             actual = element.get_attribute("innerText") or ""
-
         actual = actual.strip()
         expected = expected_text.strip()
 

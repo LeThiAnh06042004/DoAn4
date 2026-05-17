@@ -10,9 +10,9 @@ from AI.TestCase.excel_script_exporter import export_script_to_excel
 # CẤU HÌNH ĐẦU VÀO
 # Người dùng chỉ cần sửa 3 biến này
 # ==================================================
-UC_FILE = "UC_BinhLuan.txt"
-LOCATOR_FILE = "BinhLuan_locators.yaml"
-DATA_FILE = "data_BinhLuan.sqlite"
+UC_FILE = "UC_MuaHang.txt"
+LOCATOR_FILE = "MuaHang_locators.yaml"
+DATA_FILE = "data_MuaHang.txt"
 
 
 def run_generation():

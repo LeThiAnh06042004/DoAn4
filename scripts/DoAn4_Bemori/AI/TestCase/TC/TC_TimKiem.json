@@ -1,47 +1,50 @@
 [
   {
     "test_case_id": "TC_001",
-    "scenario": "Tìm kiếm sản phẩm với từ khóa hợp lệ",
+    "path_id": "PATH_001",
+    "scenario": "Kiểm thử chức năng tìm kiếm khi nhập từ khóa hợp lệ.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống hiển thị trang cửa hàng."
     ],
     "steps": [
-      "Step 1: Nhập từ khóa tìm kiếm vào ô tìm kiếm",
-      "Step 2: Nhấn nút \"Tìm kiếm\"",
-      "Step 3: Kiểm tra kết quả hiển thị danh sách sản phẩm phù hợp với từ khóa"
+      "Step 1: Người dùng nhập từ khóa tìm kiếm vào ô tìm kiếm.",
+      "Step 2: Người dùng nhấn nút \"Tìm kiếm\".",
+      "Step 3: Kiểm tra danh sách sản phẩm phù hợp với từ khóa đã hiển thị."
     ],
     "expected_result": [
-      "Danh sách sản phẩm được hiển thị dựa trên từ khóa tìm kiếm"
+      "Hệ thống hiển thị danh sách các sản phẩm khớp với từ khóa tìm kiếm."
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Tìm kiếm khi không nhập từ khóa",
+    "path_id": "PATH_002",
+    "scenario": "Kiểm thử chức năng tìm kiếm khi người dùng không nhập từ khóa.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống hiển thị trang cửa hàng."
     ],
     "steps": [
-      "Step 1: Không nhập dữ liệu vào ô tìm kiếm",
-      "Step 2: Nhấn nút \"Tìm kiếm\"",
-      "Step 3: Kiểm tra kết quả hiển thị danh sách tất cả sản phẩm trong cửa hàng"
+      "Step 1: Người dùng không nhập bất kỳ ký tự nào vào ô tìm kiếm.",
+      "Step 2: Người dùng nhấn nút \"Tìm kiếm\".",
+      "Step 3: Kiểm tra danh sách toàn bộ sản phẩm trong cửa hàng được hiển thị."
     ],
     "expected_result": [
-      "Danh sách toàn bộ sản phẩm được hiển thị"
+      "Hệ thống hiển thị toàn bộ danh sách sản phẩm có sẵn trong cửa hàng."
     ]
   },
   {
     "test_case_id": "TC_003",
-    "scenario": "Tìm kiếm khi không tìm thấy sản phẩm phù hợp",
+    "path_id": "PATH_003",
+    "scenario": "Kiểm thử chức năng tìm kiếm khi không có sản phẩm phù hợp.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống hiển thị trang cửa hàng."
     ],
     "steps": [
-      "Step 1: Nhập từ khóa chưa tồn tại trong kho hàng vào ô tìm kiếm",
-      "Step 2: Nhấn nút \"Tìm kiếm\"",
-      "Step 3: Kiểm tra thông báo hiển thị \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\""
+      "Step 1: Người dùng nhập từ khóa tìm kiếm vào ô tìm kiếm.",
+      "Step 2: Người dùng nhấn nút \"Tìm kiếm\".",
+      "Step 3: Kiểm tra thông báo \"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\"."
     ],
     "expected_result": [
-      "\"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\" được hiển thị trên giao diện"
+      "\"Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.\""
     ]
   }
 ]

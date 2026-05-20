@@ -9,6 +9,38 @@ def normalize_text(text):
     return str(text).lower().strip()
 
 
+def is_navigation_click(text):
+    """
+    Nhận diện các bước điều hướng/mở trang/mở màn hình.
+    Đây là thao tác click trên UI, không phải SELECT.
+    """
+
+    navigation_patterns = [
+        "truy cập",
+        "điều hướng",
+        "chuyển tới",
+        "đi đến",
+        "đi tới",
+        "mở",
+        "vào"
+    ]
+
+    target_patterns = [
+        "trang",
+        "màn hình",
+        "chức năng",
+        "chi tiết",
+        "sản phẩm",
+        "bài viết",
+        "form"
+    ]
+
+    return (
+        any(pattern in text for pattern in navigation_patterns)
+        and any(pattern in text for pattern in target_patterns)
+    )
+
+
 # Nhận 1 step -> 1 keyword phù hợp nhất
 def extract_action(step_text):
 
@@ -16,9 +48,6 @@ def extract_action(step_text):
 
     # ==================================================
     # ƯU TIÊN INPUT_TEXT
-    # Lý do:
-    # "Nhập nội dung bình luận" có chữ "nội dung"
-    # nên nếu chỉ tính score, nó dễ bị nhận nhầm thành VERIFY.
     # ==================================================
     input_patterns = [
         "không nhập",
@@ -34,15 +63,16 @@ def extract_action(step_text):
         return "INPUT_TEXT"
 
     # ==================================================
-    # ƯU TIÊN CLICK / ĐIỀU HƯỚNG
+    # ƯU TIÊN CLICK / ĐIỀU HƯỚNG UI
+    # Lý do:
+    # Các câu như "truy cập trang chi tiết sản phẩm",
+    # "mở màn hình", "vào chức năng" là hành động click
+    # trên giao diện, không phải SELECT_BY_TEXT.
     # ==================================================
+    if is_navigation_click(text):
+        return "CLICK"
+
     click_patterns = [
-        "điều hướng",
-        "truy cập",
-        "chuyển tới",
-        "đi đến",
-        "vào trang chi tiết",
-        "mở sản phẩm",
         "nhấn",
         "bấm",
         "click",

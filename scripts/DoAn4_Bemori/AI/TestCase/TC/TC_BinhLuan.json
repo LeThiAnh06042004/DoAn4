@@ -1,110 +1,116 @@
 [
   {
     "test_case_id": "TC_001",
-    "scenario": "Thêm bình luận thành công trên trang chi tiết sản phẩm",
+    "path_id": "PATH_001",
+    "scenario": "Kiểm tra gửi bình luận thành công khi nhập đầy đủ thông tin.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống đang mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Nhấn vào liên kết để điều hướng tới trang chi tiết sản phẩm",
-      "Step 2: Nhập nội dung bình luận vào ô nhập",
-      "Step 3: Nhập họ tên vào ô nhập",
-      "Step 4: Nhập số điện thoại vào ô nhập",
-      "Step 5: Nhấn nút \"Gửi bình luận\"",
-      "Step 6: Kiểm tra thông báo hiển thị trên giao diện"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Nhập nội dung bình luận vào ô \"Bình luận\".",
+      "Step 3: Nhập họ tên vào ô \"Họ và tên\".",
+      "Step 4: Nhập số điện thoại hợp lệ vào ô \"Số điện thoại\".",
+      "Step 5: Nhấn nút \"Gửi bình luận\".",
+      "Step 6: Kiểm tra thông báo \"Gửi bình luận thành công.\" hiển thị."
     ],
     "expected_result": [
-      "\"Gửi bình luận thành công.\" xuất hiện trên màn hình"
+      "\"Gửi bình luận thành công.\" được hiển thị trên giao diện."
     ]
   },
   {
     "test_case_id": "TC_002",
-    "scenario": "Không gửi được khi nội dung bình luận rỗng",
+    "path_id": "PATH_002",
+    "scenario": "Kiểm tra thông báo khi không nhập nội dung bình luận.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống đang mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Nhấn vào liên kết để điều hướng tới trang chi tiết sản phẩm",
-      "Step 2: Không nhập nội dung bình luận",
-      "Step 3: Nhập họ tên vào ô nhập",
-      "Step 4: Nhập số điện thoại vào ô nhập",
-      "Step 5: Nhấn nút \"Gửi bình luận\"",
-      "Step 6: Kiểm tra thông báo hiển thị trên giao diện"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Không nhập nội dung bình luận vào ô \"Bình luận\".",
+      "Step 3: Nhập họ tên vào ô \"Họ và tên\".",
+      "Step 4: Nhập số điện thoại hợp lệ vào ô \"Số điện thoại\".",
+      "Step 5: Nhấn nút \"Gửi bình luận\".",
+      "Step 6: Kiểm tra thông báo \"Bạn chưa nhập bình luận.\" hiển thị."
     ],
     "expected_result": [
-      "\"Bạn chưa nhập bình luận.\" xuất hiện trên màn hình"
+      "\"Bạn chưa nhập bình luận.\" được hiển thị trên giao diện."
     ]
   },
   {
     "test_case_id": "TC_003",
-    "scenario": "Không gửi được khi họ tên rỗng",
+    "path_id": "PATH_003",
+    "scenario": "Kiểm tra thông báo khi không nhập họ tên.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống đang mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Nhấn vào liên kết để điều hướng tới trang chi tiết sản phẩm",
-      "Step 2: Nhập nội dung bình luận vào ô nhập",
-      "Step 3: Không nhập họ tên",
-      "Step 4: Nhập số điện thoại vào ô nhập",
-      "Step 5: Nhấn nút \"Gửi bình luận\"",
-      "Step 6: Kiểm tra thông báo hiển thị trên giao diện"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Nhập nội dung bình luận vào ô \"Bình luận\".",
+      "Step 3: Không nhập họ tên vào ô \"Họ và tên\".",
+      "Step 4: Nhập số điện thoại hợp lệ vào ô \"Số điện thoại\".",
+      "Step 5: Nhấn nút \"Gửi bình luận\".",
+      "Step 6: Kiểm tra thông báo \"Bạn chưa nhập tên.\" hiển thị."
     ],
     "expected_result": [
-      "\"Bạn chưa nhập tên.\" xuất hiện trên màn hình"
+      "\"Bạn chưa nhập tên.\" được hiển thị trên giao diện."
     ]
   },
   {
     "test_case_id": "TC_004",
-    "scenario": "Không gửi được khi số điện thoại rỗng",
+    "path_id": "PATH_004",
+    "scenario": "Kiểm tra thông báo khi không nhập số điện thoại.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống đang mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Nhấn vào liên kết để điều hướng tới trang chi tiết sản phẩm",
-      "Step 2: Nhập nội dung bình luận vào ô nhập",
-      "Step 3: Nhập họ tên vào ô nhập",
-      "Step 4: Không nhập số điện thoại",
-      "Step 5: Nhấn nút \"Gửi bình luận\"",
-      "Step 6: Kiểm tra thông báo hiển thị trên giao diện"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Nhập nội dung bình luận vào ô \"Bình luận\".",
+      "Step 3: Nhập họ tên vào ô \"Họ và tên\".",
+      "Step 4: Không nhập số điện thoại vào ô \"Số điện thoại\".",
+      "Step 5: Nhấn nút \"Gửi bình luận\".",
+      "Step 6: Kiểm tra thông báo \"Bạn chưa nhập số điện thoại.\" hiển thị."
     ],
     "expected_result": [
-      "\"Bạn chưa nhập số điện thoại.\" xuất hiện trên màn hình"
+      "\"Bạn chưa nhập số điện thoại.\" được hiển thị trên giao diện."
     ]
   },
   {
     "test_case_id": "TC_005",
-    "scenario": "Không gửi được khi số điện thoại chứa ký tự không phải số",
+    "path_id": "PATH_005",
+    "scenario": "Kiểm tra thông báo khi nhập số điện thoại chứa ký tự không phải số.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống đang mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Nhấn vào liên kết để điều hướng tới trang chi tiết sản phẩm",
-      "Step 2: Nhập nội dung bình luận vào ô nhập",
-      "Step 3: Nhập họ tên vào ô nhập",
-      "Step 4: Nhập số điện thoại chứa ký tự không phải số vào ô nhập",
-      "Step 5: Nhấn nút \"Gửi bình luận\"",
-      "Step 6: Kiểm tra thông báo hiển thị trên giao diện"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Nhập nội dung bình luận vào ô \"Bình luận\".",
+      "Step 3: Nhập họ tên vào ô \"Họ và tên\".",
+      "Step 4: Nhập số điện thoại chứa ký tự không phải số vào ô \"Số điện thoại\".",
+      "Step 5: Nhấn nút \"Gửi bình luận\".",
+      "Step 6: Kiểm tra thông báo \"Số điện thoại chỉ bao gồm những số.\" hiển thị."
     ],
     "expected_result": [
-      "\"Số điện thoại chỉ bao gồm những số.\" xuất hiện trên màn hình"
+      "\"Số điện thoại chỉ bao gồm những số.\" được hiển thị trên giao diện."
     ]
   },
   {
     "test_case_id": "TC_006",
-    "scenario": "Không gửi được khi số điện thoại ít hơn 10 chữ số",
+    "path_id": "PATH_006",
+    "scenario": "Kiểm tra thông báo khi nhập số điện thoại ít hơn 10 chữ số.",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Hệ thống đang mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Nhấn vào liên kết để điều hướng tới trang chi tiết sản phẩm",
-      "Step 2: Nhập nội dung bình luận vào ô nhập",
-      "Step 3: Nhập họ tên vào ô nhập",
-      "Step 4: Nhập số điện thoại có ít hơn 10 chữ số vào ô nhập",
-      "Step 5: Nhấn nút \"Gửi bình luận\"",
-      "Step 6: Kiểm tra thông báo hiển thị trên giao diện"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Nhập nội dung bình luận vào ô \"Bình luận\".",
+      "Step 3: Nhập họ tên vào ô \"Họ và tên\".",
+      "Step 4: Nhập số điện thoại có ít hơn 10 chữ số vào ô \"Số điện thoại\".",
+      "Step 5: Nhấn nút \"Gửi bình luận\".",
+      "Step 6: Kiểm tra thông báo \"Số điện thoại phải có ít nhất 10 số.\" hiển thị."
     ],
     "expected_result": [
-      "\"Số điện thoại phải có ít nhất 10 số.\" xuất hiện trên màn hình"
+      "\"Số điện thoại phải có ít nhất 10 số.\" được hiển thị trên giao diện."
     ]
   }
 ]

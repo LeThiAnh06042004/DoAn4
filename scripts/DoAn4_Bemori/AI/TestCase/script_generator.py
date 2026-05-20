@@ -164,7 +164,6 @@ def map_input_locator_by_rule(step_text, locator_context):
                 score += len(candidate_norm) * 4
 
             else:
-                # So khớp từng phần nhỏ trong semantic
                 parts = [
                     p for p in cleaned.split()
                     if p and p not in stop_words
@@ -223,38 +222,98 @@ def map_locator_by_keyword(
     )
 
 
+def find_related_verify_raw_steps(expected, raw_steps):
+    expected_norm = normalize_key(expected)
+    quoted = extract_quoted_text(expected)
+    quoted_norm = normalize_key(quoted)
+
+    related_steps = []
+
+    for step in raw_steps:
+        step_norm = normalize_key(step)
+
+        if (
+                "kiemtra" not in step_norm
+                and "thongbao" not in step_norm
+                and "hienthi" not in step_norm
+                and "cochua" not in step_norm
+                and "contains" not in step_norm
+        ):
+            continue
+
+        if quoted_norm and quoted_norm in step_norm:
+            related_steps.append(step)
+            continue
+
+        if expected_norm and expected_norm in step_norm:
+            related_steps.append(step)
+            continue
+
+        if "cochua" in step_norm or "contains" in step_norm:
+            related_steps.append(step)
+            continue
+
+    return related_steps
+
+
 def build_expected_verify_steps(
         expected_results,
         raw_steps,
         locator_context
 ):
-    verify_infos = build_verify_steps_from_expected(
-        expected_results,
-        raw_steps
-    )
-
     verify_steps = []
 
-    for info in verify_infos:
-        keyword = info.get("keyword")
-        value = info.get("value")
-
-        if not value:
-            continue
-
-        locator_text = f"thông báo {value}"
-
-        locator = map_locator_by_keyword(
-            locator_text,
-            keyword,
-            locator_context
+    for expected in expected_results:
+        related_raw_steps = find_related_verify_raw_steps(
+            expected,
+            raw_steps
         )
 
-        verify_steps.append({
-            "keyword": keyword,
-            "locator": locator,
-            "value": value
-        })
+        verify_infos = build_verify_steps_from_expected(
+            [expected],
+            related_raw_steps
+        )
+
+        for info in verify_infos:
+            keyword = info.get("keyword")
+            value = info.get("value", "")
+
+            if keyword in [
+                "VERIFY_ELEMENT_TEXT_EQUALS",
+                "VERIFY_TEXT_CONTAINS"
+            ]:
+                if not value:
+                    continue
+
+                locator_text = f"thông báo {value}"
+
+                locator = map_locator_by_keyword(
+                    locator_text,
+                    keyword,
+                    locator_context
+                )
+
+                verify_steps.append({
+                    "keyword": keyword,
+                    "locator": locator,
+                    "value": value
+                })
+
+            elif keyword in [
+                "VERIFY_ELEMENT_VISIBLE",
+                "VERIFY_ELEMENT_PRESENT"
+            ]:
+                locator = map_locator_by_keyword(
+                    value,
+                    keyword,
+                    locator_context
+                )
+
+                verify_steps.append({
+                    "keyword": keyword,
+                    "locator": locator,
+                    "value": ""
+                })
 
     return verify_steps
 
@@ -291,7 +350,8 @@ def inject_setup_teardown(result):
 def generate_keyword_steps(
         testcases,
         locator_path,
-        data_path
+        data_path,
+        execution_paths=None
 ):
     with open(locator_path, "r", encoding="utf-8") as f:
         locators = yaml.safe_load(f)
@@ -307,16 +367,29 @@ def generate_keyword_steps(
     if isinstance(data_rows, dict):
         data_rows = [data_rows]
 
+    execution_paths = execution_paths or []
+
+    path_step_map = {
+        path.get("path_id"): path.get("steps", [])
+        for path in execution_paths
+    }
+
     result = []
 
     for tc in testcases:
         raw_steps = tc.get("steps", [])
         expected_results = tc.get("expected_result", [])
 
+        source_steps = path_step_map.get(
+            tc.get("path_id", ""),
+            []
+        )
+
+        verify_context_steps = source_steps + raw_steps
+
         temp_steps = []
         input_infos = []
 
-        # PASS 1: keyword + locator + condition
         for raw_step in raw_steps:
             keyword = extract_action(raw_step)
 
@@ -382,7 +455,6 @@ def generate_keyword_steps(
         generated_steps = []
         visible_verify_seen = set()
 
-        # PASS 2: fill value
         for item in temp_steps:
             keyword = item["keyword"]
             locator = item["locator"]
@@ -420,7 +492,7 @@ def generate_keyword_steps(
 
         verify_steps = build_expected_verify_steps(
             expected_results,
-            raw_steps,
+            verify_context_steps,
             locator_context
         )
 

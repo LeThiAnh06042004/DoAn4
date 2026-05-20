@@ -1,4 +1,5 @@
 import re
+from unidecode import unidecode
 
 from utils.action_extractor import extract_action
 
@@ -8,6 +9,16 @@ def normalize_space(text):
         return ""
 
     return re.sub(r"\s+", " ", str(text)).strip()
+
+
+def normalize_text(text):
+    if text is None:
+        return ""
+
+    text = normalize_space(text).lower()
+    text = unidecode(text)
+
+    return text
 
 
 def extract_quoted_text(text):
@@ -33,15 +44,15 @@ def extract_quoted_text(text):
 
 
 def should_use_contains(text):
-    text = str(text).lower()
+    text = normalize_text(text)
 
     contains_patterns = [
-        "có chứa",
-        "thông báo chứa",
-        "nội dung chứa",
-        "contains",
-        "hiển thị chữ",
-        "hiển thị nội dung"
+        "co chua",
+        "thong bao co chua",
+        "noi dung co chua",
+        "message contains",
+        "text contains",
+        "contains"
     ]
 
     return any(
@@ -55,7 +66,7 @@ def is_generic_expected(text):
         return True
 
     text = str(text)
-    text_lower = text.lower()
+    text_lower = normalize_text(text)
 
     if extract_quoted_text(text):
         return False
@@ -64,33 +75,71 @@ def is_generic_expected(text):
         return False
 
     specific_patterns = [
-        " là ",
-        " có chứa ",
-        " thông báo chứa ",
-        " nội dung chứa ",
-        " hiển thị chữ ",
-        " hiển thị nội dung "
+        " la ",
+        " co chua ",
+        " thong bao chua ",
+        " noi dung chua ",
+        " hien thi chu ",
+        " hien thi noi dung "
     ]
 
     if any(pattern in text_lower for pattern in specific_patterns):
         return False
 
     generic_patterns = [
-        "thông báo xuất hiện",
-        "thông báo hiển thị",
-        "hiển thị thông báo",
-        "xuất hiện trên giao diện",
-        "hiển thị trên giao diện",
-        "trên giao diện",
-        "hệ thống kiểm tra",
-        "hệ thống gửi",
-        "không gửi đơn hàng",
-        "không gửi thông tin"
+        "thong bao xuat hien",
+        "thong bao hien thi",
+        "hien thi thong bao",
+        "xuat hien tren giao dien",
+        "hien thi tren giao dien",
+        "tren giao dien",
+        "he thong kiem tra",
+        "he thong gui",
+        "khong gui don hang",
+        "khong gui thong tin"
     ]
 
     return any(
         pattern in text_lower
         for pattern in generic_patterns
+    )
+
+
+def is_visible_expected(text):
+    if not text:
+        return False
+
+    text_lower = normalize_text(text)
+
+    if extract_quoted_text(text):
+        return False
+
+    message_patterns = [
+        "thong bao",
+        "message"
+    ]
+
+    if any(
+        pattern in text_lower
+        for pattern in message_patterns
+    ):
+        return False
+
+    visible_patterns = [
+        "danh sach",
+        "ket qua",
+        "san pham",
+        "toan bo",
+        "phu hop",
+        "duoc hien thi",
+        "hien thi danh sach",
+        "hien thi ket qua",
+        "xuat hien"
+    ]
+
+    return any(
+        pattern in text_lower
+        for pattern in visible_patterns
     )
 
 
@@ -111,21 +160,44 @@ def clean_expected_text(text):
 
     patterns = [
         r".*có chứa\s+(.+)$",
+        r".*co chua\s+(.+)$",
         r".*thông báo chứa\s+(.+)$",
+        r".*thong bao chua\s+(.+)$",
         r".*nội dung chứa\s+(.+)$",
+        r".*noi dung chua\s+(.+)$",
         r".*contains\s+(.+)$",
         r".*hiển thị chữ\s+(.+)$",
+        r".*hien thi chu\s+(.+)$",
         r".*hiển thị nội dung\s+(.+)$",
+        r".*hien thi noi dung\s+(.+)$",
         r".*nội dung thông báo là\s+(.+)$",
+        r".*noi dung thong bao la\s+(.+)$",
         r".*thông báo là\s+(.+)$",
-        r".*\slà\s+(.+)$"
+        r".*thong bao la\s+(.+)$",
+        r".*\slà\s+(.+)$",
+        r".*\sla\s+(.+)$"
     ]
 
+    text_norm = normalize_text(text)
+
     for pattern in patterns:
-        match = re.match(pattern, text, flags=re.IGNORECASE)
+        match = re.match(
+            pattern,
+            text,
+            flags=re.IGNORECASE
+        )
 
         if match:
             return normalize_space(match.group(1))
+
+        match_norm = re.match(
+            pattern,
+            text_norm,
+            flags=re.IGNORECASE
+        )
+
+        if match_norm:
+            return normalize_space(match_norm.group(1))
 
     if is_generic_expected(text):
         return ""
@@ -186,29 +258,92 @@ def infer_verify_keyword(raw_step, expected_results):
     return "VERIFY_ELEMENT_TEXT_EQUALS"
 
 
-def build_verify_steps_from_expected(expected_results, raw_steps=None):
+def build_verify_steps_from_expected(
+        expected_results,
+        raw_steps=None
+):
     verify_steps = []
 
     raw_steps = raw_steps or []
-    context_text = " ".join(raw_steps + expected_results)
+
+    # ==================================================
+    # Detect contains từ raw step
+    # ==================================================
+    raw_step_text = " ".join(
+        str(s)
+        for s in raw_steps
+    )
+
+    use_contains_from_step = should_use_contains(
+        raw_step_text
+    )
 
     for expected in expected_results:
-        has_specific_value = (
-            extract_quoted_text(expected)
-            or ":" in str(expected)
+        raw_expected_text = str(expected).strip()
+
+        if not raw_expected_text:
+            continue
+
+        expected_text = raw_expected_text
+
+        # ==============================================
+        # PRIORITY:
+        # step context > expected text
+        # ==============================================
+        use_contains = (
+            use_contains_from_step
+            or should_use_contains(raw_expected_text)
         )
 
-        if not has_specific_value:
+        quoted = extract_quoted_text(expected_text)
+
+        if quoted:
+            keyword = (
+                "VERIFY_TEXT_CONTAINS"
+                if use_contains
+                else "VERIFY_ELEMENT_TEXT_EQUALS"
+            )
+
+            verify_steps.append({
+                "keyword": keyword,
+                "value": quoted
+            })
+
             continue
 
-        value = clean_expected_text(expected)
+        if ":" in expected_text:
+            value = clean_expected_text(expected_text)
+
+            if value:
+                keyword = (
+                    "VERIFY_TEXT_CONTAINS"
+                    if use_contains
+                    else "VERIFY_ELEMENT_TEXT_EQUALS"
+                )
+
+                verify_steps.append({
+                    "keyword": keyword,
+                    "value": value
+                })
+
+            continue
+
+        if is_visible_expected(expected_text):
+            verify_steps.append({
+                "keyword": "VERIFY_ELEMENT_VISIBLE",
+                "value": expected_text
+            })
+
+            continue
+
+        value = clean_expected_text(expected_text)
 
         if not value:
-            continue
+            value = expected_text
 
         keyword = (
             "VERIFY_TEXT_CONTAINS"
-            if should_use_contains(context_text)
+            if use_contains
             else "VERIFY_ELEMENT_TEXT_EQUALS"
         )
 

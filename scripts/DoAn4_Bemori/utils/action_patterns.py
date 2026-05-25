@@ -1,3 +1,6 @@
+# “từ điển keyword” cho module extract_action()
+# Mỗi automation keyword sẽ có danh sách pattern nhận diện
+
 ACTION_PATTERNS = {
 
     "INPUT_TEXT": [

@@ -23,15 +23,16 @@ def apply_wrap_text(cell):
 def auto_adjust_row_height(ws, row):
     max_lines = 1
 
-    for col in range(1, 6):  # A → E
+    # Duyệt từ cột A → E
+    for col in range(1, 6):
         cell = ws.cell(row=row, column=col)
 
         if cell.value:
-            lines = str(cell.value).count("\n") + 1
+            lines = str(cell.value).count("\n") + 1 # đếm số dòng
             if lines > max_lines:
                 max_lines = lines
 
-    ws.row_dimensions[row].height = max_lines * 15
+    ws.row_dimensions[row].height = max_lines * 15 #chiều cao dòng = số dòng * 15
 
 
 # Set width cố định

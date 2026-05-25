@@ -15,6 +15,7 @@ def is_navigation_click(text):
     Đây là thao tác click trên UI, không phải SELECT.
     """
 
+    # Nhóm động từ điều hướng
     navigation_patterns = [
         "truy cập",
         "điều hướng",
@@ -25,6 +26,7 @@ def is_navigation_click(text):
         "vào"
     ]
 
+    # Nhóm đối tượng UI
     target_patterns = [
         "trang",
         "màn hình",
@@ -35,6 +37,8 @@ def is_navigation_click(text):
         "form"
     ]
 
+    # Logic detect navigation click: Phải có động từ điều hướng vÀ đối tượng UI
+    # VD: "Nhập sản phẩm". Có: sản phẩm, Ko có: nhập -> False
     return (
         any(pattern in text for pattern in navigation_patterns)
         and any(pattern in text for pattern in target_patterns)
@@ -44,10 +48,12 @@ def is_navigation_click(text):
 # Nhận 1 step -> 1 keyword phù hợp nhất
 def extract_action(step_text):
 
+    # Normalize trước giúp matching ổn định hơn
     text = normalize_text(step_text)
 
     # ==================================================
     # ƯU TIÊN INPUT_TEXT
+    # VD: "Nhập nd bình luận" d bị map thành verify/content do chưa "nd"
     # ==================================================
     input_patterns = [
         "không nhập",
@@ -58,18 +64,15 @@ def extract_action(step_text):
         "enter",
         "fill"
     ]
-
+    # match
     if any(pattern in text for pattern in input_patterns):
         return "INPUT_TEXT"
 
     # ==================================================
     # ƯU TIÊN CLICK / ĐIỀU HƯỚNG UI
-    # Lý do:
-    # Các câu như "truy cập trang chi tiết sản phẩm",
-    # "mở màn hình", "vào chức năng" là hành động click
-    # trên giao diện, không phải SELECT_BY_TEXT.
+    # VD: Nếu ko có "chọn sp" or "vào trang" dễ bị map thành SELECT_BY_TEXT.
     # ==================================================
-    if is_navigation_click(text):
+    if is_navigation_click(text): # các step điều hướng UI → map thành CLICK.
         return "CLICK"
 
     click_patterns = [
@@ -83,19 +86,22 @@ def extract_action(step_text):
         return "CLICK"
 
     # ==================================================
-    # CÁC KEYWORD CÒN LẠI: dùng score như cũ
+    # CÁC KEYWORD CÒN LẠI: dùng score matching như cũ
     # ==================================================
     best_keyword = None
     best_score = 0
 
+    # Duyệt ACTION_PATTERNS
     for keyword, patterns in ACTION_PATTERNS.items():
 
         score = 0
 
+        # pattern dài hơn → specificity cao hơn → score cao hơn
         for pattern in patterns:
             if pattern in text:
                 score += len(pattern)
 
+        # Chọn keyword có score cao nhất
         if score > best_score:
             best_score = score
             best_keyword = keyword

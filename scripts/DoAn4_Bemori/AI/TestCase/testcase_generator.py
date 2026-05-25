@@ -2,6 +2,7 @@ import json
 from AI.ai_client import call_llm
 
 
+# Structured Prompt Engineering
 TESTCASE_PROMPT_TEMPLATE = """
 ================ VAI TRÒ ================
 
@@ -185,9 +186,36 @@ Ví dụ:
 
 ================ NEGATIVE TESTING ================
 
-- Mỗi test case lỗi chỉ kiểm thử DUY NHẤT một điều kiện lỗi.
-- Các trường dữ liệu khác phải được hiểu là hợp lệ.
-- Không tạo test case có nhiều lỗi đầu vào cùng lúc.
+- Mỗi test case lỗi chỉ kiểm thử DUY NHẤT 1 điều kiện lỗi.
+- Không được kết hợp nhiều lỗi đầu vào trong cùng một test case.
+- Không được merge nhiều Alternate Flow vào một test case.
+
+QUY TẮC CỰC KỲ QUAN TRỌNG:
+
+1. Nếu execution path là Basic Flow:
+   - Tất cả dữ liệu nhập phải là dữ liệu hợp lệ.
+   - Không được dùng các cụm:
+     + không nhập
+     + rỗng
+     + để trống
+     + không hợp lệ
+     + ký tự không phải số
+     + ít hơn
+     + dưới
+     + vượt quá
+
+2. Nếu execution path là Alternate Flow:
+   - Chỉ được sử dụng đúng 1 điều kiện lỗi được mô tả trong execution path đó.
+   - Các trường dữ liệu khác phải được viết là dữ liệu hợp lệ.
+
+Ví dụ SAI:
+- Không nhập số điện thoại và nhập số điện thoại chứa ký tự không phải số.
+- Không nhập số điện thoại và nhập số điện thoại ít hơn 10 chữ số.
+
+Ví dụ ĐÚNG:
+- Test case lỗi rỗng: Không nhập số điện thoại.
+- Test case lỗi ký tự: Nhập số điện thoại chứa ký tự không phải số.
+- Test case lỗi độ dài: Nhập số điện thoại có ít hơn 10 chữ số.
 
 ================ QUY TẮC PHỤC VỤ AUTOMATION ================
 
@@ -246,12 +274,14 @@ Execution Paths:
 def generate_testcases_from_usecase(
         execution_paths,
         regenerate_mode=False,
-        missing_actions=None
+        missing_actions=None,
+        validation_errors=None
 ):
     extra_instruction = ""
 
     if regenerate_mode:
         missing_actions = missing_actions or []
+        validation_errors = validation_errors or []
 
         missing_action_text = ""
 
@@ -259,6 +289,15 @@ def generate_testcases_from_usecase(
             missing_action_text = "\n".join(
                 f"- {action}"
                 for action in missing_actions
+            )
+
+        validation_error_text = ""
+
+        if validation_errors:
+            validation_error_text = json.dumps(
+                validation_errors,
+                ensure_ascii=False,
+                indent=2
             )
 
         extra_instruction = f"""
@@ -270,11 +309,28 @@ def generate_testcases_from_usecase(
 - Không được tạo lại test case cũ.
 - Không được merge nhiều điều kiện lỗi.
 
+- Nếu lỗi validation là MULTIPLE_NEGATIVE_CONDITIONS:
+  + Phải sửa test case để chỉ còn DUY NHẤT 1 điều kiện lỗi.
+  + Điều kiện lỗi được giữ lại phải đúng với execution path đầu vào.
+  + Các điều kiện lỗi khác phải bị loại bỏ.
+  + Các trường dữ liệu không liên quan phải dùng dữ liệu hợp lệ.
+
+- Nếu execution path là Basic Flow:
+  + Không được sinh bất kỳ điều kiện lỗi nào.
+  + Tất cả input phải là dữ liệu hợp lệ.
+
+- Nếu execution path là Alternate Flow:
+  + Chỉ dùng đúng điều kiện lỗi trong alternate flow đó.
+  + Không thêm lỗi khác.
+
 - Nếu validator cung cấp danh sách missing action,
   test case sinh lại BẮT BUỘC phải bổ sung đầy đủ các action đó.
 
 Missing actions:
 {missing_action_text}
+
+Validation errors:
+{validation_error_text}
 
 - Nếu chỉ có 1 execution path đầu vào thì chỉ trả về 1 test case.
 """
@@ -303,6 +359,7 @@ Missing actions:
         raise Exception("Không parse được JSON từ AI")
 
 
+# save testcase ra file JSON.
 def save_testcases(testcases, output_path):
     with open(
             output_path,

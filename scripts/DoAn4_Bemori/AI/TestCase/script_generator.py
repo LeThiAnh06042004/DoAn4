@@ -22,7 +22,9 @@ from utils.verify_utils import (
 )
 
 
+# xác định Locator nào là message locator
 def is_message_locator(loc):
+    # Ghép name + semantic rồi normalize.
     text = " ".join([
         loc.get("name", ""),
         " ".join(ensure_list(loc.get("semantic", [])))
@@ -30,6 +32,7 @@ def is_message_locator(loc):
 
     text_norm = normalize_key(text)
 
+    # Kiểm tra nếu có keyword này → locator được xem là message locator.
     message_keywords = [
         "thongbao",
         "message",
@@ -46,7 +49,10 @@ def is_message_locator(loc):
     )
 
 
+# Đây là tầng Rule-based pre-filter
+# Không semantic toàn bộ locator mà lọc trước theo keyword rồi semantic sau
 def filter_locators_by_keyword(keyword, locator_context):
+    # Nếu kw là INPUT_TEXT thì c hỉ cho map tới input field, textarea
     if keyword == "INPUT_TEXT":
         return [
             loc for loc in locator_context
@@ -106,12 +112,14 @@ def filter_locators_by_keyword(keyword, locator_context):
     return locator_context
 
 
+# Semantic đôi khi ko đủ chính xác cho input field nên thêm rule scoring để boost độ chính xác.
 def map_input_locator_by_rule(step_text, locator_context):
     text_norm = normalize_key(step_text)
 
     best_locator = None
     best_score = 0
 
+    # Loại bỏ từ vô nghĩa.
     stop_words = [
         "nhap",
         "onhap",
@@ -133,6 +141,7 @@ def map_input_locator_by_rule(step_text, locator_context):
 
         candidates = []
 
+        # candidates
         candidates.append(loc.get("name", ""))
 
         candidates.extend(
@@ -157,6 +166,7 @@ def map_input_locator_by_rule(step_text, locator_context):
             if not cleaned:
                 continue
 
+            # Nếu text match mạnh: score += len(cleaned) * 5
             if cleaned in text_norm:
                 score += len(cleaned) * 5
 
@@ -194,11 +204,13 @@ def map_input_locator_by_rule(step_text, locator_context):
     return None
 
 
+# Đây là API chính để map locator
 def map_locator_by_keyword(
         step_text,
         keyword,
         locator_context
 ):
+    # INPUT_TEXT: Ưu tiên rule-based mapping. Nếu fail thì semantic mapping
     if keyword == "INPUT_TEXT":
         rule_locator = map_input_locator_by_rule(
             step_text,
@@ -208,6 +220,7 @@ def map_locator_by_keyword(
         if rule_locator:
             return rule_locator
 
+    # Với các kw khác thì map theo semantic
     candidates = filter_locators_by_keyword(
         keyword,
         locator_context
@@ -222,6 +235,8 @@ def map_locator_by_keyword(
     )
 
 
+# Tìm raw step liên quan tới expected result
+# VD: Expected: "Hiển thị thông báo thành công". Raw step: Kiểm tra có chứa "thành công" -> match
 def find_related_verify_raw_steps(expected, raw_steps):
     expected_norm = normalize_key(expected)
     quoted = extract_quoted_text(expected)
@@ -256,59 +271,75 @@ def find_related_verify_raw_steps(expected, raw_steps):
     return related_steps
 
 
+# AUTO GENERATE VERIFY STEP
 def build_expected_verify_steps(
         expected_results,
         raw_steps,
         locator_context
 ):
-    verify_steps = []
+    verify_steps = [] # Tạo ds rỗng để lưu các bước verify sau khi sinh ra
 
+    # Duyệt từng expected result vì một tc có thể có nhiều expected result
     for expected in expected_results:
+        # Tìm raw step liên quan đến expected để lấy lm ngữ cảnh
         related_raw_steps = find_related_verify_raw_steps(
             expected,
             raw_steps
         )
 
+        # Sinh thông tin verify
+        # phân tích expected result để xác định keyword verify nào, value cần verify là gì
         verify_infos = build_verify_steps_from_expected(
             [expected],
             related_raw_steps
         )
 
+        # Duyệt từng verify info. Mỗi info là một bước verify đã được phân tích sơ bộ
         for info in verify_infos:
+            # Lấy keyword và value
             keyword = info.get("keyword")
             value = info.get("value", "")
 
+            # Trường hợp verify text
             if keyword in [
                 "VERIFY_ELEMENT_TEXT_EQUALS",
                 "VERIFY_TEXT_CONTAINS"
             ]:
+                # Nếu không có value thì bỏ qua
                 if not value:
                     continue
 
+                # Tạo locator_text
+                # thêm chữ “thông báo” là để semantic locator mapping dễ tìm đến locator message hơn
                 locator_text = f"thông báo {value}"
 
+                # Map locator
                 locator = map_locator_by_keyword(
                     locator_text,
                     keyword,
                     locator_context
                 )
 
+                # Thêm verify step
                 verify_steps.append({
                     "keyword": keyword,
                     "locator": locator,
                     "value": value
                 })
 
+            # Trường hợp verify visible / present
             elif keyword in [
                 "VERIFY_ELEMENT_VISIBLE",
                 "VERIFY_ELEMENT_PRESENT"
             ]:
+                # Map locator theo value
                 locator = map_locator_by_keyword(
                     value,
                     keyword,
                     locator_context
                 )
 
+                # Thêm verify step. Kiểm tra tồn tại nên ko cần value
                 verify_steps.append({
                     "keyword": keyword,
                     "locator": locator,
@@ -318,6 +349,7 @@ def build_expected_verify_steps(
     return verify_steps
 
 
+# Tự động thêm OPEN_URL và CLOSE_BROWSER
 def inject_setup_teardown(result):
     config = load_config()
     base_url = config.get("base_url", "")
@@ -330,6 +362,7 @@ def inject_setup_teardown(result):
             for s in steps
         ]
 
+        # Nếu chưa có OPEN_URL
         if "OPEN_URL" not in keywords:
             steps.insert(0, {
                 "keyword": "OPEN_URL",
@@ -337,6 +370,7 @@ def inject_setup_teardown(result):
                 "value": base_url
             })
 
+        # Nếu chưa có CLOSE_BROWSER
         if "CLOSE_BROWSER" not in keywords:
             steps.append({
                 "keyword": "CLOSE_BROWSER",
@@ -353,13 +387,16 @@ def generate_keyword_steps(
         data_path,
         execution_paths=None
 ):
+    # Load locator YAML
     with open(locator_path, "r", encoding="utf-8") as f:
         locators = yaml.safe_load(f)
 
+    # Convert YAML thành searchable database
     locator_context = build_locator_context(
         locators
     )
 
+    # Load data rows
     data_rows = load_test_data(
         data_path
     )
@@ -369,6 +406,7 @@ def generate_keyword_steps(
 
     execution_paths = execution_paths or []
 
+    # hỗ trợ verify mapping
     path_step_map = {
         path.get("path_id"): path.get("steps", [])
         for path in execution_paths
@@ -376,6 +414,7 @@ def generate_keyword_steps(
 
     result = []
 
+    # Xử lý từng testcase
     for tc in testcases:
         raw_steps = tc.get("steps", [])
         expected_results = tc.get("expected_result", [])
@@ -391,11 +430,13 @@ def generate_keyword_steps(
         input_infos = []
 
         for raw_step in raw_steps:
+            # Extract keyword. VD. "Người dùng nhập email" -> INPUT_TEXT
             keyword = extract_action(raw_step)
 
             if not keyword:
                 continue
 
+            # Vì verify sẽ được generate riêng từ expected result nên Skip verify keyword
             if keyword in [
                 "VERIFY_ELEMENT_TEXT_EQUALS",
                 "VERIFY_TEXT_CONTAINS",
@@ -406,11 +447,13 @@ def generate_keyword_steps(
 
             locator_text = raw_step
 
+            # quoted_field. VD: Nhập "email" -> Lấy "email"
             quoted_field = extract_quoted_text(raw_step)
 
             if keyword == "INPUT_TEXT" and quoted_field:
                 locator_text = f"{raw_step} {quoted_field} {quoted_field}"
 
+            # Map locator
             locator = map_locator_by_keyword(
                 locator_text,
                 keyword,
@@ -422,12 +465,14 @@ def generate_keyword_steps(
                 locator_context
             )
 
+            # infer_condition_for_input(). VD: "Ko nhập email" -> empty
             condition = infer_condition_for_input(
                 raw_step=raw_step,
                 tc=tc,
                 locator_obj=locator_obj
             )
 
+            # Lưu thông tin trung gian
             temp_steps.append({
                 "keyword": keyword,
                 "locator": locator,
@@ -436,6 +481,7 @@ def generate_keyword_steps(
                 "raw_step": raw_step
             })
 
+            # Chỉ lưu INPUT_TEXT để tìm data row phù hợp
             if keyword == "INPUT_TEXT":
                 input_infos.append({
                     "locator": locator,
@@ -444,6 +490,7 @@ def generate_keyword_steps(
                     "raw_step": raw_step
                 })
 
+        # tìm dòng data phù hợp với toàn bộ input conditions
         matched_row = find_matching_data_row(
             data_rows,
             input_infos
@@ -463,6 +510,7 @@ def generate_keyword_steps(
 
             value = ""
 
+            # Bind đúng value vào INPUT_TEXT
             if keyword == "INPUT_TEXT":
                 value = get_value_from_row(
                     matched_row,
@@ -482,6 +530,7 @@ def generate_keyword_steps(
 
                 visible_verify_seen.add(locator)
 
+            # Chống duplicate step.
             if is_duplicate_step(
                 generated_steps,
                 step_obj
@@ -490,6 +539,7 @@ def generate_keyword_steps(
 
             generated_steps.append(step_obj)
 
+        # Sinh verify tự động từ expected result.
         verify_steps = build_expected_verify_steps(
             expected_results,
             verify_context_steps,
@@ -510,4 +560,5 @@ def generate_keyword_steps(
             "steps": generated_steps
         })
 
+    # Tự động thêm OPEN_URL, CLOSE_BROWSER
     return inject_setup_teardown(result)

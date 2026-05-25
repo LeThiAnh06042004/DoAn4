@@ -25,13 +25,15 @@ from AI.TestCase.excel_script_exporter import (
 
 # ==================================================
 # CẤU HÌNH ĐẦU VÀO
-# Người dùng chỉ cần sửa 3 biến này
 # ==================================================
 UC_FILE = "UC_DatHangNhanh.txt"
 LOCATOR_FILE = "DatHangNhanh_locators.yaml"
 DATA_FILE = "data_DatHangNhanh.json"
 
 
+# ==================================================
+# LẤY DANH SÁCH PATH BỊ THIẾU TEST CASE
+# ==================================================
 def get_missing_path_ids(validation_report):
     missing_path_ids = []
 
@@ -45,6 +47,9 @@ def get_missing_path_ids(validation_report):
     return list(dict.fromkeys(missing_path_ids))
 
 
+# ==================================================
+# LẤY DANH SÁCH LỖI THIẾU ACTION
+# ==================================================
 def get_missing_action_errors(validation_report):
     errors = []
 
@@ -55,6 +60,22 @@ def get_missing_action_errors(validation_report):
     return errors
 
 
+# ==================================================
+# LẤY DANH SÁCH LỖI NHIỀU ĐIỀU KIỆN LỖI TRONG 1 TEST CASE
+# ==================================================
+def get_multiple_negative_errors(validation_report):
+    errors = []
+
+    for error in validation_report.get("errors", []):
+        if error.get("type") == "MULTIPLE_NEGATIVE_CONDITIONS":
+            errors.append(error)
+
+    return errors
+
+
+# ==================================================
+# LOẠI TEST CASE TRÙNG PATH_ID
+# ==================================================
 def remove_duplicate_testcases(testcases):
     result = []
     seen_path_ids = set()
@@ -62,10 +83,12 @@ def remove_duplicate_testcases(testcases):
     for tc in testcases:
         path_id = tc.get("path_id", "")
 
+        # Nếu testcase không có path_id thì vẫn giữ lại
         if not path_id:
             result.append(tc)
             continue
 
+        # Nếu path_id đã xuất hiện thì bỏ testcase trùng
         if path_id in seen_path_ids:
             continue
 
@@ -75,6 +98,9 @@ def remove_duplicate_testcases(testcases):
     return result
 
 
+# ==================================================
+# THAY TEST CASE CŨ BẰNG TEST CASE MỚI THEO PATH_ID
+# ==================================================
 def replace_testcase_by_path_id(
         testcases,
         new_testcase
@@ -94,12 +120,16 @@ def replace_testcase_by_path_id(
         else:
             result.append(tc)
 
+    # Nếu path_id chưa tồn tại thì thêm mới
     if not replaced:
         result.append(new_testcase)
 
     return result
 
 
+# ==================================================
+# REGENERATE TEST CASE CHO PATH BỊ THIẾU
+# ==================================================
 def regenerate_missing_testcases(
         execution_paths,
         testcases,
@@ -115,6 +145,7 @@ def regenerate_missing_testcases(
     print("===== REGENERATE MISSING PATHS =====")
     print(f"Missing path ids: {missing_path_ids}")
 
+    # Lấy đúng các execution path bị thiếu testcase
     missing_paths = [
         path for path in execution_paths
         if path.get("path_id") in missing_path_ids
@@ -123,6 +154,7 @@ def regenerate_missing_testcases(
     if not missing_paths:
         return testcases
 
+    # Gọi AI sinh lại đúng các path bị thiếu
     regenerated = testcase_generator.generate_testcases_from_usecase(
         missing_paths,
         regenerate_mode=True
@@ -144,6 +176,9 @@ def regenerate_missing_testcases(
     return testcases
 
 
+# ==================================================
+# REGENERATE TEST CASE BỊ THIẾU ACTION
+# ==================================================
 def regenerate_missing_action_testcases(
         execution_paths,
         testcases,
@@ -166,6 +201,7 @@ def regenerate_missing_action_testcases(
     for error in missing_action_errors:
         path_id = error.get("path_id")
         detail = error.get("detail", {})
+
         missing_actions = detail.get(
             "missing_steps",
             []
@@ -181,6 +217,8 @@ def regenerate_missing_action_testcases(
             f"missing actions: {missing_actions}"
         )
 
+        # Gửi lại đúng execution path bị lỗi
+        # và danh sách action bị thiếu để AI bổ sung
         regenerated = testcase_generator.generate_testcases_from_usecase(
             [path],
             regenerate_mode=True,
@@ -207,6 +245,82 @@ def regenerate_missing_action_testcases(
     return testcases
 
 
+# ==================================================
+# REGENERATE TEST CASE BỊ NHIỀU NEGATIVE CONDITION
+# ==================================================
+def regenerate_multiple_negative_testcases(
+        execution_paths,
+        testcases,
+        validation_report
+):
+    negative_errors = get_multiple_negative_errors(
+        validation_report
+    )
+
+    if not negative_errors:
+        return testcases
+
+    print("===== REGENERATE MULTIPLE NEGATIVE CONDITION TESTCASES =====")
+
+    path_map = {
+        path.get("path_id"): path
+        for path in execution_paths
+    }
+
+    tc_map = {
+        tc.get("test_case_id"): tc
+        for tc in testcases
+    }
+
+    for error in negative_errors:
+        tc_id = error.get("testcase")
+        old_tc = tc_map.get(tc_id)
+
+        if not old_tc:
+            continue
+
+        path_id = old_tc.get("path_id")
+        path = path_map.get(path_id)
+
+        if not path:
+            continue
+
+        print(
+            f"Regenerate testcase {tc_id} for {path_id} "
+            f"because MULTIPLE_NEGATIVE_CONDITIONS"
+        )
+
+        # Gửi lại đúng execution path của testcase lỗi.
+        # Truyền thêm validation_errors để prompt biết lỗi cần sửa.
+        regenerated = testcase_generator.generate_testcases_from_usecase(
+            [path],
+            regenerate_mode=True,
+            validation_errors=[error]
+        )
+
+        if isinstance(regenerated, dict):
+            regenerated = [regenerated]
+
+        if not regenerated:
+            continue
+
+        new_tc = regenerated[0]
+
+        testcases = replace_testcase_by_path_id(
+            testcases,
+            new_tc
+        )
+
+    testcases = remove_duplicate_testcases(
+        testcases
+    )
+
+    return testcases
+
+
+# ==================================================
+# VALIDATION + SELF-HEALING LOOP
+# ==================================================
 def validate_with_regeneration(
         execution_paths,
         testcases,
@@ -228,6 +342,7 @@ def validate_with_regeneration(
     ):
         changed = False
 
+        # 1. Nếu thiếu execution path thì sinh lại path bị thiếu
         missing_path_ids = get_missing_path_ids(
             validation_report
         )
@@ -240,6 +355,7 @@ def validate_with_regeneration(
             )
             changed = True
 
+        # 2. Nếu thiếu action thì sinh lại testcase bị thiếu action
         missing_action_errors = get_missing_action_errors(
             validation_report
         )
@@ -252,6 +368,20 @@ def validate_with_regeneration(
             )
             changed = True
 
+        # 3. Nếu testcase có nhiều negative condition thì sinh lại testcase đó
+        negative_errors = get_multiple_negative_errors(
+            validation_report
+        )
+
+        if negative_errors:
+            testcases = regenerate_multiple_negative_testcases(
+                execution_paths,
+                testcases,
+                validation_report
+            )
+            changed = True
+
+        # Nếu không có lỗi nào thuộc nhóm có thể tự regenerate thì dừng
         if not changed:
             break
 
@@ -268,6 +398,9 @@ def validate_with_regeneration(
     return testcases, validation_report
 
 
+# ==================================================
+# MAIN PIPELINE
+# ==================================================
 def run_generation():
     base_dir = os.path.dirname(
         os.path.abspath(__file__)
@@ -282,7 +415,7 @@ def run_generation():
     )
 
     # ==================================================
-    # INPUT PATHS
+    # BUILD ĐƯỜNG DẪN INPUT
     # ==================================================
     uc_path = os.path.join(
         base_dir,
@@ -305,7 +438,7 @@ def run_generation():
     )
 
     # ==================================================
-    # VALIDATE INPUT
+    # KIỂM TRA FILE INPUT CÓ TỒN TẠI KHÔNG
     # ==================================================
     if not os.path.exists(uc_path):
         raise FileNotFoundError(
@@ -323,7 +456,8 @@ def run_generation():
         )
 
     # ==================================================
-    # FUNCTION NAME
+    # LẤY TÊN CHỨC NĂNG TỪ FILE USE CASE
+    # Ví dụ: UC_DatHangNhanh.txt -> DatHangNhanh
     # ==================================================
     function_name = (
         os.path.basename(uc_path)
@@ -332,7 +466,7 @@ def run_generation():
     )
 
     # ==================================================
-    # READ USE CASE
+    # ĐỌC USE CASE
     # ==================================================
     with open(
             uc_path,
@@ -342,7 +476,7 @@ def run_generation():
         use_case_text = f.read()
 
     # ==================================================
-    # BUILD EXECUTION PATHS
+    # USE CASE -> EXECUTION PATHS
     # ==================================================
     execution_paths = build_execution_paths(
         use_case_text
@@ -354,7 +488,7 @@ def run_generation():
         print(path)
 
     # ==================================================
-    # AI SINH TEST CASE
+    # AI SINH TEST CASE TỪ EXECUTION PATHS
     # ==================================================
     testcases = testcase_generator.generate_testcases_from_usecase(
         execution_paths
@@ -368,8 +502,9 @@ def run_generation():
     )
 
     # ==================================================
-    # VALIDATE TEST CASE
-    # Nếu thiếu path hoặc thiếu action thì regenerate riêng
+    # VALIDATE TEST CASE + SELF-HEALING
+    # Nếu thiếu path, thiếu action hoặc nhiều negative condition
+    # thì framework sẽ gọi AI sinh lại testcase lỗi.
     # ==================================================
     testcases, validation_report = validate_with_regeneration(
         execution_paths=execution_paths,
@@ -384,8 +519,7 @@ def run_generation():
         )
 
     # ==================================================
-    # SAVE TEST CASE JSON
-    # TC/<file>
+    # LƯU TEST CASE JSON
     # ==================================================
     tc_folder = os.path.join(
         base_dir,
@@ -408,7 +542,7 @@ def run_generation():
     )
 
     # ==================================================
-    # EXPORT TEST CASE EXCEL
+    # XUẤT TEST CASE RA EXCEL QA DOCUMENT
     # ==================================================
     template_path = os.path.join(
         base_dir,
@@ -422,8 +556,12 @@ def run_generation():
     )
 
     # ==================================================
-    # TEST CASE -> TEST SCRIPT
-    # KHÔNG DÙNG AI
+    # TEST CASE -> KEYWORD TEST SCRIPT
+    # Sinh keyword steps từ test case:
+    # - map keyword
+    # - map locator
+    # - bind data
+    # - tạo verify step
     # ==================================================
     keyword_steps = generate_keyword_steps(
         testcases=testcases,
@@ -433,7 +571,7 @@ def run_generation():
     )
 
     # ==================================================
-    # EXPORT SCRIPT VÀO test/cases
+    # EXPORT SCRIPT RA FILE EXCEL
     # ==================================================
     script_folder = os.path.join(
         project_root,
@@ -457,7 +595,7 @@ def run_generation():
     )
 
     # ==================================================
-    # LOG
+    # LOG KẾT QUẢ
     # ==================================================
     print("===== GENERATION DONE =====")
     print(f"Use Case : {uc_path}")

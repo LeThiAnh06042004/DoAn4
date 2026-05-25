@@ -2,69 +2,69 @@
   {
     "test_case_id": "TC_001",
     "path_id": "PATH_001",
-    "scenario": "Kiểm tra chức năng đặt hàng nhanh với số điện thoại hợp lệ.",
+    "scenario": "Kiểm tra chức năng đặt hàng nhanh khi nhập số điện thoại hợp lệ.",
     "precondition": [
-      "Hệ thống đang mở trang chủ và đã đăng nhập thành công (nếu cần)."
+      "Hệ thống đã mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Truy cập vào trang chi tiết sản phẩm",
-      "Step 2: Nhập số điện thoại hợp lệ vào ô số điện thoại",
-      "Step 3: Nhấn nút \"Gửi\"",
-      "Step 4: Kiểm tra thông báo \"Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.\" hiển thị"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Nhập số điện thoại hợp lệ vào ô số điện thoại.",
+      "Step 3: Nhấn nút \"Gửi\".",
+      "Step 4: Kiểm tra thông báo \"Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.\" hiển thị."
     ],
     "expected_result": [
-      "\"Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.\" được hiển thị trên giao diện."
+      "\"Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.\""
     ]
   },
   {
     "test_case_id": "TC_002",
     "path_id": "PATH_002",
-    "scenario": "Kiểm tra thông báo lỗi khi số điện thoại rỗng.",
+    "scenario": "Kiểm tra thông báo khi số điện thoại rỗng.",
     "precondition": [
-      "Hệ thống đang online và trang chi tiết sản phẩm hiển thị."
+      "Hệ thống đã mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Truy cập vào trang chi tiết sản phẩm",
-      "Step 2: Không nhập dữ liệu vào ô số điện thoại",
-      "Step 3: Nhấn nút \"Gửi\"",
-      "Step 4: Kiểm tra thông báo hiển thị"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Không nhập dữ liệu vào ô số điện thoại.",
+      "Step 3: Nhấn nút \"Gửi\".",
+      "Step 4: Kiểm tra thông báo \"Bạn chưa nhập số điện thoại.\" hiển thị."
     ],
     "expected_result": [
-      "Thông báo \"Bạn chưa nhập số điện thoại.\" hiển thị"
+      "\"Bạn chưa nhập số điện thoại.\""
     ]
   },
   {
     "test_case_id": "TC_003",
     "path_id": "PATH_003",
-    "scenario": "Kiểm tra thông báo lỗi khi số điện thoại chứa ký tự không phải số.",
+    "scenario": "Kiểm tra thông báo khi số điện thoại chứa ký tự không phải số.",
     "precondition": [
-      "Hệ thống đang online và trang chi tiết sản phẩm hiển thị."
+      "Hệ thống đã mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Truy cập vào trang chi tiết sản phẩm",
-      "Step 2: Nhập số điện thoại có chứa ký tự không phải số vào ô số điện thoại",
-      "Step 3: Nhấn nút \"Gửi\"",
-      "Step 4: Kiểm tra thông báo hiển thị"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Nhập số điện thoại có ký tự không phải số vào ô số điện thoại.",
+      "Step 3: Nhấn nút \"Gửi\".",
+      "Step 4: Kiểm tra thông báo \"Số điện thoại chỉ bao gồm những số.\" hiển thị."
     ],
     "expected_result": [
-      "Thông báo \"Số điện thoại chỉ bao gồm những số.\" hiển thị"
+      "\"Số điện thoại chỉ bao gồm những số.\""
     ]
   },
   {
     "test_case_id": "TC_004",
     "path_id": "PATH_004",
-    "scenario": "Kiểm tra thông báo lỗi khi số điện thoại ít hơn 10 chữ số.",
+    "scenario": "Kiểm tra thông báo khi số điện thoại có ít hơn 10 chữ số.",
     "precondition": [
-      "Hệ thống đang online và trang chi tiết sản phẩm hiển thị."
+      "Hệ thống đã mở trang chi tiết sản phẩm."
     ],
     "steps": [
-      "Step 1: Truy cập vào trang chi tiết sản phẩm",
-      "Step 2: Nhập số điện thoại có ít hơn 10 chữ số vào ô số điện thoại",
-      "Step 3: Nhấn nút \"Gửi\"",
-      "Step 4: Kiểm tra thông báo hiển thị"
+      "Step 1: Truy cập vào trang chi tiết sản phẩm.",
+      "Step 2: Nhập số điện thoại có ít hơn 10 chữ số vào ô số điện thoại.",
+      "Step 3: Nhấn nút \"Gửi\".",
+      "Step 4: Kiểm tra thông báo \"Số điện thoại phải có ít nhất 10 số.\" hiển thị."
     ],
     "expected_result": [
-      "Thông báo \"Số điện thoại phải có ít nhất 10 số.\" hiển thị"
+      "\"Số điện thoại phải có ít nhất 10 số.\""
     ]
   }
 ]

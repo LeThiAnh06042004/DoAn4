@@ -1,15 +1,21 @@
+# Natural language testcase -> Suy luận điều kiện dữ liệu
+
 import re
 
 
+# Hàm chuẩn hóa text trước khi phân tích.
 def normalize_text(text):
     if text is None:
         return ""
     return str(text).lower().strip()
 
 
+# CORE function
+# Đầu vào là text: VD: "Ko nhập sđt" -> output: "type": "empty"
 def infer_condition(text):
     text = normalize_text(text)
 
+    # Detect testcase: dữ liệu rỗng
     if any(x in text for x in [
         "không nhập",
         "rỗng",

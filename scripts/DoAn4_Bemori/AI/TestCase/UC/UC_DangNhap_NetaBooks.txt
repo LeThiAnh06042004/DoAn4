@@ -1,0 +1,37 @@
+Use Case: Đăng nhập NetaBooks
+
+Actor:
+Người dùng
+
+Precondition:
+Người dùng đang ở trang chủ NetaBooks.
+
+Basic Flow:
+1. Người dùng nhấn vào liên kết "Đăng nhập"
+2. Người dùng nhập email "anhle06042004@gmail.com"
+3. Người dùng nhập mật khẩu "06042004"
+4. Người dùng nhấn nút "Đăng nhập"
+5. Hệ thống kiểm tra thông tin đăng nhập
+6. Hệ thống chuyển người dùng về trang chủ
+7. Kiểm tra trang chủ được hiển thị
+
+Alternate Flow:
+
+AF1: Không nhập email
+2a. Người dùng không nhập email
+7a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+
+AF2: Không nhập mật khẩu
+3a. Người dùng không nhập mật khẩu
+7a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+
+AF3: Email sai
+2a. Người dùng nhập email sai
+7a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+
+AF4: Mật khẩu sai
+3a. Người dùng nhập mật khẩu sai
+7a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+
+Postcondition:
+Nếu đăng nhập thành công, người dùng được chuyển về trang chủ NetaBooks.

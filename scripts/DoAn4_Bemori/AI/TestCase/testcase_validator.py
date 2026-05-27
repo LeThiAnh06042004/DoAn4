@@ -255,21 +255,21 @@ def validate_missing_user_actions(execution_path, testcase):
 
     missing_steps = []
 
-    # Duyệt path step để kiểm tra xem testcase có bỏ sót step nghiệp vụ nào không
+    # Duyệt path step để kiểm tra testcase có bỏ sót step nghiệp vụ nào không
     for path_step in path_steps:
         path_step_norm = normalize_text(path_step)
 
-        # Bỏ qua system step và navigation step
+        # Chỉ bỏ qua system step
+        # Không bỏ qua navigation step nữa
+        # vì các bước như "truy cập trang chi tiết sản phẩm"
+        # là hành động người dùng cần có trong testcase
         if is_system_step(path_step_norm):
-            continue
-
-        if is_navigation_or_setup_step(path_step_norm):
             continue
 
         found = False
 
         for tc_step in testcase_steps:
-            # Gọi hàm is_step_related để kiểm tra step có tương ứng hay không.
+            # Kiểm tra step trong testcase có tương ứng với step trong execution path không
             if is_step_related(
                     path_step_norm,
                     tc_step

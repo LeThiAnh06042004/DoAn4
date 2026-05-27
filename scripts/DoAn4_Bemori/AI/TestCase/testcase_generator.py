@@ -4,249 +4,93 @@ from AI.ai_client import call_llm
 
 # Structured Prompt Engineering
 TESTCASE_PROMPT_TEMPLATE = """
-================ VAI TRÒ ================
+Bạn là Senior QA Automation Engineer có 15 năm kinh nghiệm, cực kỳ nghiêm ngặt trong việc thiết kế test case cho Keyword-Driven Testing.
 
-Bạn là Senior QA Engineer chuyên thiết kế test case cho hệ thống kiểm thử tự động.
-Bạn có kinh nghiệm:
-- ISTQB
-- Thiết kế test case theo execution path
-- Thiết kế test case phục vụ automation testing
-- Keyword-Driven Testing (KDT)
-
-================ BỐI CẢNH HỆ THỐNG ================
-
-- Hệ thống cần kiểm thử là website thương mại điện tử bán gấu bông.
-- Các chức năng được kiểm thử gồm:
-  + Tìm kiếm sản phẩm
-  + Bình luận sản phẩm
-  + Đặt hàng nhanh
-  + Mua hàng
-
-- Input đầu vào của AI là các execution path đã được chuẩn hóa từ Use Case.
-- Mỗi execution path đại diện cho một luồng nghiệp vụ độc lập.
-
-- Framework kiểm thử sử dụng mô hình Keyword-Driven Testing.
+================ BỐI CẢNH ================
 
 - Mục tiêu:
-  + đảm bảo coverage cho execution path
-  + đảm bảo traceability giữa execution path và test case
-  + phục vụ kiểm thử tự động
+  + Test case phải đầy đủ bước
+  + Atomic
+  + Chỉ 1 lỗi mỗi Alternate Flow
+  + Dễ mapping semantic
+  + Dễ chuyển thành keyword test script
 
-================ NGÔN NGỮ ================
+================ QUY TRÌNH BẮT BUỘC ================
 
-- Toàn bộ nội dung test case phải được viết bằng TIẾNG VIỆT:
-  + scenario
-  + precondition
-  + steps
-  + expected_result
-
-- Riêng tên field JSON phải giữ nguyên tiếng Anh.
-- Không tự ý đổi tên field JSON.
-
-================ YÊU CẦU CHUNG ================
-
-1. Chỉ trả về JSON hợp lệ.
-2. Không thêm giải thích bên ngoài JSON.
-3. Mỗi execution path phải sinh đúng 1 test case.
-4. Mỗi test case phải có các trường:
-   - test_case_id
-   - path_id
-   - scenario
+Với mỗi execution path bạn PHẢI:
+1. Xác định rõ Basic Flow hay Alternate Flow.
+2. Giữ đầy đủ các user action quan trọng trong execution path.
+3. Xây dựng:
    - precondition
+   - scenario
    - steps
    - expected_result
+4. Tự kiểm tra nghiêm ngặt trước khi output.
 
-================ TRACEABILITY ================
+================ QUY TẮC CỰC KỲ QUAN TRỌNG ================
 
-- Mỗi test case phải giữ đúng path_id từ execution path đầu vào.
-- Không được tự tạo path_id mới.
-- Không được bỏ path_id.
+**Negative Testing Rule (BẮT BUỘC PHẢI TUÂN THỦ):**
+- Basic Flow:
+  + Chỉ dùng dữ liệu hợp lệ
+  + KHÔNG có bất kỳ lỗi nào
 
-- test_case_id đánh số lần lượt:
-  + TC_001
-  + TC_002
-  + TC_003
+- Alternate Flow:
+  + CHỈ KIỂM TRA DUY NHẤT 1 ĐIỀU KIỆN LỖI
+  + Nếu execution path có nhiều lỗi,
+    chỉ được chọn 1 lỗi rõ nhất
+  + Các trường còn lại phải dùng dữ liệu hợp lệ
+  + Tuyệt đối không kết hợp 2 lỗi trong cùng 1 test case
 
-================ QUY TẮC VIẾT TEST CASE ================
+**Coverage Rule:**
+- Không được bỏ bất kỳ user action quan trọng nào trong execution path.
+- Phải giữ đúng thứ tự nghiệp vụ của execution path.
 
-Scenario:
-- Mô tả ngắn gọn mục tiêu kiểm thử.
-- Phải phản ánh đúng execution path.
-- Không dài dòng.
+**Steps Requirements:**
+- Mỗi step chỉ đúng 1 hành động.
+- KHÔNG được gộp nhiều hành động trong 1 step.
+- Steps phải rõ ràng, dễ mapping semantic.
 
-Precondition:
-- Chỉ mô tả trạng thái ban đầu của hệ thống.
-- Không đưa thao tác người dùng vào precondition.
-
-- Các hành động như:
-  + truy cập trang
-  + điều hướng
-  + mở màn hình
-  + mở chức năng
-
-  phải được viết trong steps,
-  KHÔNG được viết trong precondition.
-
-Steps:
-- Chỉ mô tả hành động của người dùng hoặc bước kiểm tra trên giao diện.
-- Không mô tả xử lý nội bộ hệ thống.
-
-- Không sử dụng dữ liệu cụ thể như:
-  + "abc"
-  + "123"
-  + "Linh"
-  + "0912345678"
-
-- Sử dụng mô tả tổng quát như:
-  + dữ liệu hợp lệ
-  + dữ liệu rỗng
-  + dữ liệu không hợp lệ
-  + số điện thoại dưới 10 chữ số
-
-- Mỗi step chỉ chứa DUY NHẤT 1 hành động.
-- Không gộp nhiều hành động trong một step.
-
-================ BUSINESS RULES / QUY TẮC KIỂM THỬ ================
-
-- Không được viết step chung chung.
-
-Ví dụ sai:
-- Nhập dữ liệu
-- Nhập thông tin
-- Nhấn nút
-- Kiểm tra kết quả
-
-- Step nhập liệu phải nêu rõ:
-  + nhập trường nào
-  + loại dữ liệu gì
-
-Ví dụ đúng:
-- Nhập số điện thoại hợp lệ vào ô số điện thoại
-- Không nhập nội dung bình luận vào ô bình luận
-
-- Step nhấn nút phải ghi rõ tên nút.
+**Verify Rule (BẮT BUỘC):**
+- Nếu execution path có expected_messages
+  hoặc expected_result,
+  testcase BẮT BUỘC phải có verify step tương ứng.
 
 Ví dụ:
-- Nhấn nút "Gửi"
-- Nhấn nút "Tìm kiếm"
+- Kiểm tra thông báo "xxx" hiển thị
+- Kiểm tra trang chủ được hiển thị
+- Kiểm tra popup được hiển thị
+- Kiểm tra logo được hiển thị
 
-- Step kiểm tra phải ghi rõ đối tượng kiểm tra.
+- Mỗi expected_result phải có ít nhất 1 verify step tương ứng trong steps.
 
-Ví dụ:
-- Kiểm tra thông báo "Bạn chưa nhập số điện thoại." hiển thị
-- Kiểm tra danh sách sản phẩm phù hợp với từ khóa được hiển thị
-
-================ QUY TẮC ĐÁNH SỐ STEP ================
-
-- Bắt buộc format:
-  "Step 1: ..."
-  "Step 2: ..."
-
-- Không bỏ số thứ tự.
-
-================ EXPECTED RESULT ================
-
-- Chỉ mô tả kết quả quan sát được trên UI.
-- Không mô tả logic xử lý nội bộ.
-
-- Nếu execution path có thông báo hệ thống:
-  → expected_result phải chứa đúng thông báo đó.
-
-- Nếu execution path có thông báo trong dấu ngoặc kép hoặc ngoặc kép tiếng Việt:
-  → expected_result phải lấy đúng nội dung trong dấu ngoặc đó.
-  → Không được tự viết mô tả chung chung.
-
-- Nếu execution path có cụm "có chứa" hoặc "contains":
-  → expected_result vẫn phải chứa đúng phần nội dung thông báo được đặt trong dấu ngoặc.
-
-- Không viết chung chung như:
-  + Thông báo lỗi hiển thị
-  + Hệ thống báo lỗi
-  + Hiển thị thông báo phù hợp
-  + Thông báo xác nhận được hiển thị
-
-================ QUY TẮC COVERAGE ================
-
-- Basic Flow tạo ra 1 test case.
-- Mỗi Alternate Flow tạo ra 1 test case riêng.
-- Không tạo test case từ Post Condition.
-- Không merge nhiều Alternate Flow vào cùng một test case.
-
-- Alternate Flow phải giữ lại các bước Basic Flow cần thiết trước điểm rẽ nhánh.
-
-- Không được bỏ bước nhập dữ liệu nếu execution path có bước nhập.
-- Không được bỏ bước nhấn nút submit/gửi/xác nhận nếu execution path có bước đó.
-
-- Không được bỏ bước:
-  + truy cập trang
-  + điều hướng
-  + mở chức năng
-  + chọn sản phẩm
-  nếu execution path có các bước này.
-
-================ NEGATIVE TESTING ================
-
-- Mỗi test case lỗi chỉ kiểm thử DUY NHẤT 1 điều kiện lỗi.
-- Không được kết hợp nhiều lỗi đầu vào trong cùng một test case.
-- Không được merge nhiều Alternate Flow vào một test case.
-
-QUY TẮC CỰC KỲ QUAN TRỌNG:
-
-1. Nếu execution path là Basic Flow:
-   - Tất cả dữ liệu nhập phải là dữ liệu hợp lệ.
-   - Không được dùng các cụm:
-     + không nhập
-     + rỗng
-     + để trống
-     + không hợp lệ
-     + ký tự không phải số
-     + ít hơn
-     + dưới
-     + vượt quá
-
-2. Nếu execution path là Alternate Flow:
-   - Chỉ được sử dụng đúng 1 điều kiện lỗi được mô tả trong execution path đó.
-   - Các trường dữ liệu khác phải được viết là dữ liệu hợp lệ.
-
-Ví dụ SAI:
-- Không nhập số điện thoại và nhập số điện thoại chứa ký tự không phải số.
-- Không nhập số điện thoại và nhập số điện thoại ít hơn 10 chữ số.
-
-Ví dụ ĐÚNG:
-- Test case lỗi rỗng: Không nhập số điện thoại.
-- Test case lỗi ký tự: Nhập số điện thoại chứa ký tự không phải số.
-- Test case lỗi độ dài: Nhập số điện thoại có ít hơn 10 chữ số.
-
-================ QUY TẮC PHỤC VỤ AUTOMATION ================
-
-- Steps phải rõ ràng để có thể mapping sang automation keyword.
-
-- Không viết:
-  + "Người dùng thao tác"
-  + "Hệ thống xử lý"
-  + "Kiểm tra kết quả"
-
-- Mỗi expected_result phải có ít nhất một step kiểm tra tương ứng.
-
-- Nếu expected_result là:
-  + thông báo
-  + kết quả hiển thị
-  + danh sách
-  + màn hình
-
-  thì steps phải có bước:
-
-  "Kiểm tra ... hiển thị"
-
-Ví dụ:
-- Kiểm tra thông báo "Bạn chưa nhập tên." hiển thị
-- Kiểm tra danh sách sản phẩm được hiển thị
+**Precondition Rule:**
+- Precondition phải phù hợp với execution path.
+- Không hardcode precondition cố định.
+- Có thể dùng:
+  + Người dùng đang ở trang chủ
+  + Người dùng đang ở trang đăng nhập
+  + Người dùng đang ở trang chi tiết sản phẩm
+  + ...
 
 {extra_instruction}
 
+================ TEST CASE ID RULE ================
+
+- test_case_id bắt buộc đánh số tuần tự theo đúng thứ tự execution path:
+  + TC_001
+  + TC_002
+  + TC_003
+  + TC_004
+  + TC_005
+
+- Không được dùng format khác như:
+  + TC_BASIC_001
+  + TC_AF1_001
+  + TC_006_A1
+
 ================ FORMAT OUTPUT ================
 
-Chỉ trả về JSON array theo đúng định dạng sau:
+Chỉ trả về JSON array:
 
 [
   {{
@@ -254,15 +98,34 @@ Chỉ trả về JSON array theo đúng định dạng sau:
     "path_id": "PATH_001",
     "scenario": "...",
     "precondition": ["..."],
-    "steps": [
-      "Step 1: ...",
-      "Step 2: ..."
-    ],
-    "expected_result": [
-      "..."
-    ]
+    "steps": ["Step 1: ..."],
+    "expected_result": ["..."]
   }}
 ]
+
+================ VÍ DỤ QUAN TRỌNG ================
+
+**Alternate Flow chỉ 1 lỗi:**
+
+Execution Path:
+AF1 có cả:
+- không nhập email
+- không nhập mật khẩu
+
+Output đúng:
+- Scenario:
+  Kiểm tra đăng nhập khi không nhập email
+
+- Steps:
+  + Không nhập email
+  + Nhập mật khẩu hợp lệ
+  + Nhấn nút đăng nhập
+  + Kiểm tra thông báo lỗi hiển thị
+
+- Expected:
+  + Thông báo lỗi liên quan đến email
+
+Không được viết cả 2 lỗi trong 1 test case.
 
 ================ INPUT ================
 

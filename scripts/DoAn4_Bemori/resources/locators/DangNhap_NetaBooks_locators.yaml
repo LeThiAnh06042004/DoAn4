@@ -1,0 +1,117 @@
+lnkDangNhap:
+  by: xpath
+  value: //a[contains(text(),"Đăng nhập")]
+  semantic:
+    - đăng nhập
+    - link đăng nhập
+    - mở đăng nhập
+    - mở form đăng nhập
+    - truy cập đăng nhập
+    - chuyển tới đăng nhập
+    - vào trang đăng nhập
+    - mở màn hình đăng nhập
+
+txtEmail:
+  by: xpath
+  value: //input[@id="ctl00_mainContent_login1_LoginCtrl_UserName"]
+  semantic:
+    - email
+    - tài khoản
+    - tên đăng nhập
+    - username
+    - account
+    - địa chỉ email
+    - ô email
+    - ô nhập email
+    - ô tài khoản
+    - ô nhập tài khoản
+    - ô tên đăng nhập
+    - nhập email
+    - nhập tài khoản
+    - nhập tên đăng nhập
+    - email đăng nhập
+    - tài khoản đăng nhập
+    - username đăng nhập
+    - email field
+    - input email
+    - username field
+    - login email
+    - login account
+
+txtMatKhau:
+  by: xpath
+  value: //input[@id="ctl00_mainContent_login1_LoginCtrl_Password"]
+  semantic:
+    - mật khẩu
+    - password
+    - ô mật khẩu
+    - ô nhập mật khẩu
+    - nhập mật khẩu
+    - mật khẩu đăng nhập
+    - password đăng nhập
+    - password field
+    - input password
+    - login password
+    - trường mật khẩu
+    - điền mật khẩu
+    - gõ mật khẩu
+
+btnDangNhap:
+  by: xpath
+  value: //input[@id="ctl00_mainContent_login1_LoginCtrl_Login"]
+  semantic:
+    - đăng nhập
+    - nút đăng nhập
+    - button đăng nhập
+    - xác nhận đăng nhập
+    - submit đăng nhập
+    - gửi đăng nhập
+    - nhấn đăng nhập
+    - click đăng nhập
+    - thực hiện đăng nhập
+    - hoàn tất đăng nhập
+    - login button
+    - submit login
+    - button login
+
+lblDangNhapThatBai:
+  by: xpath
+  value: //span[@id="ctl00_mainContent_login1_LoginCtrl_FailureText"]
+  semantic:
+    - thông báo đăng nhập thất bại
+    - lỗi đăng nhập
+    - thông báo lỗi đăng nhập
+    - hiển thị lỗi đăng nhập
+    - thông báo sai email
+    - thông báo sai mật khẩu
+    - thông báo email hoặc mật khẩu không đúng
+    - thông báo không nhập email
+    - thông báo không nhập mật khẩu
+    - kiểm tra lỗi đăng nhập
+    - kiểm tra thông báo lỗi
+    - kiểm tra đăng nhập thất bại
+    - login error
+    - login failed
+    - login failure message
+    - failure text
+
+imgDangNhapThanhCong:
+  by: xpath
+  value: //img[@alt="Netabooks.vn"]
+  semantic:
+    - logo netabooks
+    - logo trang chủ
+    - hình ảnh netabooks
+    - chuyển tới trang chủ
+    - hiển thị trang chủ
+    - mở trang chủ
+    - vào trang chủ
+    - điều hướng tới trang chủ
+    - kiểm tra trang chủ
+    - kiểm tra đăng nhập thành công
+    - xác nhận đăng nhập thành công
+    - đăng nhập thành công
+    - login success
+    - home page
+    - home logo
+    - netabooks home

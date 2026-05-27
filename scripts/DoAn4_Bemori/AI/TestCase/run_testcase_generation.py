@@ -26,9 +26,9 @@ from AI.TestCase.excel_script_exporter import (
 # ==================================================
 # CẤU HÌNH ĐẦU VÀO
 # ==================================================
-UC_FILE = "UC_DatHangNhanh.txt"
-LOCATOR_FILE = "DatHangNhanh_locators.yaml"
-DATA_FILE = "data_DatHangNhanh.json"
+UC_FILE = "UC_DangNhap_NetaBooks.txt"
+LOCATOR_FILE = "DangNhap_NetaBooks_locators.yaml"
+DATA_FILE = "data_DangNhap_NetaBooks.csv"
 
 
 # ==================================================

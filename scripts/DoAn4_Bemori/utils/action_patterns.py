@@ -99,7 +99,13 @@ ACTION_PATTERNS = {
         "kiểm tra hiển thị",
         "verify visible",
         "hiển thị",
-        "xuất hiện"
+        "xuất hiện",
+        "logo",
+        "hình ảnh",
+        "ảnh",
+        "icon",
+        "combobox",
+        "checkbox",
     ],
 
     "VERIFY_ELEMENT_PRESENT": [

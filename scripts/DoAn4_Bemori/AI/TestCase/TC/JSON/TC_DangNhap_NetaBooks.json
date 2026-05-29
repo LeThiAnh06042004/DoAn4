@@ -1,0 +1,92 @@
+[
+  {
+    "test_case_id": "TC_001",
+    "path_id": "PATH_001",
+    "scenario": "Đăng nhập thành công với thông tin hợp lệ",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
+      "Step 2: Nhập email hợp lệ vào ô email",
+      "Step 3: Nhập mật khẩu hợp lệ vào ô mật khẩu",
+      "Step 4: Nhấn nút \"Đăng nhập\"",
+      "Step 5: Kiểm tra rằng trang chủ NetaBooks được hiển thị thành công"
+    ],
+    "expected_result": [
+      "Trang chủ NetaBooks được hiển thị thành công"
+    ]
+  },
+  {
+    "test_case_id": "TC_002",
+    "path_id": "PATH_002",
+    "scenario": "Đăng nhập khi không nhập email",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
+      "Step 2: Không nhập email",
+      "Step 3: Nhập mật khẩu hợp lệ vào ô mật khẩu",
+      "Step 4: Nhấn nút \"Đăng nhập\"",
+      "Step 5: Kiểm tra thông báo \"Đăng nhập thất bại. Vui lòng thử lại.\" hiển thị"
+    ],
+    "expected_result": [
+      "Đăng nhập thất bại. Vui lòng thử lại."
+    ]
+  },
+  {
+    "test_case_id": "TC_003",
+    "path_id": "PATH_003",
+    "scenario": "Đăng nhập khi không nhập mật khẩu",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
+      "Step 2: Nhập email hợp lệ vào ô email",
+      "Step 3: Không nhập mật khẩu",
+      "Step 4: Nhấn nút \"Đăng nhập\"",
+      "Step 5: Kiểm tra thông báo \"Đăng nhập thất bại. Vui lòng thử lại.\" hiển thị"
+    ],
+    "expected_result": [
+      "Đăng nhập thất bại. Vui lòng thử lại."
+    ]
+  },
+  {
+    "test_case_id": "TC_004",
+    "path_id": "PATH_004",
+    "scenario": "Đăng nhập với email sai định dạng",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
+      "Step 2: Nhập email sai vào ô email",
+      "Step 3: Nhập mật khẩu hợp lệ vào ô mật khẩu",
+      "Step 4: Nhấn nút \"Đăng nhập\"",
+      "Step 5: Kiểm tra thông báo \"Đăng nhập thất bại. Vui lòng thử lại.\" hiển thị"
+    ],
+    "expected_result": [
+      "Đăng nhập thất bại. Vui lòng thử lại."
+    ]
+  },
+  {
+    "test_case_id": "TC_005",
+    "path_id": "PATH_005",
+    "scenario": "Đăng nhập với mật khẩu sai",
+    "precondition": [
+      "Người dùng đang ở trang chủ"
+    ],
+    "steps": [
+      "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
+      "Step 2: Nhập email hợp lệ vào ô email",
+      "Step 3: Nhập mật khẩu sai vào ô mật khẩu",
+      "Step 4: Nhấn nút \"Đăng nhập\"",
+      "Step 5: Kiểm tra thông báo \"Đăng nhập thất bại. Vui lòng thử lại.\" hiển thị"
+    ],
+    "expected_result": [
+      "Đăng nhập thất bại. Vui lòng thử lại."
+    ]
+  }
+]

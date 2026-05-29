@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from AI.TestCase import testcase_generator
 
@@ -26,9 +27,36 @@ from AI.TestCase.excel_script_exporter import (
 # ==================================================
 # CẤU HÌNH ĐẦU VÀO
 # ==================================================
-UC_FILE = "UC_DangNhap_NetaBooks.txt"
-LOCATOR_FILE = "DangNhap_NetaBooks_locators.yaml"
-DATA_FILE = "data_DangNhap_NetaBooks.csv"
+UC_FILE = "UC_DatHangNhanh_Bemori.txt"
+LOCATOR_FILE = "DatHangNhanh_Bemori_locators.yaml"
+DATA_FILE = "data_DatHangNhanh_Bemori.json"
+
+
+# ==================================================
+# TÁCH TÊN CHỨC NĂNG VÀ TÊN WEBSITE
+# ==================================================
+def extract_function_and_web_name(uc_file):
+    file_name = os.path.basename(uc_file)
+
+    file_name = (
+        file_name
+        .replace("UC_", "")
+        .replace(".txt", "")
+    )
+
+    parts = file_name.split("_")
+
+    if len(parts) < 2:
+        raise ValueError(
+            "Tên file Use Case phải có dạng: "
+            "UC_<Tên chức năng>_<Tên web>.txt"
+        )
+
+    function_name = parts[0]
+
+    web_name = "_".join(parts[1:])
+
+    return function_name, web_name
 
 
 # ==================================================
@@ -456,13 +484,10 @@ def run_generation():
         )
 
     # ==================================================
-    # LẤY TÊN CHỨC NĂNG TỪ FILE USE CASE
-    # Ví dụ: UC_DatHangNhanh.txt -> DatHangNhanh
+    # LẤY TÊN CHỨC NĂNG VÀ WEBSITE TỪ FILE USE CASE
     # ==================================================
-    function_name = (
-        os.path.basename(uc_path)
-        .replace("UC_", "")
-        .replace(".txt", "")
+    function_name, web_name = extract_function_and_web_name(
+        UC_FILE
     )
 
     # ==================================================
@@ -521,19 +546,20 @@ def run_generation():
     # ==================================================
     # LƯU TEST CASE JSON
     # ==================================================
-    tc_folder = os.path.join(
+    tc_json_folder = os.path.join(
         base_dir,
-        "TC"
+        "TC",
+        "JSON"
     )
 
     os.makedirs(
-        tc_folder,
+        tc_json_folder,
         exist_ok=True
     )
 
     tc_path = os.path.join(
-        tc_folder,
-        f"TC_{function_name}.json"
+        tc_json_folder,
+        f"TC_{function_name}_{web_name}.json"
     )
 
     testcase_generator.save_testcases(
@@ -543,11 +569,34 @@ def run_generation():
 
     # ==================================================
     # XUẤT TEST CASE RA EXCEL QA DOCUMENT
+    # Mỗi chức năng là một sheet.
     # ==================================================
-    template_path = os.path.join(
+    tc_excel_folder = os.path.join(
+        base_dir,
+        "TC",
+        "Excel"
+    )
+
+    os.makedirs(
+        tc_excel_folder,
+        exist_ok=True
+    )
+
+    base_template_path = os.path.join(
         base_dir,
         "Sample_TestCase.xlsx"
     )
+
+    template_path = os.path.join(
+        tc_excel_folder,
+        f"Sample_TestCase_{web_name}.xlsx"
+    )
+
+    if not os.path.exists(template_path):
+        shutil.copy(
+            base_template_path,
+            template_path
+        )
 
     export_testcases_to_excel(
         testcases=testcases,
@@ -586,7 +635,7 @@ def run_generation():
 
     script_path = os.path.join(
         script_folder,
-        f"SCR_{function_name}.xlsx"
+        f"SCR_{function_name}_{web_name}.xlsx"
     )
 
     export_script_to_excel(

@@ -5,10 +5,10 @@ from core.kw_dispatcher import KeywordDispatcher
 from core.kw_common import KWCommon
 
 cases = data_loader.load_txt_data(
-    r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/data/data_MuaHang.txt"
+    r"/resources/data/data_MuaHang_Bemori.txt"
 )
 
-LOCATOR_FILE = r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/locators/MuaHang_locators.yaml"
+LOCATOR_FILE = r"/resources/locators/MuaHang_Bemori_locators.yaml"
 
 
 class TestMuaHang:

@@ -1,48 +1,54 @@
+from unidecode import unidecode
+
 from utils.semantic_utils import semantic_score
+
+
+def normalize_text(text):
+    if text is None:
+        return ""
+
+    return unidecode(str(text).lower().strip())
 
 
 def map_locator_semantic(step_text, locators):
     """
-    Map locator bằng semantic similarity
+    Map locator bằng semantic similarity + bonus theo loại UI component.
+    Không hardcode theo chức năng cụ thể.
     """
 
-    # Khởi tạo best match để tìm locator có số core cao nhất
     best_locator = None
     best_score = -1
 
-    for loc in locators:
+    step_norm = normalize_text(step_text)
 
-        # Lấy semantic mô tả locator
+    for loc in locators:
         semantic_list = loc.get("semantic", [])
 
-        # semantic có thể là string hoặc list
         if isinstance(semantic_list, str):
             semantic_list = [semantic_list]
 
         max_semantic_score = 0
 
-        # so sánh step với từng semantic phrase
         for semantic_text in semantic_list:
-            # gọi AI similarity
             score = semantic_score(
                 step_text,
                 semantic_text
             )
 
-            # giữ điểm cao nhất vì 1 locator có thể có nhiều semantic
             if score > max_semantic_score:
                 max_semantic_score = score
 
-        # ===== BONUS TYPE SCORE =====
-        loc_type = loc.get("type", "").lower()
-
-        step_lower = step_text.lower()
+        loc_type = normalize_text(
+            loc.get("type", "")
+        )
 
         bonus = 0
 
-        # input
-        if any(word in step_lower for word in [
-            "nhập",
+        # INPUT
+        if any(word in step_norm for word in [
+            "nhap",
+            "dien",
+            "go",
             "input",
             "enter",
             "type",
@@ -51,27 +57,66 @@ def map_locator_semantic(step_text, locators):
             if "input" in loc_type or "textarea" in loc_type:
                 bonus += 0.1
 
-        # button
-        if any(word in step_lower for word in [
+        # LINK
+        if any(word in step_norm for word in [
+            "link",
+            "lien ket",
+            "truy cap",
+            "dieu huong",
+            "chuyen toi",
+            "chuyen den",
+            "di den",
+            "di toi",
+            "mo",
+            "vao"
+        ]):
+            if "link" in loc_type:
+                bonus += 0.1
+
+        # BUTTON
+        if any(word in step_norm for word in [
+            "nut",
+            "button",
+            "nhan",
+            "bam",
             "click",
-            "nhấn",
-            "bấm",
+            "tap",
             "submit"
         ]):
             if "button" in loc_type:
                 bonus += 0.1
 
-        # verify text
-        if any(word in step_lower for word in [
-            "thông báo",
+        # MESSAGE / TEXT
+        if any(word in step_norm for word in [
+            "thong bao",
             "message",
             "text",
+            "noi dung",
             "label"
         ]):
-            if "label" in loc_type:
+            if "label" in loc_type or "element" in loc_type:
                 bonus += 0.1
 
-        # TỔNG ĐIỂM CUỐI
+        # VISIBLE ELEMENT
+        if any(word in step_norm for word in [
+            "hien thi",
+            "xuat hien",
+            "ton tai",
+            "visible",
+            "present"
+        ]):
+            if loc_type in [
+                "label",
+                "element",
+                "image",
+                "icon",
+                "button",
+                "link",
+                "table",
+                "combobox"
+            ]:
+                bonus += 0.05
+
         final_score = max_semantic_score + bonus
 
         print(
@@ -81,7 +126,6 @@ def map_locator_semantic(step_text, locators):
             f"| final={final_score:.3f}"
         )
 
-        # CHỌN BEST LOCATOR
         if final_score > best_score:
             best_score = final_score
             best_locator = loc["name"]

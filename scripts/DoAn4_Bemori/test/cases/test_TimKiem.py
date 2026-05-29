@@ -6,10 +6,10 @@ from core.kw_common import KWCommon
 import time
 
 cases = data_loader.load_json_data(
-    r"/resources/data/data_TimKiem.json"
+    r"/resources/data/data_TimKiem_Bemori.yaml"
 )
 
-LOCATOR_FILE = r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/locators/TimKiem_locators.yaml"
+LOCATOR_FILE = r"/resources/locators/TimKiem_Bemori_locators.yaml"
 
 
 class TestSearch:

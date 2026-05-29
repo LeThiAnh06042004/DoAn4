@@ -44,24 +44,67 @@ Với mỗi execution path bạn PHẢI:
 **Coverage Rule:**
 - Không được bỏ bất kỳ user action quan trọng nào trong execution path.
 - Phải giữ đúng thứ tự nghiệp vụ của execution path.
+- Không được tự thêm bước mới không tồn tại trong execution path.
+- Không được tự bỏ bước.
 
 **Steps Requirements:**
 - Mỗi step chỉ đúng 1 hành động.
 - KHÔNG được gộp nhiều hành động trong 1 step.
 - Steps phải rõ ràng, dễ mapping semantic.
 
+**Expected Result Rule (BẮT BUỘC):**
+- expected_result PHẢI được lấy trực tiếp từ execution path.
+- Không được tự sáng tạo expected_result.
+- Không được tự tạo thông báo mới.
+- Không được tự tạo thông báo thành công nếu execution path không chứa thông báo thành công.
+- Không được thay đổi nội dung thông báo trong execution path.
+
+Ví dụ:
+
+Execution Path:
+Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+
+Expected Result đúng:
+[
+  "Đăng nhập thất bại. Vui lòng thử lại."
+]
+
+Execution Path:
+Trang chủ NetaBooks được hiển thị thành công
+
+Expected Result đúng:
+[
+  "Trang chủ NetaBooks được hiển thị thành công"
+]
+
+Sai:
+[
+  "Đăng nhập thành công. Chào mừng trở lại!"
+]
+
+nếu execution path không chứa nội dung này.
+
 **Verify Rule (BẮT BUỘC):**
 - Nếu execution path có expected_messages
   hoặc expected_result,
   testcase BẮT BUỘC phải có verify step tương ứng.
 
-Ví dụ:
-- Kiểm tra thông báo "xxx" hiển thị
-- Kiểm tra trang chủ được hiển thị
-- Kiểm tra popup được hiển thị
-- Kiểm tra logo được hiển thị
-
 - Mỗi expected_result phải có ít nhất 1 verify step tương ứng trong steps.
+- Verify step phải mô tả rõ đối tượng cần kiểm tra.
+
+Ví dụ đúng:
+- Kiểm tra thông báo "Đăng nhập thất bại. Vui lòng thử lại." hiển thị
+- Kiểm tra trang chủ NetaBooks được hiển thị thành công
+- Kiểm tra thông tin tài khoản được hiển thị
+- Kiểm tra popup xác nhận được hiển thị
+- Kiểm tra logo website được hiển thị
+
+Không được viết chung chung như:
+- Kiểm tra thông báo lỗi
+- Kiểm tra kết quả
+- Kiểm tra thành công
+- Kiểm tra hiển thị
+- Kiểm tra hệ thống hoạt động đúng
 
 **Precondition Rule:**
 - Precondition phải phù hợp với execution path.
@@ -97,9 +140,15 @@ Chỉ trả về JSON array:
     "test_case_id": "TC_001",
     "path_id": "PATH_001",
     "scenario": "...",
-    "precondition": ["..."],
-    "steps": ["Step 1: ..."],
-    "expected_result": ["..."]
+    "precondition": [
+      "..."
+    ],
+    "steps": [
+      "Step 1: ..."
+    ],
+    "expected_result": [
+      "..."
+    ]
   }}
 ]
 
@@ -120,12 +169,27 @@ Output đúng:
   + Không nhập email
   + Nhập mật khẩu hợp lệ
   + Nhấn nút đăng nhập
-  + Kiểm tra thông báo lỗi hiển thị
+  + Kiểm tra thông báo "Bạn chưa nhập email." hiển thị
 
 - Expected:
-  + Thông báo lỗi liên quan đến email
+  [
+    "Bạn chưa nhập email."
+  ]
 
 Không được viết cả 2 lỗi trong 1 test case.
+
+================ SELF-CHECKLIST (BẮT BUỘC) ================
+
+Trước khi output phải tự kiểm tra:
+
+- Đã giữ đầy đủ user action quan trọng chưa?
+- Đã giữ đúng thứ tự execution path chưa?
+- Có bước verify tương ứng expected_result chưa?
+- Verify step có cụ thể không?
+- expected_result có lấy trực tiếp từ execution path không?
+- Có tự sáng tạo thông báo không?
+- Alternate Flow có đúng 1 lỗi không?
+- Có step nào gộp nhiều hành động không?
 
 ================ INPUT ================
 

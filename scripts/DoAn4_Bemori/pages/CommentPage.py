@@ -6,7 +6,7 @@ from selenium.webdriver.common.alert import Alert
 
 class CommentPage(BasePage):
     def __init__(self, driver):
-        super().__init__(driver, "BinhLuan_locators.yaml")
+        super().__init__(driver, "BinhLuan_Bemori_locators.yaml")
 
     def click_SP(self):
         self.click("lnkSanPham")

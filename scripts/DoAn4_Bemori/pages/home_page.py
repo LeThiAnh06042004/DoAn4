@@ -2,7 +2,7 @@ from core.base_page import BasePage
 
 class HomePage(BasePage):
     def __init__(self, driver):
-        super().__init__(driver, "TimKiem_locators.yaml")
+        super().__init__(driver, "TimKiem_Bemori_locators.yaml")
 
     def nhap_tu_khoa(self, keyword):
         self.send_keys("txtTimKiem", keyword)

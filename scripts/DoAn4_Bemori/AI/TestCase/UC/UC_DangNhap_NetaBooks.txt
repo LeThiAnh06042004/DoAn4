@@ -8,30 +8,36 @@ Người dùng đang ở trang chủ NetaBooks.
 
 Basic Flow:
 1. Người dùng nhấn vào liên kết "Đăng nhập"
-2. Người dùng nhập email "anhle06042004@gmail.com"
-3. Người dùng nhập mật khẩu "06042004"
+2. Người dùng nhập email hợp lệ vào ô email
+3. Người dùng nhập mật khẩu hợp lệ vào ô mật khẩu
 4. Người dùng nhấn nút "Đăng nhập"
-5. Hệ thống kiểm tra thông tin đăng nhập
-6. Hệ thống chuyển người dùng về trang chủ
-7. Kiểm tra trang chủ được hiển thị
+5. Hệ thống chuyển hướng người dùng đến trang chủ NetaBooks
+6. Trang chủ NetaBooks được hiển thị thành công
 
 Alternate Flow:
-
 AF1: Không nhập email
 2a. Người dùng không nhập email
-7a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+3a. Người dùng nhập mật khẩu hợp lệ vào ô mật khẩu
+4a. Người dùng nhấn nút "Đăng nhập"
+5a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
 
 AF2: Không nhập mật khẩu
+2a. Người dùng nhập email hợp lệ vào ô email
 3a. Người dùng không nhập mật khẩu
-7a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+4a. Người dùng nhấn nút "Đăng nhập"
+5a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
 
 AF3: Email sai
-2a. Người dùng nhập email sai
-7a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+2a. Người dùng nhập email sai vào ô email
+3a. Người dùng nhập mật khẩu hợp lệ vào ô mật khẩu
+4a. Người dùng nhấn nút "Đăng nhập"
+5a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
 
 AF4: Mật khẩu sai
-3a. Người dùng nhập mật khẩu sai
-7a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
+2a. Người dùng nhập email hợp lệ vào ô email
+3a. Người dùng nhập mật khẩu sai vào ô mật khẩu
+4a. Người dùng nhấn nút "Đăng nhập"
+5a. Hệ thống hiển thị thông báo "Đăng nhập thất bại. Vui lòng thử lại."
 
 Postcondition:
-Nếu đăng nhập thành công, người dùng được chuyển về trang chủ NetaBooks.
+Nếu đăng nhập thành công, người dùng được chuyển hướng đến trang chủ NetaBooks.

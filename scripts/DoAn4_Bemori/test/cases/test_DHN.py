@@ -5,10 +5,10 @@ from core.kw_dispatcher import KeywordDispatcher
 from core.kw_common import KWCommon
 
 cases = data_loader.load_json_data(
-    r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/data/data_DatHangNhanh.json"
+    r"/resources/data/data_DatHangNhanh_Bemori.json"
 )
 
-LOCATOR_FILE = r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/locators/DatHangNhanh_locators.yaml"
+LOCATOR_FILE = r"/resources/locators/DatHangNhanh_Bemori_locators.yaml"
 
 class TestDatHangNhanh:
     @pytest.mark.parametrize(

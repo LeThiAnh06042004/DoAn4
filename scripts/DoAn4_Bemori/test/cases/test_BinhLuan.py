@@ -5,11 +5,11 @@ from core.kw_dispatcher import KeywordDispatcher
 from core.kw_common import KWCommon
 
 cases = data_loader.load_sqlite_data(
-    r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/data/data_BinhLuan.sqlite",
+    r"/resources/data/data_BinhLuan_Bemori.sqlite",
     "BinhLuan"
 )
 
-LOCATOR_FILE = r"D:/Đồ án 4/DoAn4/scripts/DoAn4_Bemori/resources/locators/BinhLuan_locators.yaml"
+LOCATOR_FILE = r"/resources/locators/BinhLuan_Bemori_locators.yaml"
 
 class TestBinhLuan:
     @pytest.mark.parametrize(

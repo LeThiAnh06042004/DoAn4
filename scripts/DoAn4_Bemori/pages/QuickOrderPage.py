@@ -5,7 +5,7 @@ from selenium.common.exceptions import TimeoutException
 
 class QuickOrderPage(BasePage):
     def __init__(self, driver):
-        super().__init__(driver, "DatHangNhanh_locators.yaml")
+        super().__init__(driver, "DatHangNhanh_Bemori_locators.yaml")
 
     def click_SP(self):
         self.click("lnkSanPham")

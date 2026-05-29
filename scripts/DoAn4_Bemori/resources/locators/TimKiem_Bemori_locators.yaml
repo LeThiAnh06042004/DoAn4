@@ -1,0 +1,40 @@
+txtTimKiem:
+  by: xpath
+  value: //input[@placeholder="Nhập sản phẩm cần tìm"]
+  semantic:
+    - ô tìm kiếm
+    - search input
+    - nhập từ khóa tìm kiếm
+    - ô nhập từ khóa
+  data_key:
+    - TuKhoa
+    - Keyword
+    - TimKiem
+    - Search
+    - SearchKeyword
+
+btnTimKiem:
+  by: xpath
+  value: //button[@type="submit"]
+  semantic:
+    - nút tìm kiếm
+    - search button
+
+lblKoTimThay:
+  by: xpath
+  value: //div[@class="woocommerce-info"]
+  semantic:
+    - thông báo không tìm thấy
+    - no result message
+    - không tìm thấy sản phẩm
+    - không có kết quả
+
+cboTimThay:
+  by: xpath
+  value: //select[@name="orderby"]
+  semantic:
+    - danh sách sản phẩm
+    - kết quả tìm kiếm
+    - khu vực hiển thị sản phẩm
+    - sản phẩm được tìm thấy
+    - bộ lọc sắp xếp sản phẩm

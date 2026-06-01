@@ -1,22 +1,53 @@
+import os
 import pytest
 
 from utils.excel_reader import read_excel_to_testcases
 from utils.data_loader import *
 from utils.locator_reader import LocatorReader
+from utils.logger import logging
+
 from core.kw_common import KWCommon
 from core.kw_dispatcher import KeywordDispatcher
 from core.step_excutor import execute_steps
-from utils.logger import logging
 
 
 # ================= CONFIG =================
-SCRIPT_PATH = "test/cases/SCR_DatHangNhanh_Bemori.xlsx"
-DATA_PATH = "resources/data/data_DatHangNhanh_Bemori.json"
-LOCATOR_PATH = "resources/locators/DatHangNhanh_Bemori_locators.yaml"
+SCRIPT_PATH = "test/cases/SCR_MuaHang_Bemori.xlsx"
+DATA_PATH = "resources/data/data_MuaHang_Bemori.txt"
+LOCATOR_PATH = "resources/locators/MuaHang_Bemori_locators.yaml"
 
 TARGET_TC = None     # None = all | "TC_001" = run 1
-USE_DATA = False          # True = dùng data
+USE_DATA = False     # True = dùng data
 # ==========================================
+
+
+def extract_function_web_from_script(script_path):
+    file_name = os.path.basename(script_path)
+
+    file_name = file_name.replace(
+        "SCR_",
+        ""
+    )
+
+    file_name = file_name.replace(
+        ".xlsx",
+        ""
+    )
+
+    parts = file_name.split("_")
+
+    if len(parts) < 2:
+        return "UnknownFunction", "UnknownWeb"
+
+    function_name = parts[0]
+    web_name = "_".join(parts[1:])
+
+    return function_name, web_name
+
+
+FUNCTION_NAME, WEB_NAME = extract_function_web_from_script(
+    SCRIPT_PATH
+)
 
 
 # ===== INJECT DATA =====
@@ -27,7 +58,10 @@ def inject_data(steps, data_row):
         value = str(step.get("value", ""))
 
         for key, val in data_row.items():
-            value = value.replace(f"${{{key}}}", str(val))
+            value = value.replace(
+                f"${{{key}}}",
+                str(val)
+            )
 
         new_step = step.copy()
         new_step["value"] = value
@@ -37,18 +71,29 @@ def inject_data(steps, data_row):
 
 
 # ===== LOAD TESTCASE =====
-testcases = read_excel_to_testcases(SCRIPT_PATH)
+testcases = read_excel_to_testcases(
+    SCRIPT_PATH
+)
 
 if TARGET_TC:
-    testcases = [tc for tc in testcases if tc["name"] == TARGET_TC]
+    testcases = [
+        tc for tc in testcases
+        if tc["name"] == TARGET_TC
+    ]
 
 
 # ===== LOAD DATA =====
-data = load_yaml_data(DATA_PATH) if USE_DATA else [None]
+data = load_yaml_data(
+    DATA_PATH
+) if USE_DATA else [None]
 
 
 # ===== BUILD TEST MATRIX =====
-test_matrix = [(tc, d) for tc in testcases for d in data]
+test_matrix = [
+    (tc, d)
+    for tc in testcases
+    for d in data
+]
 
 
 # ===== PARAMETRIZE =====
@@ -64,30 +109,46 @@ def test_run(driver, tc, data_row):
 
     logger = logging.getLogger("TestLogger")
 
-    locator_reader = LocatorReader(LOCATOR_PATH)
-    kw = KWCommon(driver, locator_reader=locator_reader)
-    dispatcher = KeywordDispatcher(kw)
+    locator_reader = LocatorReader(
+        LOCATOR_PATH
+    )
+
+    kw = KWCommon(
+        driver,
+        locator_reader=locator_reader
+    )
+
+    dispatcher = KeywordDispatcher(
+        kw
+    )
 
     logger.info(f"===== TESTCASE: {tc['name']} =====")
     logger.info(f"DATA: {data_row}")
 
-    has_failed = False   # 🔥 KEY FIX
+    has_failed = False
 
     try:
         if USE_DATA and data_row is not None:
-            steps = inject_data(tc["steps"], data_row)
+            steps = inject_data(
+                tc["steps"],
+                data_row
+            )
         else:
             steps = tc["steps"]
 
-        execute_steps(dispatcher, steps, logger)
+        execute_steps(
+            dispatcher,
+            steps,
+            logger
+        )
 
         logger.info(f"TESTCASE PASSED: {tc['name']}")
 
     except Exception as e:
         has_failed = True
+
         logger.error(f"TESTCASE FAILED: {tc['name']}")
         logger.error(str(e))
 
-    # 🔥 QUYẾT ĐỊNH PASS/FAIL CHO PYTEST
     if has_failed:
         pytest.fail(f"{tc['name']} FAILED")

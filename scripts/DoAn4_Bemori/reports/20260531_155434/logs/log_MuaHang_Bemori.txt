@@ -1,0 +1,172 @@
+2026-05-31 15:54:34,167 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_155434\logs\log_MuaHang_Bemori.txt
+2026-05-31 15:54:34,272 - INFO - TestLogger - Function: MuaHang
+2026-05-31 15:54:34,272 - INFO - TestLogger - Website: Bemori
+2026-05-31 15:54:34,272 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_155434\html\report_MuaHang_Bemori.html
+2026-05-31 15:54:35,963 - INFO - TestLogger - Bắt đầu: test_run[TC_001] =====
+2026-05-31 15:54:42,630 - INFO - TestLogger - ===== TESTCASE: TC_001 =====
+2026-05-31 15:54:42,631 - INFO - TestLogger - DATA: None
+2026-05-31 15:54:42,631 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 15:54:42,631 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 15:54:51,208 - INFO - TestLogger - PASS
+2026-05-31 15:54:51,210 - INFO - TestLogger - STEP 2: CLICK | lnkSanPham | 
+2026-05-31 15:54:51,761 - INFO - TestLogger - PASS
+2026-05-31 15:54:51,762 - INFO - TestLogger - STEP 3: CLICK | btnMuaHang | 
+2026-05-31 15:54:53,226 - INFO - TestLogger - PASS
+2026-05-31 15:54:53,227 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtTenNguoiMua | Linh
+2026-05-31 15:54:53,606 - INFO - TestLogger - PASS
+2026-05-31 15:54:53,606 - INFO - TestLogger - STEP 5: INPUT_TEXT | txtSoDienThoaiNguoiMua | 0218737692
+2026-05-31 15:54:53,915 - INFO - TestLogger - PASS
+2026-05-31 15:54:53,915 - INFO - TestLogger - STEP 6: INPUT_TEXT | txtDiaChiNhanHang | Hưng Yên
+2026-05-31 15:54:54,221 - INFO - TestLogger - PASS
+2026-05-31 15:54:54,222 - INFO - TestLogger - STEP 7: INPUT_TEXT | txtYeuCauThem | test
+2026-05-31 15:54:54,517 - INFO - TestLogger - PASS
+2026-05-31 15:54:54,517 - INFO - TestLogger - STEP 8: CLICK | btnMua | 
+2026-05-31 15:54:54,982 - INFO - TestLogger - PASS
+2026-05-31 15:54:54,982 - INFO - TestLogger - STEP 9: VERIFY_TEXT_CONTAINS | lblThongBaoThanhCong | Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.
+2026-05-31 15:54:58,875 - INFO - TestLogger - PASS
+2026-05-31 15:54:58,875 - INFO - TestLogger - STEP 10: CLOSE_BROWSER |  | 
+2026-05-31 15:55:01,179 - INFO - TestLogger - PASS
+2026-05-31 15:55:01,180 - INFO - TestLogger - TESTCASE PASSED: TC_001
+2026-05-31 15:55:01,187 - INFO - TestLogger - TEST PASSED: test_run[TC_001]
+2026-05-31 15:55:17,661 - INFO - TestLogger - Kết thúc: test_run[TC_001] =====
+
+2026-05-31 15:55:17,664 - INFO - TestLogger - Bắt đầu: test_run[TC_002] =====
+2026-05-31 15:55:22,528 - INFO - TestLogger - ===== TESTCASE: TC_002 =====
+2026-05-31 15:55:22,529 - INFO - TestLogger - DATA: None
+2026-05-31 15:55:22,529 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 15:55:22,530 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 15:55:27,462 - INFO - TestLogger - PASS
+2026-05-31 15:55:27,462 - INFO - TestLogger - STEP 2: CLICK | lnkSanPham | 
+2026-05-31 15:55:28,175 - INFO - TestLogger - PASS
+2026-05-31 15:55:28,176 - INFO - TestLogger - STEP 3: CLICK | btnMuaHang | 
+2026-05-31 15:55:29,487 - INFO - TestLogger - PASS
+2026-05-31 15:55:29,487 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtTenNguoiMua | 
+2026-05-31 15:55:29,665 - INFO - TestLogger - PASS
+2026-05-31 15:55:29,665 - INFO - TestLogger - STEP 5: INPUT_TEXT | txtSoDienThoaiNguoiMua | 0218737692
+2026-05-31 15:55:30,014 - INFO - TestLogger - PASS
+2026-05-31 15:55:30,015 - INFO - TestLogger - STEP 6: INPUT_TEXT | txtDiaChiNhanHang | Hưng Yên
+2026-05-31 15:55:30,267 - INFO - TestLogger - PASS
+2026-05-31 15:55:30,267 - INFO - TestLogger - STEP 7: INPUT_TEXT | txtYeuCauThem | test
+2026-05-31 15:55:30,545 - INFO - TestLogger - PASS
+2026-05-31 15:55:30,546 - INFO - TestLogger - STEP 8: CLICK | btnMua | 
+2026-05-31 15:55:30,926 - INFO - TestLogger - PASS
+2026-05-31 15:55:30,926 - INFO - TestLogger - STEP 9: VERIFY_ELEMENT_TEXT_EQUALS | lblThongBaoNhapTen | Bạn chưa nhập họ và tên người mua.
+2026-05-31 15:55:31,327 - INFO - TestLogger - PASS
+2026-05-31 15:55:31,327 - INFO - TestLogger - STEP 10: CLOSE_BROWSER |  | 
+2026-05-31 15:55:33,593 - INFO - TestLogger - PASS
+2026-05-31 15:55:33,594 - INFO - TestLogger - TESTCASE PASSED: TC_002
+2026-05-31 15:55:33,598 - INFO - TestLogger - TEST PASSED: test_run[TC_002]
+2026-05-31 15:55:49,980 - INFO - TestLogger - Kết thúc: test_run[TC_002] =====
+
+2026-05-31 15:55:49,985 - INFO - TestLogger - Bắt đầu: test_run[TC_003] =====
+2026-05-31 15:55:54,652 - INFO - TestLogger - ===== TESTCASE: TC_003 =====
+2026-05-31 15:55:54,652 - INFO - TestLogger - DATA: None
+2026-05-31 15:55:54,652 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 15:55:54,653 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 15:55:54,964 - INFO - TestLogger - PASS
+2026-05-31 15:55:54,964 - INFO - TestLogger - STEP 2: CLICK | lnkSanPham | 
+2026-05-31 15:56:06,984 - INFO - TestLogger - PASS
+2026-05-31 15:56:06,984 - INFO - TestLogger - STEP 3: CLICK | btnMuaHang | 
+2026-05-31 15:56:09,023 - INFO - TestLogger - PASS
+2026-05-31 15:56:09,024 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtTenNguoiMua | Linh
+2026-05-31 15:56:09,599 - INFO - TestLogger - PASS
+2026-05-31 15:56:09,599 - INFO - TestLogger - STEP 5: INPUT_TEXT | txtSoDienThoaiNguoiMua | 
+2026-05-31 15:56:09,679 - INFO - TestLogger - PASS
+2026-05-31 15:56:09,680 - INFO - TestLogger - STEP 6: INPUT_TEXT | txtDiaChiNhanHang | Hưng Yên
+2026-05-31 15:56:09,964 - INFO - TestLogger - PASS
+2026-05-31 15:56:09,965 - INFO - TestLogger - STEP 7: INPUT_TEXT | txtYeuCauThem | test
+2026-05-31 15:56:10,124 - INFO - TestLogger - PASS
+2026-05-31 15:56:10,124 - INFO - TestLogger - STEP 8: CLICK | btnMua | 
+2026-05-31 15:56:10,329 - INFO - TestLogger - PASS
+2026-05-31 15:56:10,329 - INFO - TestLogger - STEP 9: VERIFY_ELEMENT_TEXT_EQUALS | lblThongBaoNhapSoDienThoai | Bạn chưa nhập số điện thoại người mua.
+2026-05-31 15:56:12,765 - INFO - TestLogger - PASS
+2026-05-31 15:56:12,766 - INFO - TestLogger - STEP 10: CLOSE_BROWSER |  | 
+2026-05-31 15:56:15,056 - INFO - TestLogger - PASS
+2026-05-31 15:56:15,057 - INFO - TestLogger - TESTCASE PASSED: TC_003
+2026-05-31 15:56:15,063 - INFO - TestLogger - TEST PASSED: test_run[TC_003]
+2026-05-31 15:56:31,412 - INFO - TestLogger - Kết thúc: test_run[TC_003] =====
+
+2026-05-31 15:56:31,417 - INFO - TestLogger - Bắt đầu: test_run[TC_004] =====
+2026-05-31 15:56:35,454 - INFO - TestLogger - ===== TESTCASE: TC_004 =====
+2026-05-31 15:56:35,455 - INFO - TestLogger - DATA: None
+2026-05-31 15:56:35,455 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 15:56:35,456 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 15:56:43,390 - INFO - TestLogger - PASS
+2026-05-31 15:56:43,391 - INFO - TestLogger - STEP 2: CLICK | lnkSanPham | 
+2026-05-31 15:56:43,885 - INFO - TestLogger - PASS
+2026-05-31 15:56:43,885 - INFO - TestLogger - STEP 3: CLICK | btnMuaHang | 
+2026-05-31 15:56:45,130 - INFO - TestLogger - PASS
+2026-05-31 15:56:45,131 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtTenNguoiMua | Linh
+2026-05-31 15:56:45,792 - INFO - TestLogger - PASS
+2026-05-31 15:56:45,793 - INFO - TestLogger - STEP 5: INPUT_TEXT | txtSoDienThoaiNguoiMua | sodienthoai
+2026-05-31 15:56:46,217 - INFO - TestLogger - PASS
+2026-05-31 15:56:46,218 - INFO - TestLogger - STEP 6: INPUT_TEXT | txtDiaChiNhanHang | Hưng Yên
+2026-05-31 15:56:46,483 - INFO - TestLogger - PASS
+2026-05-31 15:56:46,483 - INFO - TestLogger - STEP 7: INPUT_TEXT | txtYeuCauThem | test
+2026-05-31 15:56:46,783 - INFO - TestLogger - PASS
+2026-05-31 15:56:46,784 - INFO - TestLogger - STEP 8: CLICK | btnMua | 
+2026-05-31 15:56:47,184 - INFO - TestLogger - PASS
+2026-05-31 15:56:47,185 - INFO - TestLogger - STEP 9: VERIFY_ELEMENT_TEXT_EQUALS | lblThongBaoDienThoaiChiCoSo | Số điện thoại chỉ bao gồm những số.
+2026-05-31 15:56:47,826 - INFO - TestLogger - PASS
+2026-05-31 15:56:47,826 - INFO - TestLogger - STEP 10: CLOSE_BROWSER |  | 
+2026-05-31 15:56:50,064 - INFO - TestLogger - PASS
+2026-05-31 15:56:50,065 - INFO - TestLogger - TESTCASE PASSED: TC_004
+2026-05-31 15:56:50,069 - INFO - TestLogger - TEST PASSED: test_run[TC_004]
+2026-05-31 15:57:06,482 - INFO - TestLogger - Kết thúc: test_run[TC_004] =====
+
+2026-05-31 15:57:06,487 - INFO - TestLogger - Bắt đầu: test_run[TC_005] =====
+2026-05-31 15:57:11,333 - INFO - TestLogger - ===== TESTCASE: TC_005 =====
+2026-05-31 15:57:11,333 - INFO - TestLogger - DATA: None
+2026-05-31 15:57:11,333 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 15:57:11,334 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 15:57:16,696 - INFO - TestLogger - PASS
+2026-05-31 15:57:16,698 - INFO - TestLogger - STEP 2: CLICK | lnkSanPham | 
+2026-05-31 15:57:17,171 - INFO - TestLogger - PASS
+2026-05-31 15:57:17,172 - INFO - TestLogger - STEP 3: CLICK | btnMuaHang | 
+2026-05-31 15:57:18,762 - INFO - TestLogger - PASS
+2026-05-31 15:57:18,763 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtTenNguoiMua | Linh
+2026-05-31 15:57:19,101 - INFO - TestLogger - PASS
+2026-05-31 15:57:19,102 - INFO - TestLogger - STEP 5: INPUT_TEXT | txtSoDienThoaiNguoiMua | 021873769
+2026-05-31 15:57:19,518 - INFO - TestLogger - PASS
+2026-05-31 15:57:19,519 - INFO - TestLogger - STEP 6: INPUT_TEXT | txtDiaChiNhanHang | Hưng Yên
+2026-05-31 15:57:19,859 - INFO - TestLogger - PASS
+2026-05-31 15:57:19,859 - INFO - TestLogger - STEP 7: INPUT_TEXT | txtYeuCauThem | test
+2026-05-31 15:57:20,163 - INFO - TestLogger - PASS
+2026-05-31 15:57:20,164 - INFO - TestLogger - STEP 8: CLICK | btnMua | 
+2026-05-31 15:57:20,576 - INFO - TestLogger - PASS
+2026-05-31 15:57:20,577 - INFO - TestLogger - STEP 9: VERIFY_ELEMENT_TEXT_EQUALS | lblThongBaoDienThoai10so | Số điện thoại phải có ít nhất 10 số.
+2026-05-31 15:57:20,986 - INFO - TestLogger - PASS
+2026-05-31 15:57:20,986 - INFO - TestLogger - STEP 10: CLOSE_BROWSER |  | 
+2026-05-31 15:57:23,230 - INFO - TestLogger - PASS
+2026-05-31 15:57:23,231 - INFO - TestLogger - TESTCASE PASSED: TC_005
+2026-05-31 15:57:23,235 - INFO - TestLogger - TEST PASSED: test_run[TC_005]
+2026-05-31 15:57:39,627 - INFO - TestLogger - Kết thúc: test_run[TC_005] =====
+
+2026-05-31 15:57:39,632 - INFO - TestLogger - Bắt đầu: test_run[TC_006] =====
+2026-05-31 15:57:44,364 - INFO - TestLogger - ===== TESTCASE: TC_006 =====
+2026-05-31 15:57:44,364 - INFO - TestLogger - DATA: None
+2026-05-31 15:57:44,364 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 15:57:44,365 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 15:57:49,198 - INFO - TestLogger - PASS
+2026-05-31 15:57:49,199 - INFO - TestLogger - STEP 2: CLICK | lnkSanPham | 
+2026-05-31 15:57:49,719 - INFO - TestLogger - PASS
+2026-05-31 15:57:49,719 - INFO - TestLogger - STEP 3: CLICK | btnMuaHang | 
+2026-05-31 15:57:51,294 - INFO - TestLogger - PASS
+2026-05-31 15:57:51,294 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtTenNguoiMua | Linh
+2026-05-31 15:57:51,638 - INFO - TestLogger - PASS
+2026-05-31 15:57:51,639 - INFO - TestLogger - STEP 5: INPUT_TEXT | txtSoDienThoaiNguoiMua | 0218737692
+2026-05-31 15:57:52,081 - INFO - TestLogger - PASS
+2026-05-31 15:57:52,082 - INFO - TestLogger - STEP 6: INPUT_TEXT | txtDiaChiNhanHang | 
+2026-05-31 15:57:52,231 - INFO - TestLogger - PASS
+2026-05-31 15:57:52,231 - INFO - TestLogger - STEP 7: INPUT_TEXT | txtYeuCauThem | test
+2026-05-31 15:57:52,525 - INFO - TestLogger - PASS
+2026-05-31 15:57:52,525 - INFO - TestLogger - STEP 8: CLICK | btnMua | 
+2026-05-31 15:57:52,971 - INFO - TestLogger - PASS
+2026-05-31 15:57:52,973 - INFO - TestLogger - STEP 9: VERIFY_ELEMENT_TEXT_EQUALS | lblThongBaoNhapDiaChi | Bạn chưa nhập địa chỉ nhận hàng.
+2026-05-31 15:57:53,358 - INFO - TestLogger - PASS
+2026-05-31 15:57:53,358 - INFO - TestLogger - STEP 10: CLOSE_BROWSER |  | 
+2026-05-31 15:57:55,596 - INFO - TestLogger - PASS
+2026-05-31 15:57:55,597 - INFO - TestLogger - TESTCASE PASSED: TC_006
+2026-05-31 15:57:55,601 - INFO - TestLogger - TEST PASSED: test_run[TC_006]
+2026-05-31 15:58:12,026 - INFO - TestLogger - Kết thúc: test_run[TC_006] =====
+

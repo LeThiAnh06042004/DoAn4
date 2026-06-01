@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "TC_001",
+    "path_id": "PATH_001",
+    "scenario": "Kiểm tra gửi bình luận thành công khi nhập đầy đủ thông tin",
+    "precondition": [
+      "Người dùng đang ở trang chủ website"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập nội dung bình luận",
+      "Step 3: Nhập họ tên",
+      "Step 4: Nhập số điện thoại",
+      "Step 5: Nhấn nút \"Gửi bình luận\"",
+      "Step 6: Kiểm tra thông báo \"Gửi bình luận thành công.\" hiển thị"
+    ],
+    "expected_result": [
+      "Gửi bình luận thành công."
+    ]
+  },
+  {
+    "test_case_id": "TC_002",
+    "path_id": "PATH_002",
+    "scenario": "Kiểm tra lỗi khi nội dung bình luận rỗng",
+    "precondition": [
+      "Người dùng đang ở trang chủ website"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Không nhập nội dung bình luận",
+      "Step 3: Nhập họ tên",
+      "Step 4: Nhập số điện thoại",
+      "Step 5: Nhấn nút \"Gửi bình luận\"",
+      "Step 6: Kiểm tra thông báo \"Bạn chưa nhập bình luận.\" hiển thị"
+    ],
+    "expected_result": [
+      "Bạn chưa nhập bình luận."
+    ]
+  },
+  {
+    "test_case_id": "TC_003",
+    "path_id": "PATH_003",
+    "scenario": "Kiểm tra lỗi khi họ tên rỗng",
+    "precondition": [
+      "Người dùng đang ở trang chủ website"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập nội dung bình luận",
+      "Step 3: Không nhập họ tên",
+      "Step 4: Nhập số điện thoại",
+      "Step 5: Nhấn nút \"Gửi bình luận\"",
+      "Step 6: Kiểm tra thông báo \"Bạn chưa nhập tên.\" hiển thị"
+    ],
+    "expected_result": [
+      "Bạn chưa nhập tên."
+    ]
+  },
+  {
+    "test_case_id": "TC_004",
+    "path_id": "PATH_004",
+    "scenario": "Kiểm tra lỗi khi số điện thoại rỗng",
+    "precondition": [
+      "Người dùng đang ở trang chủ website"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập nội dung bình luận",
+      "Step 3: Nhập họ tên",
+      "Step 4: Không nhập số điện thoại",
+      "Step 5: Nhấn nút \"Gửi bình luận\"",
+      "Step 6: Kiểm tra thông báo \"Bạn chưa nhập số điện thoại.\" hiển thị"
+    ],
+    "expected_result": [
+      "Bạn chưa nhập số điện thoại."
+    ]
+  },
+  {
+    "test_case_id": "TC_005",
+    "path_id": "PATH_005",
+    "scenario": "Kiểm tra lỗi khi số điện thoại chứa ký tự không phải số",
+    "precondition": [
+      "Người dùng đang ở trang chủ website"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập nội dung bình luận",
+      "Step 3: Nhập họ tên",
+      "Step 4: Nhập số điện thoại chứa ký tự không phải số",
+      "Step 5: Nhấn nút \"Gửi bình luận\"",
+      "Step 6: Kiểm tra thông báo \"Số điện thoại chỉ bao gồm những số.\" hiển thị"
+    ],
+    "expected_result": [
+      "Số điện thoại chỉ bao gồm những số."
+    ]
+  },
+  {
+    "test_case_id": "TC_006",
+    "path_id": "PATH_006",
+    "scenario": "Kiểm tra lỗi khi số điện thoại ít hơn 10 chữ số",
+    "precondition": [
+      "Người dùng đang ở trang chủ website"
+    ],
+    "steps": [
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập nội dung bình luận",
+      "Step 3: Nhập họ tên",
+      "Step 4: Nhập số điện thoại có ít hơn 10 chữ số",
+      "Step 5: Nhấn nút \"Gửi bình luận\"",
+      "Step 6: Kiểm tra thông báo \"Số điện thoại phải có ít nhất 10 số.\" hiển thị"
+    ],
+    "expected_result": [
+      "Số điện thoại phải có ít nhất 10 số."
+    ]
+  }
+]

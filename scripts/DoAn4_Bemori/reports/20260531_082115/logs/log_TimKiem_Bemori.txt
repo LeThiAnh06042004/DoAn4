@@ -1,0 +1,58 @@
+2026-05-31 08:21:15,644 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_082115\logs\log_TimKiem_Bemori.txt
+2026-05-31 08:21:15,828 - INFO - TestLogger - Function: TimKiem
+2026-05-31 08:21:15,829 - INFO - TestLogger - Website: Bemori
+2026-05-31 08:21:15,829 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_082115\html\report_TimKiem_Bemori.html
+2026-05-31 08:21:17,968 - INFO - TestLogger - Bắt đầu: test_run[TC_001] =====
+2026-05-31 08:21:30,148 - INFO - TestLogger - ===== TESTCASE: TC_001 =====
+2026-05-31 08:21:30,148 - INFO - TestLogger - DATA: None
+2026-05-31 08:21:30,148 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 08:21:30,149 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 08:21:38,508 - INFO - TestLogger - PASS
+2026-05-31 08:21:38,509 - INFO - TestLogger - STEP 2: INPUT_TEXT | txtTimKiem | gấu teddy
+2026-05-31 08:21:39,083 - INFO - TestLogger - PASS
+2026-05-31 08:21:39,084 - INFO - TestLogger - STEP 3: CLICK | btnTimKiem | 
+2026-05-31 08:21:42,289 - INFO - TestLogger - PASS
+2026-05-31 08:21:42,289 - INFO - TestLogger - STEP 4: VERIFY_ELEMENT_VISIBLE | cboTimThay | 
+2026-05-31 08:21:42,537 - INFO - TestLogger - PASS
+2026-05-31 08:21:42,537 - INFO - TestLogger - STEP 5: CLOSE_BROWSER |  | 
+2026-05-31 08:21:44,779 - INFO - TestLogger - PASS
+2026-05-31 08:21:44,779 - INFO - TestLogger - TESTCASE PASSED: TC_001
+2026-05-31 08:21:44,785 - INFO - TestLogger - TEST PASSED: test_run[TC_001]
+2026-05-31 08:22:01,234 - INFO - TestLogger - Kết thúc: test_run[TC_001] =====
+
+2026-05-31 08:22:01,241 - INFO - TestLogger - Bắt đầu: test_run[TC_002] =====
+2026-05-31 08:22:06,010 - INFO - TestLogger - ===== TESTCASE: TC_002 =====
+2026-05-31 08:22:06,011 - INFO - TestLogger - DATA: None
+2026-05-31 08:22:06,011 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 08:22:06,012 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 08:22:13,943 - INFO - TestLogger - PASS
+2026-05-31 08:22:13,944 - INFO - TestLogger - STEP 2: INPUT_TEXT | txtTimKiem | 
+2026-05-31 08:22:14,249 - INFO - TestLogger - PASS
+2026-05-31 08:22:14,250 - INFO - TestLogger - STEP 3: CLICK | btnTimKiem | 
+2026-05-31 08:22:16,570 - INFO - TestLogger - PASS
+2026-05-31 08:22:16,571 - INFO - TestLogger - STEP 4: VERIFY_ELEMENT_VISIBLE | cboTimThay | 
+2026-05-31 08:22:16,654 - INFO - TestLogger - PASS
+2026-05-31 08:22:16,654 - INFO - TestLogger - STEP 5: CLOSE_BROWSER |  | 
+2026-05-31 08:22:18,940 - INFO - TestLogger - PASS
+2026-05-31 08:22:18,941 - INFO - TestLogger - TESTCASE PASSED: TC_002
+2026-05-31 08:22:18,944 - INFO - TestLogger - TEST PASSED: test_run[TC_002]
+2026-05-31 08:22:35,414 - INFO - TestLogger - Kết thúc: test_run[TC_002] =====
+
+2026-05-31 08:22:35,419 - INFO - TestLogger - Bắt đầu: test_run[TC_003] =====
+2026-05-31 08:22:40,209 - INFO - TestLogger - ===== TESTCASE: TC_003 =====
+2026-05-31 08:22:40,209 - INFO - TestLogger - DATA: None
+2026-05-31 08:22:40,209 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 08:22:40,210 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 08:22:47,753 - INFO - TestLogger - PASS
+2026-05-31 08:22:47,754 - INFO - TestLogger - STEP 2: INPUT_TEXT | txtTimKiem | abcdefgh
+2026-05-31 08:22:48,199 - INFO - TestLogger - PASS
+2026-05-31 08:22:48,199 - INFO - TestLogger - STEP 3: CLICK | btnTimKiem | 
+2026-05-31 08:22:50,297 - INFO - TestLogger - PASS
+2026-05-31 08:22:50,298 - INFO - TestLogger - STEP 4: VERIFY_ELEMENT_VISIBLE | lblKoTimThay | 
+2026-05-31 08:22:50,375 - INFO - TestLogger - PASS
+2026-05-31 08:22:50,377 - INFO - TestLogger - STEP 5: CLOSE_BROWSER |  | 
+2026-05-31 08:22:52,639 - INFO - TestLogger - PASS
+2026-05-31 08:22:52,639 - INFO - TestLogger - TESTCASE PASSED: TC_003
+2026-05-31 08:22:52,642 - INFO - TestLogger - TEST PASSED: test_run[TC_003]
+2026-05-31 08:23:09,045 - INFO - TestLogger - Kết thúc: test_run[TC_003] =====
+

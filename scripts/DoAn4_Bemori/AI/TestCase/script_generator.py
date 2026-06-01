@@ -196,11 +196,42 @@ def map_input_locator_by_rule(step_text, locator_context):
     return None
 
 
+def clean_click_candidate(text):
+    text_norm = normalize_key(text)
+
+    remove_words = [
+        "nut",
+        "button",
+        "btn",
+        "link",
+        "lienket",
+        "lien ket",
+        "xacnhan",
+        "xac nhan",
+        "confirm",
+        "submit",
+        "order"
+    ]
+
+    for word in remove_words:
+        text_norm = text_norm.replace(word, "")
+
+    text_norm = " ".join(
+        text_norm.split()
+    )
+
+    return text_norm
+
+
 def map_click_locator_by_rule(step_text, locator_context):
     text_norm = normalize_key(step_text)
 
     best_locator = None
     best_score = 0
+
+    quoted_text = extract_quoted_text(step_text)
+    quoted_norm = normalize_key(quoted_text)
+    quoted_clean = clean_click_candidate(quoted_text)
 
     link_context = [
         "link",
@@ -269,9 +300,34 @@ def map_click_locator_by_rule(step_text, locator_context):
 
         for candidate in candidates:
             candidate_norm = normalize_key(candidate)
+            candidate_clean = clean_click_candidate(candidate)
 
             if not candidate_norm:
                 continue
+
+            # ==================================================
+            # ƯU TIÊN TEXT TRONG DẤU NHÁY
+            # Ví dụ:
+            # Step: Nhấn nút "Mua"
+            # btnMua      -> candidate_clean = "mua"      => đúng
+            # btnMuaHang  -> candidate_clean = "mua hang" => không exact
+            # ==================================================
+            if quoted_clean:
+                if candidate_clean == quoted_clean:
+                    score += 120
+
+                elif quoted_clean in candidate_clean:
+                    score += 40
+
+                elif candidate_clean in quoted_clean:
+                    score += 20
+
+            if quoted_norm:
+                if candidate_norm == quoted_norm:
+                    score += 100
+
+                elif quoted_norm in candidate_norm:
+                    score += 30
 
             if candidate_norm in text_norm:
                 score += len(candidate_norm) * 4
@@ -453,6 +509,67 @@ def build_expected_verify_steps(
                     "locator": locator,
                     "value": ""
                 })
+
+    return verify_steps
+
+
+def is_system_display_step(step):
+    step_norm = normalize_key(step)
+
+    if (
+            "hethong" not in step_norm
+            and "he thong" not in step_norm
+    ):
+        return False
+
+    if (
+            "hienthi" in step_norm
+            or "hien thi" in step_norm
+            or "xuat hien" in step_norm
+            or "danhsach" in step_norm
+            or "danh sach" in step_norm
+    ):
+        return True
+
+    return False
+
+
+def is_message_display_step(step):
+    step_norm = normalize_key(step)
+
+    return (
+        "thongbao" in step_norm
+        or "thong bao" in step_norm
+        or bool(extract_quoted_text(step))
+    )
+
+
+def build_system_display_verify_steps(
+        source_steps,
+        locator_context
+):
+    verify_steps = []
+
+    for step in source_steps:
+        if not is_system_display_step(step):
+            continue
+
+        # Nếu là thông báo có nội dung cụ thể thì phần expected_result đã xử lý.
+        # Fallback này chỉ dùng cho UI/state/list visible.
+        if is_message_display_step(step):
+            continue
+
+        locator = map_locator_by_keyword(
+            step,
+            "VERIFY_ELEMENT_VISIBLE",
+            locator_context
+        )
+
+        verify_steps.append({
+            "keyword": "VERIFY_ELEMENT_VISIBLE",
+            "locator": locator,
+            "value": ""
+        })
 
     return verify_steps
 
@@ -643,6 +760,17 @@ def generate_keyword_steps(
             expected_results,
             verify_context_steps,
             locator_context
+        )
+
+        # Fallback: nếu expected_messages rỗng nhưng execution path có
+        # "Hệ thống hiển thị ..." thì vẫn phải verify UI/state.
+        fallback_verify_steps = build_system_display_verify_steps(
+            source_steps,
+            locator_context
+        )
+
+        verify_steps.extend(
+            fallback_verify_steps
         )
 
         for verify_step in verify_steps:

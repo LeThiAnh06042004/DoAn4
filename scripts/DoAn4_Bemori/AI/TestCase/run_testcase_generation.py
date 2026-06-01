@@ -23,13 +23,25 @@ from AI.TestCase.excel_script_exporter import (
     export_script_to_excel
 )
 
+from AI.TestCase.evaluation_result_parser import (
+    find_log_file_by_function_web,
+    parse_execution_log
+)
+
+from AI.TestCase.auto_evaluation import (
+    evaluate_auto_testing_result
+)
+
+from AI.TestCase.auto_evaluation_excel_exporter import (
+    export_auto_evaluation_to_excel
+)
 
 # ==================================================
 # CẤU HÌNH ĐẦU VÀO
 # ==================================================
-UC_FILE = "UC_DatHangNhanh_Bemori.txt"
-LOCATOR_FILE = "DatHangNhanh_Bemori_locators.yaml"
-DATA_FILE = "data_DatHangNhanh_Bemori.json"
+UC_FILE = "UC_MuaHang_Bemori.txt"
+LOCATOR_FILE = "MuaHang_Bemori_locators.yaml"
+DATA_FILE = "data_MuaHang_Bemori.txt"
 
 
 # ==================================================
@@ -426,6 +438,17 @@ def validate_with_regeneration(
     return testcases, validation_report
 
 
+def remove_extra_path_testcases(testcases, execution_paths):
+    valid_path_ids = {
+        path.get("path_id")
+        for path in execution_paths
+    }
+
+    return [
+        tc for tc in testcases
+        if tc.get("path_id") in valid_path_ids
+    ]
+
 # ==================================================
 # MAIN PIPELINE
 # ==================================================
@@ -524,6 +547,11 @@ def run_generation():
 
     testcases = remove_duplicate_testcases(
         testcases
+    )
+
+    testcases = remove_extra_path_testcases(
+        testcases,
+        execution_paths
     )
 
     # ==================================================
@@ -642,6 +670,73 @@ def run_generation():
         keyword_steps,
         script_path
     )
+
+    # ==================================================
+    # ĐÁNH GIÁ TỰ ĐỘNG TEST CASE + TEST SCRIPT
+    # ==================================================
+
+    # Folder reports của framework thực thi
+    reports_dir = os.path.join(
+        project_root,
+        "reports"
+    )
+
+    # Tìm log đúng chức năng + website
+    execution_log_file = find_log_file_by_function_web(
+        reports_dir=reports_dir,
+        function_name=function_name,
+        web_name=web_name
+    )
+
+    # Parse kết quả PASS / FAIL từ log
+    execution_results = parse_execution_log(
+        execution_log_file
+    ) if execution_log_file else []
+
+    # ==================================================
+    # TẠO FOLDER ĐÁNH GIÁ
+    # ==================================================
+    evaluation_folder = os.path.join(
+        base_dir,
+        "Evaluation"
+    )
+
+    os.makedirs(
+        evaluation_folder,
+        exist_ok=True
+    )
+
+    evaluation_path = os.path.join(
+        evaluation_folder,
+        f"EV_{function_name}_{web_name}.xlsx"
+    )
+
+    # ==================================================
+    # ĐÁNH GIÁ TỰ ĐỘNG
+    # ==================================================
+    evaluation_summary, testcase_details, script_details = evaluate_auto_testing_result(
+        execution_paths=execution_paths,
+        testcases=testcases,
+        keyword_steps=keyword_steps,
+        validation_report=validation_report,
+        execution_results=execution_results
+    )
+
+    # ==================================================
+    # EXPORT FILE ĐÁNH GIÁ
+    # ==================================================
+    export_auto_evaluation_to_excel(
+        summary=evaluation_summary,
+        testcase_details=testcase_details,
+        script_details=script_details,
+        output_path=evaluation_path,
+        function_name=function_name,
+        web_name=web_name
+    )
+
+    print("\n===== AUTO EVALUATION =====")
+    print(f"Log file: {execution_log_file}")
+    print(f"Evaluation file: {evaluation_path}")
 
     # ==================================================
     # LOG KẾT QUẢ

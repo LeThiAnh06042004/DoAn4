@@ -1,0 +1,31 @@
+2026-05-31 15:38:29,325 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_153829\logs\log_MuaHang_Bemori.txt
+2026-05-31 15:38:29,815 - INFO - TestLogger - Function: MuaHang
+2026-05-31 15:38:29,815 - INFO - TestLogger - Website: Bemori
+2026-05-31 15:38:29,815 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_153829\html\report_MuaHang_Bemori.html
+2026-05-31 15:38:36,330 - INFO - TestLogger - Bắt đầu: test_run[TC_001] =====
+2026-05-31 15:38:44,377 - INFO - TestLogger - ===== TESTCASE: TC_001 =====
+2026-05-31 15:38:44,377 - INFO - TestLogger - DATA: None
+2026-05-31 15:38:44,378 - INFO - TestLogger - START TEST EXECUTION
+2026-05-31 15:38:44,379 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://gaubongonline.vn/
+2026-05-31 15:38:56,073 - INFO - TestLogger - PASS
+2026-05-31 15:38:56,074 - INFO - TestLogger - STEP 2: CLICK | lnkSanPham | 
+2026-05-31 15:38:56,656 - INFO - TestLogger - PASS
+2026-05-31 15:38:56,657 - INFO - TestLogger - STEP 3: CLICK | btnMuaHang | 
+2026-05-31 15:38:57,938 - INFO - TestLogger - PASS
+2026-05-31 15:38:57,939 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtTenNguoiMua | Linh
+2026-05-31 15:38:58,754 - INFO - TestLogger - PASS
+2026-05-31 15:38:58,754 - INFO - TestLogger - STEP 5: INPUT_TEXT | txtSoDienThoaiNguoiMua | 0218737692
+2026-05-31 15:38:59,225 - INFO - TestLogger - PASS
+2026-05-31 15:38:59,226 - INFO - TestLogger - STEP 6: INPUT_TEXT | txtDiaChiNhanHang | Hưng Yên
+2026-05-31 15:38:59,770 - INFO - TestLogger - PASS
+2026-05-31 15:38:59,771 - INFO - TestLogger - STEP 7: INPUT_TEXT | txtYeuCauThem | test
+2026-05-31 15:39:00,033 - INFO - TestLogger - PASS
+2026-05-31 15:39:00,033 - INFO - TestLogger - STEP 8: VERIFY_TEXT_CONTAINS | lblThongBaoThanhCong | Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.
+2026-05-31 15:39:10,617 - ERROR - TestLogger - FAIL: VERIFY_TEXT_CONTAINS FAILED
+2026-05-31 15:39:10,617 - ERROR - TestLogger - TESTCASE FAILED: TC_001
+2026-05-31 15:39:10,618 - ERROR - TestLogger - VERIFY_TEXT_CONTAINS FAILED
+2026-05-31 15:39:12,511 - ERROR - TestLogger - TEST FAILED: test_run[TC_001]
+2026-05-31 15:39:12,511 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_153829\screenshots\test_run[TC_001].png
+2026-05-31 15:39:14,779 - INFO - TestLogger - Kết thúc: test_run[TC_001] =====
+
+2026-05-31 15:39:14,800 - INFO - TestLogger - Bắt đầu: test_run[TC_002] =====

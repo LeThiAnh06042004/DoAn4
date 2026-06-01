@@ -2,16 +2,17 @@
   {
     "test_case_id": "TC_001",
     "path_id": "PATH_001",
-    "scenario": "Đăng nhập thành công với thông tin hợp lệ",
+    "scenario": "Kiểm tra đăng nhập thành công",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
       "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
       "Step 2: Nhập email hợp lệ vào ô email",
       "Step 3: Nhập mật khẩu hợp lệ vào ô mật khẩu",
       "Step 4: Nhấn nút \"Đăng nhập\"",
-      "Step 5: Kiểm tra rằng trang chủ NetaBooks được hiển thị thành công"
+      "Step 5: Kiểm tra chuyển hướng người dùng đến trang chủ NetaBooks",
+      "Step 6: Kiểm tra trang chủ NetaBooks được hiển thị thành công"
     ],
     "expected_result": [
       "Trang chủ NetaBooks được hiển thị thành công"
@@ -20,9 +21,9 @@
   {
     "test_case_id": "TC_002",
     "path_id": "PATH_002",
-    "scenario": "Đăng nhập khi không nhập email",
+    "scenario": "Kiểm tra đăng nhập khi không nhập email",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
       "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
@@ -38,9 +39,9 @@
   {
     "test_case_id": "TC_003",
     "path_id": "PATH_003",
-    "scenario": "Đăng nhập khi không nhập mật khẩu",
+    "scenario": "Kiểm tra đăng nhập khi không nhập mật khẩu",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
       "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
@@ -56,9 +57,9 @@
   {
     "test_case_id": "TC_004",
     "path_id": "PATH_004",
-    "scenario": "Đăng nhập với email sai định dạng",
+    "scenario": "Kiểm tra đăng nhập khi email sai định dạng",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
       "Step 1: Nhấn vào liên kết \"Đăng nhập\"",
@@ -74,9 +75,9 @@
   {
     "test_case_id": "TC_005",
     "path_id": "PATH_005",
-    "scenario": "Đăng nhập với mật khẩu sai",
+    "scenario": "Kiểm tra đăng nhập khi mật khẩu sai",
     "precondition": [
-      "Người dùng đang ở trang chủ"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
       "Step 1: Nhấn vào liên kết \"Đăng nhập\"",

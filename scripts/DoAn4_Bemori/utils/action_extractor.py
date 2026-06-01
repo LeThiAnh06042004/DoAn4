@@ -22,8 +22,9 @@ def contains_phrase(text, phrase):
     """
     Kiểm tra phrase theo ranh giới từ.
     Mục đích:
-    - "nhap" phải match với "nhap email"
-    - "nhap" KHÔNG được match nhầm trong "dang nhap"
+    - "nhap" match với "nhap email"
+    - "nhap" KHÔNG match nhầm trong "dang nhap"
+    - "di" KHÔNG match nhầm trong "dia chi"
     """
 
     if not text or not phrase:
@@ -46,7 +47,6 @@ def contains_any_phrase(text, patterns):
 def is_navigation_click(text):
     """
     Nhận diện các bước điều hướng/mở trang/mở màn hình.
-    Đây là thao tác click trên UI, không phải SELECT.
     Không hardcode theo chức năng cụ thể.
     """
 
@@ -71,7 +71,8 @@ def is_navigation_click(text):
         "tab",
         "menu",
         "lien ket",
-        "link"
+        "link",
+        "chi tiet"
     ]
 
     return (
@@ -80,15 +81,11 @@ def is_navigation_click(text):
     )
 
 
-# Nhận 1 step -> 1 keyword phù hợp nhất
 def extract_action(step_text):
     text = normalize_text(step_text)
 
     # ==================================================
-    # ƯU TIÊN VERIFY
-    # Lý do:
-    # Step verify có thể chứa text như "đăng nhập thất bại".
-    # Nếu check INPUT trước, chữ "nhập" trong "đăng nhập" dễ bị nhận nhầm.
+    # VERIFY
     # ==================================================
     verify_text_patterns = [
         "kiem tra thong bao",
@@ -137,7 +134,7 @@ def extract_action(step_text):
         return "VERIFY_ELEMENT_PRESENT"
 
     # ==================================================
-    # ƯU TIÊN DOUBLE_CLICK
+    # DOUBLE_CLICK
     # ==================================================
     double_click_patterns = [
         "double click",
@@ -148,7 +145,7 @@ def extract_action(step_text):
         return "DOUBLE_CLICK"
 
     # ==================================================
-    # ƯU TIÊN RIGHT_CLICK
+    # RIGHT_CLICK
     # ==================================================
     right_click_patterns = [
         "right click",
@@ -159,7 +156,7 @@ def extract_action(step_text):
         return "RIGHT_CLICK"
 
     # ==================================================
-    # ƯU TIÊN PRESS_ENTER
+    # PRESS_ENTER
     # ==================================================
     press_enter_patterns = [
         "nhan enter",
@@ -170,26 +167,10 @@ def extract_action(step_text):
         return "PRESS_ENTER"
 
     # ==================================================
-    # ƯU TIÊN CLICK / ĐIỀU HƯỚNG UI
-    # Lý do:
-    # "Nhấn nút Đăng nhập" chứa chữ "nhập" trong "đăng nhập".
-    # Nếu INPUT chạy trước CLICK sẽ bị nhận nhầm thành INPUT_TEXT.
-    # ==================================================
-    if is_navigation_click(text):
-        return "CLICK"
-
-    click_patterns = [
-        "nhan",
-        "bam",
-        "click",
-        "tap"
-    ]
-
-    if contains_any_phrase(text, click_patterns):
-        return "CLICK"
-
-    # ==================================================
-    # ƯU TIÊN INPUT_TEXT
+    # INPUT_TEXT
+    # Đặt trước CLICK để tránh câu "Nhập địa chỉ..." bị nhận thành CLICK
+    # do chữ "dia" gây nhiễu với điều hướng.
+    # contains_phrase giúp không match nhầm "dang nhap".
     # ==================================================
     input_patterns = [
         "khong nhap",
@@ -205,8 +186,23 @@ def extract_action(step_text):
         return "INPUT_TEXT"
 
     # ==================================================
+    # CLICK / ĐIỀU HƯỚNG UI
+    # ==================================================
+    if is_navigation_click(text):
+        return "CLICK"
+
+    click_patterns = [
+        "nhan",
+        "bam",
+        "click",
+        "tap"
+    ]
+
+    if contains_any_phrase(text, click_patterns):
+        return "CLICK"
+
+    # ==================================================
     # CÁC KEYWORD CÒN LẠI: dùng score matching
-    # Có dùng contains_phrase để tránh match nhầm substring.
     # ==================================================
     best_keyword = None
     best_score = 0

@@ -2,14 +2,14 @@
   {
     "test_case_id": "TC_001",
     "path_id": "PATH_001",
-    "scenario": "Kiểm tra đặt hàng nhanh khi nhập số điện thoại hợp lệ",
+    "scenario": "Kiểm tra đặt hàng nhanh khi nhập số điện thoại hợp lệ và nhận thông báo thành công",
     "precondition": [
-      "Người dùng đang ở trang chi tiết sản phẩm"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
-      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
-      "Step 2: Người dùng nhập số điện thoại hợp lệ",
-      "Step 3: Người dùng nhấn nút \"Gửi\"",
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập số điện thoại hợp lệ",
+      "Step 3: Nhấn nút \"Gửi\"",
       "Step 4: Kiểm tra thông báo \"Cảm ơn bạn đã đặt hàng, vui lòng check lại đơn hàng trong messenger.\" hiển thị"
     ],
     "expected_result": [
@@ -19,14 +19,14 @@
   {
     "test_case_id": "TC_002",
     "path_id": "PATH_002",
-    "scenario": "Kiểm tra đặt hàng nhanh khi số điện thoại rỗng",
+    "scenario": "Kiểm tra đặt hàng nhanh khi không nhập số điện thoại (số điện thoại rỗng)",
     "precondition": [
-      "Người dùng đang ở trang chi tiết sản phẩm"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
-      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
-      "Step 2: Người dùng không nhập số điện thoại",
-      "Step 3: Người dùng nhấn nút \"Gửi\"",
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Không nhập số điện thoại",
+      "Step 3: Nhấn nút \"Gửi\"",
       "Step 4: Kiểm tra thông báo \"Bạn chưa nhập số điện thoại.\" hiển thị"
     ],
     "expected_result": [
@@ -36,14 +36,14 @@
   {
     "test_case_id": "TC_003",
     "path_id": "PATH_003",
-    "scenario": "Kiểm tra đặt hàng nhanh khi số điện thoại chứa ký tự không phải số",
+    "scenario": "Kiểm tra đặt hàng nhanh khi nhập số điện thoại có ký tự không phải số",
     "precondition": [
-      "Người dùng đang ở trang chi tiết sản phẩm"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
-      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
-      "Step 2: Người dùng nhập số điện thoại chứa ký tự không phải số",
-      "Step 3: Người dùng nhấn nút \"Gửi\"",
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập số điện thoại chứa ký tự không phải số",
+      "Step 3: Nhấn nút \"Gửi\"",
       "Step 4: Kiểm tra thông báo \"Số điện thoại chỉ bao gồm những số.\" hiển thị"
     ],
     "expected_result": [
@@ -53,14 +53,14 @@
   {
     "test_case_id": "TC_004",
     "path_id": "PATH_004",
-    "scenario": "Kiểm tra đặt hàng nhanh khi số điện thoại ít hơn 10 chữ số",
+    "scenario": "Kiểm tra đặt hàng nhanh khi nhập số điện thoại ít hơn 10 chữ số",
     "precondition": [
-      "Người dùng đang ở trang chi tiết sản phẩm"
+      "Người dùng đang ở trang chủ website"
     ],
     "steps": [
-      "Step 1: Người dùng truy cập vào trang chi tiết sản phẩm",
-      "Step 2: Người dùng nhập số điện thoại có ít hơn 10 chữ số",
-      "Step 3: Người dùng nhấn nút \"Gửi\"",
+      "Step 1: Truy cập vào trang chi tiết sản phẩm",
+      "Step 2: Nhập số điện thoại có ít hơn 10 chữ số",
+      "Step 3: Nhấn nút \"Gửi\"",
       "Step 4: Kiểm tra thông báo \"Số điện thoại phải có ít nhất 10 số.\" hiển thị"
     ],
     "expected_result": [

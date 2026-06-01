@@ -1,0 +1,4 @@
+2026-05-31 08:45:45,200 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_084545\logs\log_BinhLuan_Bemori.txt
+2026-05-31 08:45:45,312 - INFO - TestLogger - Function: BinhLuan
+2026-05-31 08:45:45,313 - INFO - TestLogger - Website: Bemori
+2026-05-31 08:45:45,313 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260531_084545\html\report_BinhLuan_Bemori.html

@@ -1,0 +1,160 @@
+2026-05-30 15:16:35,289 - INFO - TestLogger - File log đã được tạo: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260530_151635\logs\log.txt
+2026-05-30 15:16:35,368 - INFO - TestLogger - Báo cáo HTML: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260530_151635\html\report.html
+2026-05-30 15:16:37,337 - INFO - TestLogger - Bắt đầu: test_run[TC_001] =====
+2026-05-30 15:16:48,252 - INFO - TestLogger - ===== TESTCASE: TC_001 =====
+2026-05-30 15:16:48,253 - INFO - TestLogger - DATA: None
+2026-05-30 15:16:48,253 - INFO - TestLogger - START TEST EXECUTION
+2026-05-30 15:16:48,253 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://www.netabooks.vn/
+2026-05-30 15:16:50,476 - INFO - TestLogger - PASS
+2026-05-30 15:16:50,477 - INFO - TestLogger - STEP 2: CLICK | lnkDangNhap | 
+2026-05-30 15:16:51,314 - INFO - TestLogger - PASS
+2026-05-30 15:16:51,315 - INFO - TestLogger - STEP 3: INPUT_TEXT | txtEmail | anhle06042004@gmail.com
+2026-05-30 15:16:51,638 - INFO - TestLogger - PASS
+2026-05-30 15:16:51,638 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtMatKhau | 06042004
+2026-05-30 15:16:51,925 - INFO - TestLogger - PASS
+2026-05-30 15:16:51,926 - INFO - TestLogger - STEP 5: CLICK | btnDangNhap | 
+2026-05-30 15:16:53,409 - INFO - TestLogger - PASS
+2026-05-30 15:16:53,409 - INFO - TestLogger - STEP 6: VERIFY_ELEMENT_VISIBLE | imgDangNhapThanhCong | 
+2026-05-30 15:16:53,714 - INFO - TestLogger - PASS
+2026-05-30 15:16:53,715 - INFO - TestLogger - STEP 7: CLOSE_BROWSER |  | 
+2026-05-30 15:16:55,975 - INFO - TestLogger - PASS
+2026-05-30 15:16:55,976 - INFO - TestLogger - TESTCASE PASSED: TC_001
+2026-05-30 15:16:55,983 - INFO - TestLogger - TEST PASSED: test_run[TC_001]
+2026-05-30 15:17:12,419 - INFO - TestLogger - Kết thúc: test_run[TC_001] =====
+
+2026-05-30 15:17:12,426 - INFO - TestLogger - Bắt đầu: test_run[TC_002] =====
+2026-05-30 15:17:17,152 - INFO - TestLogger - ===== TESTCASE: TC_002 =====
+2026-05-30 15:17:17,153 - INFO - TestLogger - DATA: None
+2026-05-30 15:17:17,153 - INFO - TestLogger - START TEST EXECUTION
+2026-05-30 15:17:17,154 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://www.netabooks.vn/
+2026-05-30 15:17:19,133 - INFO - TestLogger - PASS
+2026-05-30 15:17:19,133 - INFO - TestLogger - STEP 2: CLICK | lnkDangNhap | 
+2026-05-30 15:17:19,952 - INFO - TestLogger - PASS
+2026-05-30 15:17:19,953 - INFO - TestLogger - STEP 3: INPUT_TEXT | txtEmail | 
+2026-05-30 15:17:20,111 - INFO - TestLogger - PASS
+2026-05-30 15:17:20,111 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtMatKhau | 06042004
+2026-05-30 15:17:20,415 - INFO - TestLogger - PASS
+2026-05-30 15:17:20,416 - INFO - TestLogger - STEP 5: CLICK | btnDangNhap | 
+2026-05-30 15:17:21,019 - INFO - TestLogger - PASS
+2026-05-30 15:17:21,020 - INFO - TestLogger - STEP 6: VERIFY_ELEMENT_TEXT_EQUALS | lblDangNhapThatBai | Đăng nhập thất bại. Vui lòng thử lại.
+2026-05-30 15:17:21,148 - INFO - TestLogger - PASS
+2026-05-30 15:17:21,149 - INFO - TestLogger - STEP 7: CLOSE_BROWSER |  | 
+2026-05-30 15:17:23,365 - INFO - TestLogger - PASS
+2026-05-30 15:17:23,366 - INFO - TestLogger - TESTCASE PASSED: TC_002
+2026-05-30 15:17:23,371 - INFO - TestLogger - TEST PASSED: test_run[TC_002]
+2026-05-30 15:17:39,778 - INFO - TestLogger - Kết thúc: test_run[TC_002] =====
+
+2026-05-30 15:17:39,783 - INFO - TestLogger - Bắt đầu: test_run[TC_003] =====
+2026-05-30 15:17:44,381 - INFO - TestLogger - ===== TESTCASE: TC_003 =====
+2026-05-30 15:17:44,382 - INFO - TestLogger - DATA: None
+2026-05-30 15:17:44,382 - INFO - TestLogger - START TEST EXECUTION
+2026-05-30 15:17:44,382 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://www.netabooks.vn/
+2026-05-30 15:17:46,181 - INFO - TestLogger - PASS
+2026-05-30 15:17:46,182 - INFO - TestLogger - STEP 2: CLICK | lnkDangNhap | 
+2026-05-30 15:17:47,134 - INFO - TestLogger - PASS
+2026-05-30 15:17:47,135 - INFO - TestLogger - STEP 3: INPUT_TEXT | txtEmail | anhle06042004@gmail.com
+2026-05-30 15:17:47,448 - INFO - TestLogger - PASS
+2026-05-30 15:17:47,449 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtMatKhau | 
+2026-05-30 15:17:47,568 - INFO - TestLogger - PASS
+2026-05-30 15:17:47,569 - INFO - TestLogger - STEP 5: CLICK | btnDangNhap | 
+2026-05-30 15:17:48,202 - INFO - TestLogger - PASS
+2026-05-30 15:17:48,202 - INFO - TestLogger - STEP 6: VERIFY_ELEMENT_TEXT_EQUALS | lblDangNhapThatBai | Đăng nhập thất bại. Vui lòng thử lại.
+2026-05-30 15:17:48,341 - INFO - TestLogger - PASS
+2026-05-30 15:17:48,341 - INFO - TestLogger - STEP 7: CLOSE_BROWSER |  | 
+2026-05-30 15:17:50,533 - INFO - TestLogger - PASS
+2026-05-30 15:17:50,533 - INFO - TestLogger - TESTCASE PASSED: TC_003
+2026-05-30 15:17:50,537 - INFO - TestLogger - TEST PASSED: test_run[TC_003]
+2026-05-30 15:18:06,984 - INFO - TestLogger - Kết thúc: test_run[TC_003] =====
+
+2026-05-30 15:18:06,989 - INFO - TestLogger - Bắt đầu: test_run[TC_004] =====
+2026-05-30 15:18:11,597 - INFO - TestLogger - ===== TESTCASE: TC_004 =====
+2026-05-30 15:18:11,598 - INFO - TestLogger - DATA: None
+2026-05-30 15:18:11,598 - INFO - TestLogger - START TEST EXECUTION
+2026-05-30 15:18:11,599 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://www.netabooks.vn/
+2026-05-30 15:18:13,622 - INFO - TestLogger - PASS
+2026-05-30 15:18:13,622 - INFO - TestLogger - STEP 2: CLICK | lnkDangNhap | 
+2026-05-30 15:18:14,403 - INFO - TestLogger - PASS
+2026-05-30 15:18:14,403 - INFO - TestLogger - STEP 3: INPUT_TEXT | txtEmail | anhle
+2026-05-30 15:18:14,667 - INFO - TestLogger - PASS
+2026-05-30 15:18:14,668 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtMatKhau | 06042004
+2026-05-30 15:18:14,965 - INFO - TestLogger - PASS
+2026-05-30 15:18:14,966 - INFO - TestLogger - STEP 5: CLICK | btnDangNhap | 
+2026-05-30 15:18:15,165 - INFO - TestLogger - PASS
+2026-05-30 15:18:15,165 - INFO - TestLogger - STEP 6: VERIFY_ELEMENT_TEXT_EQUALS | lblDangNhapThatBai | Đăng nhập thất bại. Vui lòng thử lại.
+2026-05-30 15:18:25,745 - ERROR - TestLogger - FAIL: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x94b593+105d3]
+	chromedriver!GetHandleVerifier [0x94b6c4+10704]
+	chromedriver!(No symbol) [0x751ea0]
+	chromedriver!(No symbol) [0x79b28a]
+	chromedriver!(No symbol) [0x79b52b]
+	chromedriver!(No symbol) [0x7dd052]
+	chromedriver!(No symbol) [0x7bd7c4]
+	chromedriver!(No symbol) [0x7da936]
+	chromedriver!(No symbol) [0x7bd516]
+	chromedriver!(No symbol) [0x7908e9]
+	chromedriver!(No symbol) [0x7916a4]
+	chromedriver!GetHandleVerifier [0xbd3014+298054]
+	chromedriver!GetHandleVerifier [0xbce603+293643]
+	chromedriver!GetHandleVerifier [0xbeea05+2b3a45]
+	chromedriver!GetHandleVerifier [0x9654e8+2a528]
+	chromedriver!GetHandleVerifier [0x96cd1d+31d5d]
+	chromedriver!GetHandleVerifier [0x953e68+18ea8]
+	chromedriver!GetHandleVerifier [0x954015+19055]
+	chromedriver!GetHandleVerifier [0x93d65f+269f]
+	KERNEL32!BaseThreadInitThunk [0x7621fcc9+19]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x77b782ae+11e]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x77b7827e+ee]
+
+2026-05-30 15:18:25,745 - ERROR - TestLogger - TESTCASE FAILED: TC_004
+2026-05-30 15:18:25,746 - ERROR - TestLogger - Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x94b593+105d3]
+	chromedriver!GetHandleVerifier [0x94b6c4+10704]
+	chromedriver!(No symbol) [0x751ea0]
+	chromedriver!(No symbol) [0x79b28a]
+	chromedriver!(No symbol) [0x79b52b]
+	chromedriver!(No symbol) [0x7dd052]
+	chromedriver!(No symbol) [0x7bd7c4]
+	chromedriver!(No symbol) [0x7da936]
+	chromedriver!(No symbol) [0x7bd516]
+	chromedriver!(No symbol) [0x7908e9]
+	chromedriver!(No symbol) [0x7916a4]
+	chromedriver!GetHandleVerifier [0xbd3014+298054]
+	chromedriver!GetHandleVerifier [0xbce603+293643]
+	chromedriver!GetHandleVerifier [0xbeea05+2b3a45]
+	chromedriver!GetHandleVerifier [0x9654e8+2a528]
+	chromedriver!GetHandleVerifier [0x96cd1d+31d5d]
+	chromedriver!GetHandleVerifier [0x953e68+18ea8]
+	chromedriver!GetHandleVerifier [0x954015+19055]
+	chromedriver!GetHandleVerifier [0x93d65f+269f]
+	KERNEL32!BaseThreadInitThunk [0x7621fcc9+19]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x77b782ae+11e]
+	ntdll!RtlGetAppContainerNamedObjectPath [0x77b7827e+ee]
+
+2026-05-30 15:18:26,517 - ERROR - TestLogger - TEST FAILED: test_run[TC_004]
+2026-05-30 15:18:26,518 - ERROR - TestLogger - Screenshot: D:\Đồ án 4\DoAn4\scripts\DoAn4_Bemori\reports\20260530_151635\screenshots\test_run[TC_004].png
+2026-05-30 15:18:28,909 - INFO - TestLogger - Kết thúc: test_run[TC_004] =====
+
+2026-05-30 15:18:28,960 - INFO - TestLogger - Bắt đầu: test_run[TC_005] =====
+2026-05-30 15:18:33,157 - INFO - TestLogger - ===== TESTCASE: TC_005 =====
+2026-05-30 15:18:33,158 - INFO - TestLogger - DATA: None
+2026-05-30 15:18:33,159 - INFO - TestLogger - START TEST EXECUTION
+2026-05-30 15:18:33,159 - INFO - TestLogger - STEP 1: OPEN_URL |  | https://www.netabooks.vn/
+2026-05-30 15:18:35,171 - INFO - TestLogger - PASS
+2026-05-30 15:18:35,172 - INFO - TestLogger - STEP 2: CLICK | lnkDangNhap | 
+2026-05-30 15:18:35,959 - INFO - TestLogger - PASS
+2026-05-30 15:18:35,960 - INFO - TestLogger - STEP 3: INPUT_TEXT | txtEmail | anhle06042004@gmail.com
+2026-05-30 15:18:36,270 - INFO - TestLogger - PASS
+2026-05-30 15:18:36,270 - INFO - TestLogger - STEP 4: INPUT_TEXT | txtMatKhau | 0604
+2026-05-30 15:18:36,553 - INFO - TestLogger - PASS
+2026-05-30 15:18:36,554 - INFO - TestLogger - STEP 5: CLICK | btnDangNhap | 
+2026-05-30 15:18:37,199 - INFO - TestLogger - PASS
+2026-05-30 15:18:37,199 - INFO - TestLogger - STEP 6: VERIFY_ELEMENT_TEXT_EQUALS | lblDangNhapThatBai | Đăng nhập thất bại. Vui lòng thử lại.
+2026-05-30 15:18:37,313 - INFO - TestLogger - PASS
+2026-05-30 15:18:37,313 - INFO - TestLogger - STEP 7: CLOSE_BROWSER |  | 
+2026-05-30 15:18:39,497 - INFO - TestLogger - PASS
+2026-05-30 15:18:39,498 - INFO - TestLogger - TESTCASE PASSED: TC_005
+2026-05-30 15:18:39,501 - INFO - TestLogger - TEST PASSED: test_run[TC_005]
+2026-05-30 15:18:55,954 - INFO - TestLogger - Kết thúc: test_run[TC_005] =====
+
